@@ -188,7 +188,11 @@
                         <viewLayoutGuide key="safeArea" id="T5F-G6-Y3B"/>
                     </view>
                     <navigationItem key="navigationItem" title="(SettingsViewController)" id="hS8-td-pRa">
-                        <barButtonItem key="rightBarButtonItem" title="logout" id="MsH-Pw-8oR"/>
+                        <barButtonItem key="rightBarButtonItem" title="logout" id="MsH-Pw-8oR">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="GEV-8e-cUz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="autoUploadLabel" destination="z7y-Ic-pmp" id="8wf-L6-QHR"/>
