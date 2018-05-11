@@ -17,6 +17,26 @@ class GalleryViewController: UITableViewController {
     @IBOutlet weak var galleryViewNavigationItem: UINavigationItem!
     // @IBOutlet var thumbnails: [UIImage]!
     
+    @IBOutlet weak var selectBarButton: UIBarButtonItem!
+    @IBOutlet weak var uploadBarButton: UIBarButtonItem!
+    
+    var trashBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
+    var downloadBarButtonItem = UIBarButtonItem(title: "Download", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+    var leftBarButtonsAreVisible = false
+    
+    @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
+        if leftBarButtonsAreVisible == false {
+            selectBarButton.title = "Done"
+            self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButtonItem, downloadBarButtonItem]
+            leftBarButtonsAreVisible = true
+        }
+        else {
+            selectBarButton.title = "Select"
+            self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
+            leftBarButtonsAreVisible = false
+        }
+    }
+    
     func showGallery() {}
     
     func refreshGalleryViewFromModel() {

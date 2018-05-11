@@ -84,15 +84,24 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="(GalleryViewController)" id="iJ8-Jq-wXq">
                         <barButtonItem key="leftBarButtonItem" title="Upload" id="Ycx-PE-wxf"/>
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="Vyc-Bd-NKt">
-                            <connections>
-                                <segue destination="FS4-E8-mmU" kind="show" id="hED-SB-31f"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Settings" id="Vyc-Bd-NKt">
+                                <connections>
+                                    <segue destination="FS4-E8-mmU" kind="show" id="hED-SB-31f"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Select" id="uyy-zp-Sic">
+                                <connections>
+                                    <action selector="selectBarButtonPressed:" destination="MVQ-D3-gFJ" id="9ft-Kt-gre"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="galleryViewNavigationItem" destination="iJ8-Jq-wXq" id="6IM-c7-c27"/>
+                        <outlet property="selectBarButton" destination="uyy-zp-Sic" id="NZI-gs-QKz"/>
                         <outlet property="settingsBarButton" destination="Vyc-Bd-NKt" id="dKN-Ve-cgX"/>
+                        <outlet property="uploadBarButton" destination="Ycx-PE-wxf" id="PaY-zd-35F"/>
                         <outletCollection property="thumbnailButtons" destination="he6-n5-7MK" collectionClass="NSMutableArray" id="v4n-EV-9go"/>
                     </connections>
                 </tableViewController>
