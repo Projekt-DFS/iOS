@@ -14,17 +14,17 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet weak var imageDetailNavigationItem: UINavigationItem!
     @IBOutlet weak var trashBarButton: UIBarButtonItem!
     @IBOutlet weak var metaDataBarButton: UIBarButtonItem!
-    @IBOutlet weak var imageDetailLabel: UILabel!
-    // @IBOutlet var imageView : UIImageView!
-    
-    
+    @IBOutlet weak var imageView: UIImageView!
+    var image = UIImage()
     
     func showImage() {
         //kann in viewDidLoad() passieren
     }   
     
     override func viewDidLoad() {
+        imageView = UIImageView(image: image)
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
