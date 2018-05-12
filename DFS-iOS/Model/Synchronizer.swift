@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Ich denke, dass die ganze Klasse unnötig ist, und das iOS selbst kann.
+
 class Synchronizer {
     
     func autoUpdate() {}

@@ -11,18 +11,13 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController {
     
-    
-    lazy var gallery = Gallery()
-    lazy var thumbnails = gallery.getThumbnailList()
-    lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]()
-    
-    //@IBOutlet var thumbnailButtons: [UIButton]!
-    
+    lazy var gallery = Gallery()    // Das Gallery-Model
+    lazy var thumbnails = gallery.getThumbnailList()    // Array von UIImages werden als Thumbnails benutzt
+    lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
+        
     
-    
-    
-    // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "select-Modus", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.
+    // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "highlightingMode", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.
     @IBOutlet weak var uploadBarButton: UIBarButtonItem!
     
     @IBOutlet weak var selectBarButton: UIBarButtonItem!
@@ -55,18 +50,26 @@ class GalleryCollectionViewController: UICollectionViewController {
     
     
     
-    
+    // hierfür gibt es keinen Nutzen. Sollte aus dem Diagramm entfernt werden.
     func showGallery() {}
     
+    // hierfür gibt es keinen Nutzen. Sollte aus dem Diagramm entfernt werden.
+
     func refreshGalleryViewFromModel() {
-        //Gibts was neues vom Model? Wenn ja, update die View
+    }
+    
+    // Bereitet den ImageDetailViewController darauf vor, dass gleich ein Segue zu ihm stattfindet
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "imageDetailSegue" {
+            let destinationVC = segue.destination as! ImageDetailViewController
+            if let indexPath = self.collectionView?.indexPath(for: sender as! GalleryCollectionViewCell) {
+                destinationVC.image = thumbnails[indexPath.item]
+            }
+        }
     }
     
     
-    
-    
-    
-    
+    // Bestimmt, was passiert wenn die view geladed wurde
     override func viewDidLoad() {
         super.viewDidLoad()
         galleryCollectionView?.allowsMultipleSelection = true
@@ -76,12 +79,12 @@ class GalleryCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
+    // Anzahl der Zellen == Anzahl der Bilder im Gallery-Model
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return thumbnails.count
     }
     
-    
+    // Initialisierung von Zellen in der galleryCollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
         
@@ -91,7 +94,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
 
 
-    
+    // Bestimmt, was passiert wenn eine Zelle ausgewählt wird
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if galleryCollectionView.highlightingMode {
@@ -103,16 +106,7 @@ class GalleryCollectionViewController: UICollectionViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "imageDetailSegue" {
-            let destinationVC = segue.destination as! ImageDetailViewController
-            if let indexPath = self.collectionView?.indexPath(for: sender as! GalleryCollectionViewCell) {
-                destinationVC.image = thumbnails[indexPath.item]
-            }
-        }
-    }
-    
-    
+    // Bestimmt, was passiert wenn eine Auswahl revidiert wird
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if galleryCollectionView.highlightingMode {

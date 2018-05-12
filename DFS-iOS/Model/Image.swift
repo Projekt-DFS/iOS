@@ -15,7 +15,7 @@ class Image {
     var thumbnail: UIImage
     
     init() {
-        source = URL(string: "http://nirgendwo.edu")!
+        source = URL(string: "iBims1CanNetzwerk")!
         thumbnail = Image.selectRandomThumbnail()
         metaData = nil
     }
