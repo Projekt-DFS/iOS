@@ -22,9 +22,8 @@ class ImageDetailViewController: UIViewController {
     }   
     
     override func viewDidLoad() {
-        imageView = UIImageView(image: image)
+        self.imageView.image = image
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     

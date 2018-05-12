@@ -141,7 +141,6 @@
 				715DCD0120A2F96F00A759E5 /* Controller */,
 				715DCD0020A2F96C00A759E5 /* View */,
 				715DCCD220A2F70100A759E5 /* AppDelegate.swift */,
-				715DCCD620A2F70100A759E5 /* Main.storyboard */,
 				715DCCD920A2F70200A759E5 /* Assets.xcassets */,
 				715DCCDB20A2F70200A759E5 /* LaunchScreen.storyboard */,
 				715DCCDE20A2F70200A759E5 /* Info.plist */,
@@ -170,6 +169,7 @@
 		715DCD0020A2F96C00A759E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				715DCCD620A2F70100A759E5 /* Main.storyboard */,
 				715DCD2320A2FC1D00A759E5 /* LoginView.swift */,
 				715DCD2720A2FC5100A759E5 /* SettingsView.swift */,
 				715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */,

@@ -86,14 +86,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fmz-eC-E4g">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmz-eC-E4g">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="NhY-hV-sx5">
+                                            <rect key="frame" x="148" y="253" width="42" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="Ec7-0h-GsR"/>
+                                                <constraint firstAttribute="width" constant="77" id="rff-Ob-AP3"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="Fmz-eC-E4g" firstAttribute="bottom" secondItem="NhY-hV-sx5" secondAttribute="bottom" id="By8-E2-25r"/>
+                                    <constraint firstAttribute="trailing" secondItem="Fmz-eC-E4g" secondAttribute="trailing" id="YcM-tJ-Mjb"/>
+                                    <constraint firstItem="Fmz-eC-E4g" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="top" id="cgg-qB-1Z6"/>
+                                    <constraint firstItem="Fmz-eC-E4g" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leading" id="iqv-SV-qMV"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" id="lc6-EY-hSK"/>
+                                    <constraint firstItem="Fmz-eC-E4g" firstAttribute="trailing" secondItem="NhY-hV-sx5" secondAttribute="trailing" id="vA8-OF-bs8"/>
+                                </constraints>
                                 <size key="customSize" width="200" height="300"/>
                                 <connections>
+                                    <outlet property="imageSelectedView" destination="NhY-hV-sx5" id="Do8-48-1PB"/>
                                     <outlet property="thumbnail" destination="Fmz-eC-E4g" id="uBK-We-zaO"/>
                                 </connections>
                             </collectionViewCell>
@@ -124,11 +139,12 @@
                         <outlet property="selectBarButton" destination="32t-Lz-Sxm" id="liA-L2-vbO"/>
                         <outlet property="settingsBarButton" destination="UMH-fB-Kue" id="6H5-b7-cLD"/>
                         <outlet property="uploadBarButton" destination="Hgh-Mq-ZRI" id="R0H-vm-HOf"/>
+                        <segue destination="chr-mF-Vpp" kind="show" identifier="imageDetailSegue" id="Ks1-Pm-pPW"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utg-aF-fbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783.59375" y="106.640625"/>
+            <point key="canvasLocation" x="865.625" y="106.640625"/>
         </scene>
         <!--ImageDetailViewController-->
         <scene sceneID="rIe-IC-Cet">
@@ -138,16 +154,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
-                                <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4K8-uo-EIO" firstAttribute="trailing" secondItem="0kA-LX-0Mh" secondAttribute="trailing" id="9nn-vL-vwo"/>
                             <constraint firstItem="4K8-uo-EIO" firstAttribute="bottom" secondItem="0kA-LX-0Mh" secondAttribute="bottom" id="AzD-nD-cEk"/>
+                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="bottom" secondItem="4K8-uo-EIO" secondAttribute="bottom" id="Eza-sn-U7a"/>
                             <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="4K8-uo-EIO" secondAttribute="leading" id="Rg3-ac-ysQ"/>
+                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="trailing" secondItem="4K8-uo-EIO" secondAttribute="trailing" id="fNv-jH-VfG"/>
                             <constraint firstItem="0kA-LX-0Mh" firstAttribute="top" secondItem="4K8-uo-EIO" secondAttribute="top" id="oEk-2t-369"/>
+                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="4K8-uo-EIO" secondAttribute="leading" id="vPf-Ic-7vk"/>
+                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="top" secondItem="4K8-uo-EIO" secondAttribute="top" id="xCO-2b-fAF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4K8-uo-EIO"/>
                     </view>
@@ -236,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DZ6-uM-sRe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1492" y="-679"/>
+            <point key="canvasLocation" x="1491.40625" y="-679.1015625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ncx-8i-ZKU">
@@ -257,4 +277,7 @@
             <point key="canvasLocation" x="-87" y="107"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="check" width="640" height="640"/>
+    </resources>
 </document>

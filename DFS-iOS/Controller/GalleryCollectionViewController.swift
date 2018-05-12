@@ -44,6 +44,7 @@ class GalleryCollectionViewController: UICollectionViewController {
         else {
             for cell in galleryCollectionViewCells {
                 cell.isSelected = false
+                cell.imageSelectedView.isHidden = true
                 cell.thumbnail.alpha = 1.0
             }
             selectBarButton.title = "Select"
@@ -90,13 +91,24 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
 
 
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if galleryCollectionView.highlightingMode {
             cell.thumbnail.alpha = 0.4
             cell.isSelected = true
+            cell.imageSelectedView.isHidden = false
         } else {
-            //performSegue(withIdentifier: "detailViewSegue", sender: self)
+            self.performSegue(withIdentifier: "imageDetailSegue", sender: cell)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "imageDetailSegue" {
+            let destinationVC = segue.destination as! ImageDetailViewController
+            if let indexPath = self.collectionView?.indexPath(for: sender as! GalleryCollectionViewCell) {
+                destinationVC.image = thumbnails[indexPath.item]
+            }
         }
     }
     
@@ -105,8 +117,9 @@ class GalleryCollectionViewController: UICollectionViewController {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if galleryCollectionView.highlightingMode {
             cell.thumbnail.alpha = 1.0
-        }
-        cell.isSelected = false
+            cell.imageSelectedView.isHidden = true
+            cell.isSelected = false
+        }        
     }
     
 

@@ -12,4 +12,5 @@ class GalleryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var thumbnail: UIImageView!    
         
+    @IBOutlet weak var imageSelectedView: UIImageView!
 }
