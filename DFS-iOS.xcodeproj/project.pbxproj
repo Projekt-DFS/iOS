@@ -201,8 +201,8 @@
 				715DCD0720A2FAB300A759E5 /* Uploader.swift */,
 				715DCD0920A2FAC800A759E5 /* Downloader.swift */,
 				715DCD0B20A2FAEA00A759E5 /* Synchronizer.swift */,
-				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
 				715DCD0F20A2FB1600A759E5 /* Image.swift */,
+				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
 				715DCD1120A2FB2E00A759E5 /* UserData.swift */,
 				715DCD1320A2FB4400A759E5 /* Settings.swift */,
 			);

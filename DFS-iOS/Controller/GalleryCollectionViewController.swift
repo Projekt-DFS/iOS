@@ -53,8 +53,6 @@ class GalleryCollectionViewController: UICollectionViewController {
     // hierfür gibt es keinen Nutzen. Sollte aus dem Diagramm entfernt werden.
     func showGallery() {}
     
-    // hierfür gibt es keinen Nutzen. Sollte aus dem Diagramm entfernt werden.
-
     func refreshGalleryViewFromModel() {
     }
     
