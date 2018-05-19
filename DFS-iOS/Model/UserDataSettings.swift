@@ -8,25 +8,60 @@
 
 import Foundation
 
-class UserDataSettings  {
+class UserData  {
     
-    var pw : String  // Verschluesselung?!?!
-    var userName : String {
-        get {
-           return self.userName
-        }
-        set{
-            self.userName = newValue
-        }
-        // Ich glaube so macht man eigentlich getter und setter (computed properties)
-    }
+    //---UserDefaults und Keys---//
+    let defaults = UserDefaults.standard
+    var userNameKey    = "userName"
+    var pwKey          = "pw"
+    var ipKey          = "ip"
+    var autoUploadKey  = "autoUpload"
     
-    func checkInput() {} // kommt raus
+    //---Properties---//
+    var userName   = ""
+    var pw         = ""  // verschluesseln?
+    var ip         = ""
+    var autoUpload = false
+    
     
     init() {
-        pw = ""
-        userName = ""
+        loadDefaultsIfSet()
     }
-   
+    
+    
+    func loadDefaultsIfSet(){
+        if let userName = defaults.object(forKey: userNameKey) as? String{
+            self.userName = userName
+        }
+        
+        if let pw = defaults.object(forKey: pwKey) as? String {
+            self.pw  = pw
+        }
+        
+        if let ip = defaults.object(forKey: ipKey) as? String {
+            self.ip = ip
+        }
+        
+        if defaults.bool(forKey: autoUploadKey) {
+            self.autoUpload = true
+        }
+    }
+    
+    func setDefaultUserName(_ to: String){
+        defaults.set(to, forKey: userNameKey)
+    }
+    
+    func setDefaultPw(_ to: String){
+        defaults.set(to, forKey: pwKey)
+    }
+    
+    func setDefaultIp(_ to: String){
+        defaults.set(to, forKey: ipKey)
+    }
+    
+    func setDefaultAutoUpload(_ to: Bool){
+        defaults.set(to, forKey: autoUploadKey)
+    }
+    
     
 }
