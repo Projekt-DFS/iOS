@@ -12,14 +12,14 @@ class UserData  {
     
     //---UserDefaults und Keys---//
     let defaults = UserDefaults.standard
-    var userNameKey    = "userName"
-    var pwKey          = "pw"
-    var ipKey          = "ip"
-    var autoUploadKey  = "autoUpload"
+    let userNameKey    = "userName"
+    let pwKey          = "pw"
+    let ipKey          = "ip"
+    let autoUploadKey  = "autoUpload"
     
     //---Properties---//
     var userName   = ""
-    var pw         = ""  // verschluesseln?
+    var pw         = ""
     var ip         = ""
     var autoUpload = false
     
