@@ -9,10 +9,10 @@
 import Foundation
 
 /**
-    Diese Klasse ist zustaendig fuer die Verwaltung, Speicherung und
-    Einstellung von User Daten, also dem UserName, dem Passwort, der IP
-    und der Auto Upload - Funktion
- */
+ Diese Klasse ist zustaendig fuer die Verwaltung, Speicherung und
+ Einstellung von User Daten, also dem UserName, dem Passwort, der IP
+ und der Auto Upload - Funktion
+*/
 class UserDataSettings  {
     
     //-----Properties-----//
@@ -31,17 +31,17 @@ class UserDataSettings  {
     let autoUploadKey  = "autoUpload"
     
     /**
-        Die Initialisierung passiert in loadDefaultsIfSet()
-     */
+     Die Initialisierung passiert in loadDefaultsIfSet()
+    */
     init() {
         loadDefaultsIfSet()
     }
     
     
     /**
-        Schaut nach, ob schon Default-Werte in der App gespeichert sind und
-        uebernimmt diese. Falls noch keine gespeichert sind bleibt es bei der
-        obigen Zuweisung (s. Properties)
+     Schaut nach, ob schon Default-Werte in der App gespeichert sind und
+     uebernimmt diese. Falls noch keine gespeichert sind bleibt es bei der
+     obigen Zuweisung (s. Properties)
     */
     func loadDefaultsIfSet(){
         if let userName = defaults.object(forKey: userNameKey) as? String{
