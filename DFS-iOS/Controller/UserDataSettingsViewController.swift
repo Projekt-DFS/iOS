@@ -8,15 +8,15 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class UserDataSettingsViewController: UIViewController {
 
-    var settings: Settings?
     @IBOutlet weak var autoUploadLabel: UILabel!
     @IBOutlet weak var autoUploadSwitch: UISwitch!
-    @IBOutlet var settingsView: SettingsView!
+    @IBOutlet var settingsView: UserDataSettingsView!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     @IBOutlet weak var logoutBarButton: UIBarButtonItem!
     
+    // was macht das?
     func updateSettings() {}
     
     func getSettings() {
@@ -26,13 +26,11 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        // Hier muss das Segue zum LoginViewController gecoded werden.
+        // User abmelden + Segue ohne ZurückButton + Alle Controller in DFSNavigationController resetten
     }
    
 

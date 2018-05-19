@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserData  {
+class UserDataSettings  {
     
     var pw : String  // Verschluesselung?!?!
     var userName : String {
@@ -21,7 +21,7 @@ class UserData  {
         // Ich glaube so macht man eigentlich getter und setter (computed properties)
     }
     
-    func checkInput() {}
+    func checkInput() {} // kommt raus
     
     init() {
         pw = ""

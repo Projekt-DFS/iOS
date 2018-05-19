@@ -1,5 +1,5 @@
 //
-//  MetaDataView.swift
+//  SettingsView.swift
 //  DFS-iOS
 //
 //  Created by Konrad Zuse on 09.05.18.
@@ -8,5 +8,7 @@
 
 import UIKit
 
-class MetaDataView: UIView {
+class UserDataSettingsView: UIView {
+
+
 }

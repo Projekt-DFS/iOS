@@ -26,8 +26,6 @@ class Connector {
     }
     
     func setIP() {
-        // Gedanke: ip kann eine computed property sein, dann hat sie direkt eine set-Methode.
-        // https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html
     }
     
     func authenticate() -> Bool {

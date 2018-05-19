@@ -14,29 +14,19 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet weak var imageDetailNavigationItem: UINavigationItem!
     @IBOutlet weak var trashBarButton: UIBarButtonItem!
     @IBOutlet weak var metaDataBarButton: UIBarButtonItem!
-    @IBOutlet weak var imageDetailLabel: UILabel!
-    // @IBOutlet var imageView : UIImageView!
-    
-    
-    
+    @IBOutlet weak var imageView: UIImageView!
+    var image = UIImage()
+        
+    // hierfür sehe ich noch keinen Nutzen. Passiert in viewDidLoad()
     func showImage() {
-        //kann in viewDidLoad() passieren
-    }   
+    }
     
     override func viewDidLoad() {
+        self.imageView.image = image    // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        // Bild und Metadaten aus RAM nehmen?
+        // Bild und Metadaten aus RAM nehmen? Update 12.05.: Das macht iOS von selbst.
     }
-   
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-
 }
