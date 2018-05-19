@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserData  {
+class UserDataSettings  {
     
     var pw : String  // Verschluesselung?!?!
     var userName : String {

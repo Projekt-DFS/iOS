@@ -8,12 +8,11 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class UserDataSettingsViewController: UIViewController {
 
-    var settings: Settings?
     @IBOutlet weak var autoUploadLabel: UILabel!
     @IBOutlet weak var autoUploadSwitch: UISwitch!
-    @IBOutlet var settingsView: SettingsView!
+    @IBOutlet var settingsView: UserDataSettingsView!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     @IBOutlet weak var logoutBarButton: UIBarButtonItem!
     

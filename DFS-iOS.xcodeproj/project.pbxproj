@@ -20,14 +20,13 @@
 		715DCD0C20A2FAEA00A759E5 /* Synchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0B20A2FAEA00A759E5 /* Synchronizer.swift */; };
 		715DCD0E20A2FB0300A759E5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0D20A2FB0300A759E5 /* Gallery.swift */; };
 		715DCD1020A2FB1600A759E5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0F20A2FB1600A759E5 /* Image.swift */; };
-		715DCD1220A2FB2E00A759E5 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1120A2FB2E00A759E5 /* UserData.swift */; };
-		715DCD1420A2FB4400A759E5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1320A2FB4400A759E5 /* Settings.swift */; };
+		715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */; };
 		715DCD1820A2FB7E00A759E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1720A2FB7E00A759E5 /* LoginViewController.swift */; };
 		715DCD1A20A2FBA200A759E5 /* DFSNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1920A2FBA200A759E5 /* DFSNavigationController.swift */; };
-		715DCD1E20A2FBDD00A759E5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1D20A2FBDD00A759E5 /* SettingsViewController.swift */; };
+		715DCD1E20A2FBDD00A759E5 /* UserDataSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1D20A2FBDD00A759E5 /* UserDataSettingsViewController.swift */; };
 		715DCD2020A2FBF200A759E5 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1F20A2FBF200A759E5 /* ImageDetailViewController.swift */; };
 		715DCD2420A2FC1D00A759E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2320A2FC1D00A759E5 /* LoginView.swift */; };
-		715DCD2820A2FC5100A759E5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2720A2FC5100A759E5 /* SettingsView.swift */; };
+		715DCD2820A2FC5100A759E5 /* UserDataSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */; };
 		715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */; };
 		715DCD2C20A2FC6A00A759E5 /* MetaDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */; };
 		715DCD3020A30BA400A759E5 /* MetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2F20A30BA400A759E5 /* MetaDataViewController.swift */; };
@@ -73,14 +72,13 @@
 		715DCD0B20A2FAEA00A759E5 /* Synchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Synchronizer.swift; sourceTree = "<group>"; };
 		715DCD0D20A2FB0300A759E5 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		715DCD0F20A2FB1600A759E5 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		715DCD1120A2FB2E00A759E5 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
-		715DCD1320A2FB4400A759E5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		715DCD1720A2FB7E00A759E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		715DCD1920A2FBA200A759E5 /* DFSNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DFSNavigationController.swift; sourceTree = "<group>"; };
-		715DCD1D20A2FBDD00A759E5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		715DCD1D20A2FBDD00A759E5 /* UserDataSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettingsViewController.swift; sourceTree = "<group>"; };
 		715DCD1F20A2FBF200A759E5 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		715DCD2320A2FC1D00A759E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		715DCD2720A2FC5100A759E5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettingsView.swift; sourceTree = "<group>"; };
 		715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
 		715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataView.swift; sourceTree = "<group>"; };
 		715DCD2F20A30BA400A759E5 /* MetaDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataViewController.swift; sourceTree = "<group>"; };
@@ -171,7 +169,7 @@
 			children = (
 				715DCCD620A2F70100A759E5 /* Main.storyboard */,
 				715DCD2320A2FC1D00A759E5 /* LoginView.swift */,
-				715DCD2720A2FC5100A759E5 /* SettingsView.swift */,
+				715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */,
 				715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */,
 				715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */,
 				71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */,
@@ -186,7 +184,7 @@
 				715DCD1720A2FB7E00A759E5 /* LoginViewController.swift */,
 				715DCD1920A2FBA200A759E5 /* DFSNavigationController.swift */,
 				71F3B72320A61DF5005194BB /* GalleryCollectionViewController.swift */,
-				715DCD1D20A2FBDD00A759E5 /* SettingsViewController.swift */,
+				715DCD1D20A2FBDD00A759E5 /* UserDataSettingsViewController.swift */,
 				715DCD1F20A2FBF200A759E5 /* ImageDetailViewController.swift */,
 				715DCD2F20A30BA400A759E5 /* MetaDataViewController.swift */,
 			);
@@ -203,8 +201,7 @@
 				715DCD0B20A2FAEA00A759E5 /* Synchronizer.swift */,
 				715DCD0F20A2FB1600A759E5 /* Image.swift */,
 				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
-				715DCD1120A2FB2E00A759E5 /* UserData.swift */,
-				715DCD1320A2FB4400A759E5 /* Settings.swift */,
+				715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -347,19 +344,18 @@
 				71F3B72820A62A66005194BB /* GalleryCollectionViewCell.swift in Sources */,
 				715DCD0420A2FA7300A759E5 /* Connector.swift in Sources */,
 				715DCD2C20A2FC6A00A759E5 /* MetaDataView.swift in Sources */,
-				715DCD2820A2FC5100A759E5 /* SettingsView.swift in Sources */,
+				715DCD2820A2FC5100A759E5 /* UserDataSettingsView.swift in Sources */,
 				715DCD3020A30BA400A759E5 /* MetaDataViewController.swift in Sources */,
 				715DCD0A20A2FAC800A759E5 /* Downloader.swift in Sources */,
 				715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */,
 				71F3B72420A61DF5005194BB /* GalleryCollectionViewController.swift in Sources */,
 				715DCD0820A2FAB300A759E5 /* Uploader.swift in Sources */,
-				715DCD1E20A2FBDD00A759E5 /* SettingsViewController.swift in Sources */,
+				715DCD1E20A2FBDD00A759E5 /* UserDataSettingsViewController.swift in Sources */,
 				715DCD0C20A2FAEA00A759E5 /* Synchronizer.swift in Sources */,
 				715DCD1A20A2FBA200A759E5 /* DFSNavigationController.swift in Sources */,
 				715DCD2420A2FC1D00A759E5 /* LoginView.swift in Sources */,
 				715DCD0620A2FA9200A759E5 /* Communicator.swift in Sources */,
-				715DCD1220A2FB2E00A759E5 /* UserData.swift in Sources */,
-				715DCD1420A2FB4400A759E5 /* Settings.swift in Sources */,
+				715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */,
 				715DCCD320A2F70100A759E5 /* AppDelegate.swift in Sources */,
 				715DCD2020A2FBF200A759E5 /* ImageDetailViewController.swift in Sources */,
 			);

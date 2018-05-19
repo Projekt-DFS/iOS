@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsView: UIView {
+class UserDataSettingsView: UIView {
 
 
 }
