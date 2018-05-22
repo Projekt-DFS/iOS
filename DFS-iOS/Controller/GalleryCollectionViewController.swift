@@ -9,7 +9,7 @@
 import UIKit
 
 
-class GalleryCollectionViewController: UICollectionViewController {
+class GalleryCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     lazy var gallery = Gallery()    // Das Gallery-Model
     lazy var thumbnails = gallery.getThumbnailList()    // Array von UIImages werden als Thumbnails benutzt
@@ -47,11 +47,6 @@ class GalleryCollectionViewController: UICollectionViewController {
             galleryCollectionView.highlightingMode = false
         }
     }
-    
-    
-    
-    // hierfür gibt es keinen Nutzen. Sollte aus dem Diagramm entfernt werden.
-    func showGallery() {}
     
     func refreshGalleryViewFromModel() {
     }
@@ -114,5 +109,72 @@ class GalleryCollectionViewController: UICollectionViewController {
         }        
     }
     
-
+    //---Upload---//
+    /**
+     Erzeugt ueber einen Alert den benoetigten ImagePicker und zeigt diesen anschliessend an
+     */
+    @IBAction func prepareUpload(_ sender: UIBarButtonItem) {
+        let imagePickerController = createPicker()
+        let alert = createAlert(picker: imagePickerController)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    /**
+     Erzeugt einen ImagePicker
+    */
+    func createPicker() -> UIImagePickerController{
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = false
+        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        
+        return imagePickerController
+    }
+    
+    /**
+     Erzeugt einen UIAlertController, welcher eine Auswahl zwischen Kamera und Galerie bietet
+     */
+    func createAlert(picker: UIImagePickerController) -> UIAlertController{
+        let alert = UIAlertController(title: "Image Source", message: "Please select", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera){
+                picker.sourceType = .camera
+                self.present(picker, animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: {(action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        return alert
+    }
+    
+    /**
+     Wird ausgefuehrt, sobald der ImagePicker ein Bild gepickt hat (entweder ueber Kamera oder als Auswahl in der Galerie)
+     */
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            let uploader = Uploader(image: image)
+            uploader.abDamitZumCommunicator() //nur damit XCode nicht wegen "unused" warnt
+            //TODO: Upload
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    /**
+     Wenn kein Bild ausgewaehlt wurde, so wird der Picker trotzdem korrekt beendet
+     */
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
 }

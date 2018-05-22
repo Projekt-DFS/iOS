@@ -5,6 +5,9 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+## Projektdatei
+DFS-iOS.xcodeproj/project.pbxproj
+
 ## Build generated
 build/
 DerivedData/

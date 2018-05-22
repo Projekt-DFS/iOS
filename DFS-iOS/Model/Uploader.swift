@@ -7,9 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 class Uploader {
     
-    var selectedImages: [Image]?
+    var image: UIImage
+    
+    init(image: UIImage){
+        self.image = image
+    }
+    
+    
+    //TODO
+    func abDamitZumCommunicator(){
+        
+    }
     
 }

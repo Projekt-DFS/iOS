@@ -16,14 +16,6 @@ class UserDataSettingsViewController: UIViewController {
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     @IBOutlet weak var logoutBarButton: UIBarButtonItem!
     
-    // was macht das?
-    func updateSettings() {}
-    
-    func getSettings() {
-        //unnötig?
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
