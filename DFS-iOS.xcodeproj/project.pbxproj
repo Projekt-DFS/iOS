@@ -33,6 +33,7 @@
 		71F3B72420A61DF5005194BB /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3B72320A61DF5005194BB /* GalleryCollectionViewController.swift */; };
 		71F3B72820A62A66005194BB /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3B72720A62A66005194BB /* GalleryCollectionViewCell.swift */; };
 		71F4C97420A62B810061FD3F /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */; };
+		CC0A9C8020BC81320042FFB6 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		71F3B72320A61DF5005194BB /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		71F3B72720A62A66005194BB /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
+		CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				715DCD0F20A2FB1600A759E5 /* Image.swift */,
 				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
 				715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */,
+				CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				715DCD0620A2FA9200A759E5 /* Communicator.swift in Sources */,
 				715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */,
 				715DCCD320A2F70100A759E5 /* AppDelegate.swift in Sources */,
+				CC0A9C8020BC81320042FFB6 /* JsonParser.swift in Sources */,
 				715DCD2020A2FBF200A759E5 /* ImageDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,13 +536,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2WQWMT9QB9;
+				DEVELOPMENT_TEAM = 8XLV69AXF4;
 				INFOPLIST_FILE = "DFS-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pp.DFS-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "con.DFS-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -552,13 +556,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2WQWMT9QB9;
+				DEVELOPMENT_TEAM = 8XLV69AXF4;
 				INFOPLIST_FILE = "DFS-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "pp.DFS-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "con.DFS-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
