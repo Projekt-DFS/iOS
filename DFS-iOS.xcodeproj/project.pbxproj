@@ -34,6 +34,7 @@
 		71F3B72820A62A66005194BB /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3B72720A62A66005194BB /* GalleryCollectionViewCell.swift */; };
 		71F4C97420A62B810061FD3F /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */; };
 		CC0A9C8020BC81320042FFB6 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */; };
+		CC0D435A20BD6D7300399A68 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0D435920BD6D7300399A68 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		71F3B72720A62A66005194BB /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
 		CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		CC0D435920BD6D7300399A68 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		715DCCD120A2F70100A759E5 /* DFS-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CC0D435920BD6D7300399A68 /* Utils.swift */,
 				715DCD0220A2F97100A759E5 /* Model */,
 				715DCD0120A2F96F00A759E5 /* Controller */,
 				715DCD0020A2F96C00A759E5 /* View */,
@@ -355,6 +358,7 @@
 				715DCD0820A2FAB300A759E5 /* Uploader.swift in Sources */,
 				715DCD1E20A2FBDD00A759E5 /* UserDataSettingsViewController.swift in Sources */,
 				715DCD0C20A2FAEA00A759E5 /* Synchronizer.swift in Sources */,
+				CC0D435A20BD6D7300399A68 /* Utils.swift in Sources */,
 				715DCD1A20A2FBA200A759E5 /* DFSNavigationController.swift in Sources */,
 				715DCD2420A2FC1D00A759E5 /* LoginView.swift in Sources */,
 				715DCD0620A2FA9200A759E5 /* Communicator.swift in Sources */,

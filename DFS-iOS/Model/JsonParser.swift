@@ -22,7 +22,7 @@ class JsonParser{
     
     
     static func extractJsonData(data: Data) -> [String: Any] {
-
+    
         do{
             guard let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
                 return ["":""] //geht bestimmt klueger... mal sehen
