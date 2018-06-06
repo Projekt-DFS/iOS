@@ -31,7 +31,7 @@ class Communicator {
         request.httpMethod = "POST"
         
         //will Aude so haben. Hinter dem Code steckt "user:admin"
-        request.addValue("dXNlcjphZG1pbg=", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic dXNlcjphZG1pbg==", forHTTPHeaderField: "Authorization")
         
         let loginJSON = "{\n\tusername: \(userNameBase64)\n\tpassword: \(pwBase64)\n}"
         request.httpBody = loginJSON.data(using: .utf8)
