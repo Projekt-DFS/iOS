@@ -42,14 +42,14 @@ class JsonParser{
 //fuer die Methode: parseFromJsonToMetaData
 struct MetaData{
     let owner    : String
-    let date     : String
+    let created  : String
     let location : String
-    let tags     : String
+    let tagList  : String
     
     init(json: [String: Any]){
         owner     =  json["owner"   ]  as? String ?? ""
-        date      =  json["date"    ]  as? String ?? ""
+        created   =  json["created" ]  as? String ?? ""
         location  =  json["location"]  as? String ?? ""
-        tags      =  json["tags"    ]  as? String ?? ""
+        tagList   =  json["tagList" ]  as? String ?? ""
     }
 }

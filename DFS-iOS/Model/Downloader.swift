@@ -10,11 +10,21 @@ import Foundation
 
 class Downloader {
     
-    var selectedImages: [Image]?
+    var links: [String]
+    let communicator: Communicator
     
-    func loadImages() {}
     
-    func changeName() {}
+    init(links: [String]){
+        self.links = links
+        communicator = Communicator()
+    }
+    
+    func downloadThumbnails(links: [String]) -> [Data]{
+        // return communicator.getThumbnails()
+        // TO DO
+        return [Data]()
+    }
+    
 }
 
 
