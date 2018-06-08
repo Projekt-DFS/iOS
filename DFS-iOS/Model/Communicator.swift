@@ -25,16 +25,19 @@ class Communicator {
         
         let userNameBase64 = Utils.encodeStringToBase64(str: userData.userName)
         let pwBase64 = Utils.encodeStringToBase64(str: userData.pw)
-        
         let url = URL(string: userData.ip)!
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
         //will Aude so haben. Hinter dem Code steckt "user:admin"
         request.addValue("Basic dXNlcjphZG1pbg==", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let loginJSON = "{\n\tusername: \(userNameBase64)\n\tpassword: \(pwBase64)\n}"
-        request.httpBody = loginJSON.data(using: .utf8)
+        let json: [String: Any] = ["username": userNameBase64,
+                                   "password": pwBase64]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
         
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
