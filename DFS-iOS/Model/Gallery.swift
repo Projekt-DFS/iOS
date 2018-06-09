@@ -16,25 +16,25 @@ class Gallery {
     // UIImage = die Imageklasse von UIKit
     // UIImageView = ein Container, der ein Bild darstellen kann
     
-    var thumbnailList = [Image]()
+    var imageList = [Image]()
     
     
     // init == "Konstruktor"
     init() {
         let numberOfImages = 4000 // fixe Anzahl an Bildern im Moment. Wird später computed property, die das Backend vorgibt
         for _ in 0..<numberOfImages {
-            thumbnailList.append(Image())
+            imageList.append(Image())
         }
     }
     func showImage() {
         //Muesste das nicht "showThumbnails()" heißen?
     }
     
-    public func getThumbnailList() -> [UIImage] {
-        var thumbnails = [UIImage]()
-        for image in self.thumbnailList{
-            thumbnails.append(image.getThumbnail())
+    public func getImageList() -> [UIImage] {
+        var images = [UIImage]()
+        for image in self.imageList{
+            images.append(image.getThumbnail())
         }
-        return thumbnails
+        return images
     }
 }

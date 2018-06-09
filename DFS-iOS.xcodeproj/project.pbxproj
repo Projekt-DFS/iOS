@@ -189,9 +189,9 @@
 				715DCD1720A2FB7E00A759E5 /* LoginViewController.swift */,
 				715DCD1920A2FBA200A759E5 /* DFSNavigationController.swift */,
 				71F3B72320A61DF5005194BB /* GalleryCollectionViewController.swift */,
-				715DCD1D20A2FBDD00A759E5 /* UserDataSettingsViewController.swift */,
 				715DCD1F20A2FBF200A759E5 /* ImageDetailViewController.swift */,
 				715DCD2F20A30BA400A759E5 /* MetaDataViewController.swift */,
+				715DCD1D20A2FBDD00A759E5 /* UserDataSettingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

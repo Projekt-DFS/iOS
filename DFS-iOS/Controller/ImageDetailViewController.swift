@@ -10,13 +10,34 @@ import UIKit
 
 class ImageDetailViewController: UIViewController {
 
+    let SWIPE_ANIMATION_DURATION = 0.3
+    
     @IBOutlet var imageDetailView: ImageDetailView!
     @IBOutlet weak var imageDetailNavigationItem: UINavigationItem!
     @IBOutlet weak var trashBarButton: UIBarButtonItem!
     @IBOutlet weak var metaDataBarButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     var image = UIImage()
-        
+    var galleryVC = GalleryCollectionViewController()
+    
+    @IBAction func swipedRight(_ sender: UISwipeGestureRecognizer) {
+        if let _ = galleryVC.pathOfImageInDetailView {
+            galleryVC.pathOfImageInDetailView! -= 1
+        }
+        image = galleryVC.thumbnails[galleryVC.pathOfImageInDetailView!]
+        imageDetailView.slideInImage(fromDirection: "left", duration: SWIPE_ANIMATION_DURATION)
+        viewDidLoad()
+    }
+    
+    @IBAction func swipedLeft(_ sender: Any) {
+        if let _ = galleryVC.pathOfImageInDetailView {
+            galleryVC.pathOfImageInDetailView! += 1
+        }
+        image = galleryVC.thumbnails[galleryVC.pathOfImageInDetailView!]
+        imageDetailView.slideInImage(fromDirection: "right", duration: SWIPE_ANIMATION_DURATION)
+        viewDidLoad()
+    }
+    
     // hierfür sehe ich noch keinen Nutzen. Passiert in viewDidLoad()
     func showImage() {
     }
