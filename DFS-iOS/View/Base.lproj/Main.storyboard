@@ -142,6 +142,7 @@
                         <outlet property="galleryViewNavigationItem" destination="SLF-iO-Tn0" id="CpM-jy-Ycv"/>
                         <outlet property="selectBarButton" destination="32t-Lz-Sxm" id="liA-L2-vbO"/>
                         <outlet property="settingsBarButton" destination="UMH-fB-Kue" id="6H5-b7-cLD"/>
+                        <outlet property="uploadBarButton" destination="Hgh-Mq-ZRI" id="hFb-ZT-6U4"/>
                         <segue destination="chr-mF-Vpp" kind="show" identifier="imageDetailSegue" id="Ks1-Pm-pPW"/>
                     </connections>
                 </collectionViewController>

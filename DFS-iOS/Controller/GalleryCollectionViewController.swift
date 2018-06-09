@@ -17,7 +17,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
         
     
-    // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "highlightingMode", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.
+    // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "highlightingMode", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.    
     @IBOutlet weak var uploadBarButton: UIBarButtonItem!
     
     @IBOutlet weak var selectBarButton: UIBarButtonItem!
