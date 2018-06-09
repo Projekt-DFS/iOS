@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,7 +16,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Lf-5K-Lhu">
@@ -69,7 +69,7 @@
             <objects>
                 <collectionViewController id="G3b-WN-yw6" customClass="GalleryCollectionViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KsJ-Kt-hhg" customClass="GalleryCollectionView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" sectionInsetReference="safeArea" id="cFf-Td-hNQ">
@@ -80,7 +80,7 @@
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Ezf-am-R9q" customClass="GalleryCollectionViewCell" customModule="DFS_iOS" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="0.0" width="200" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
@@ -155,29 +155,41 @@
             <objects>
                 <viewController storyboardIdentifier="ImageDetailViewController" title="ImageDetailViewController" id="chr-mF-Vpp" customClass="ImageDetailViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JUp-Vy-1we" customClass="ImageDetailView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFu-Ob-Eco">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="7dr-mb-ak9" appends="YES" id="Roj-UC-Wie"/>
+                                            <outletCollection property="gestureRecognizers" destination="9Rf-lb-CBQ" appends="YES" id="JKK-1h-VvT"/>
+                                            <outletCollection property="gestureRecognizers" destination="xKk-OJ-d8V" appends="YES" id="RTe-Hn-Qqj"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="9Rf-lb-CBQ" appends="YES" id="JKK-1h-VvT"/>
-                                    <outletCollection property="gestureRecognizers" destination="7dr-mb-ak9" appends="YES" id="Roj-UC-Wie"/>
-                                </connections>
-                            </imageView>
+                                <constraints>
+                                    <constraint firstItem="0kA-LX-0Mh" firstAttribute="centerX" secondItem="GFu-Ob-Eco" secondAttribute="centerX" id="6Hg-jU-YCG"/>
+                                    <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="GFu-Ob-Eco" secondAttribute="leading" id="E0D-m7-g9c"/>
+                                    <constraint firstAttribute="trailing" secondItem="0kA-LX-0Mh" secondAttribute="trailing" id="fYf-LB-VzM"/>
+                                    <constraint firstItem="0kA-LX-0Mh" firstAttribute="top" secondItem="GFu-Ob-Eco" secondAttribute="top" id="j5Z-et-RdI"/>
+                                    <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="GFu-Ob-Eco" secondAttribute="leading" id="k5S-wO-Naq"/>
+                                    <constraint firstItem="0kA-LX-0Mh" firstAttribute="centerY" secondItem="GFu-Ob-Eco" secondAttribute="centerY" id="lmB-gF-Ftx"/>
+                                    <constraint firstAttribute="bottom" secondItem="0kA-LX-0Mh" secondAttribute="bottom" id="uev-oA-Sx4"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4K8-uo-EIO" firstAttribute="trailing" secondItem="0kA-LX-0Mh" secondAttribute="trailing" id="9nn-vL-vwo"/>
-                            <constraint firstItem="4K8-uo-EIO" firstAttribute="bottom" secondItem="0kA-LX-0Mh" secondAttribute="bottom" id="AzD-nD-cEk"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="bottom" secondItem="4K8-uo-EIO" secondAttribute="bottom" id="Eza-sn-U7a"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="4K8-uo-EIO" secondAttribute="leading" id="Rg3-ac-ysQ"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="trailing" secondItem="4K8-uo-EIO" secondAttribute="trailing" id="fNv-jH-VfG"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="top" secondItem="4K8-uo-EIO" secondAttribute="top" id="oEk-2t-369"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="leading" secondItem="4K8-uo-EIO" secondAttribute="leading" id="vPf-Ic-7vk"/>
-                            <constraint firstItem="0kA-LX-0Mh" firstAttribute="top" secondItem="4K8-uo-EIO" secondAttribute="top" id="xCO-2b-fAF"/>
+                            <constraint firstItem="GFu-Ob-Eco" firstAttribute="leading" secondItem="JUp-Vy-1we" secondAttribute="leading" id="9SL-HV-P5O"/>
+                            <constraint firstItem="GFu-Ob-Eco" firstAttribute="bottom" secondItem="JUp-Vy-1we" secondAttribute="bottom" id="Fbf-ya-Ups"/>
+                            <constraint firstItem="GFu-Ob-Eco" firstAttribute="top" secondItem="JUp-Vy-1we" secondAttribute="top" constant="64" id="Kze-hY-t9L"/>
+                            <constraint firstItem="GFu-Ob-Eco" firstAttribute="trailing" secondItem="JUp-Vy-1we" secondAttribute="trailing" id="idi-Pd-5wI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4K8-uo-EIO"/>
                     </view>
@@ -196,6 +208,7 @@
                         <outlet property="imageDetailView" destination="JUp-Vy-1we" id="7o9-6V-8hU"/>
                         <outlet property="imageView" destination="0kA-LX-0Mh" id="OzN-TE-TAF"/>
                         <outlet property="metaDataBarButton" destination="9VU-6O-rQc" id="mVd-uY-Peq"/>
+                        <outlet property="scrollView" destination="GFu-Ob-Eco" id="eZY-Vx-fWy"/>
                         <outlet property="trashBarButton" destination="Tao-nJ-36Z" id="abv-dx-FJI"/>
                     </connections>
                 </viewController>
@@ -205,20 +218,25 @@
                         <action selector="swipedRight:" destination="chr-mF-Vpp" id="std-IB-ZfQ"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" id="7dr-mb-ak9">
+                <swipeGestureRecognizer delaysTouchesBegan="YES" delaysTouchesEnded="NO" direction="left" id="7dr-mb-ak9">
                     <connections>
                         <action selector="swipedLeft:" destination="chr-mF-Vpp" id="etU-3b-ssN"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="xKk-OJ-d8V">
+                    <connections>
+                        <action selector="doubleTap:" destination="chr-mF-Vpp" id="idh-UZ-QG0"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1585.9375" y="106.640625"/>
+            <point key="canvasLocation" x="1584.8" y="106.59670164917542"/>
         </scene>
         <!--(MetaDataViewController)-->
         <scene sceneID="qub-m1-29a">
             <objects>
                 <tableViewController id="evv-tj-3lH" customClass="MetaDataViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eod-Ny-iZF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
@@ -241,7 +259,7 @@
             <objects>
                 <viewController id="FS4-E8-mmU" customClass="UserDataSettingsViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qkr-Ty-hY8" customClass="UserDataSettingsView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto Upload" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7y-Ic-pmp">
@@ -284,7 +302,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mej-yU-Aqj" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6zF-e1-MT9">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

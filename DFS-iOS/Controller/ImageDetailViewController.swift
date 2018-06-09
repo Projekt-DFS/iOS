@@ -8,10 +8,15 @@
 
 import UIKit
 
-class ImageDetailViewController: UIViewController {
+class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
 
+    // Konstanten
+    let MINIMUM_ZOOM_SCALE: CGFloat = 1.0
+    let MAXIMUM_ZOOM_SCALE: CGFloat = 3.0
     let SWIPE_ANIMATION_DURATION = 0.3
     
+    
+    //Variablen
     @IBOutlet var imageDetailView: ImageDetailView!
     @IBOutlet weak var imageDetailNavigationItem: UINavigationItem!
     @IBOutlet weak var trashBarButton: UIBarButtonItem!
@@ -20,6 +25,31 @@ class ImageDetailViewController: UIViewController {
     var image = UIImage()
     var galleryVC = GalleryCollectionViewController()
     
+    
+    // Scrollview um zu zoomen
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.minimumZoomScale = MINIMUM_ZOOM_SCALE
+            scrollView.maximumZoomScale = MAXIMUM_ZOOM_SCALE
+            scrollView.delegate = self
+            scrollView.addSubview(imageView)
+        }
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    //Zoomt rein bzw. raus bei Doppeltap
+    @IBAction func doubleTap(_ sender: UITapGestureRecognizer) {
+        if scrollView.zoomScale == 1.0 {
+            scrollView.zoomScale = 2.2
+        } else {
+            scrollView.zoomScale = 1.0
+        }
+    }
+    
+    // Swipe zum vorherigen Bild
     @IBAction func swipedRight(_ sender: UISwipeGestureRecognizer) {
         if let _ = galleryVC.pathOfImageInDetailView {
             galleryVC.pathOfImageInDetailView! -= 1
@@ -29,6 +59,7 @@ class ImageDetailViewController: UIViewController {
         viewDidLoad()
     }
     
+    // Swipe zum nächsten Bild
     @IBAction func swipedLeft(_ sender: Any) {
         if let _ = galleryVC.pathOfImageInDetailView {
             galleryVC.pathOfImageInDetailView! += 1
@@ -37,13 +68,17 @@ class ImageDetailViewController: UIViewController {
         imageDetailView.slideInImage(fromDirection: "right", duration: SWIPE_ANIMATION_DURATION)
         viewDidLoad()
     }
-    
-    // hierfür sehe ich noch keinen Nutzen. Passiert in viewDidLoad()
-    func showImage() {
+ 
+    // Größe und Zoom der ScrollView wird initialisiert
+    func setupScrollView() {
+        scrollView.contentSize = imageView.frame.size
+        scrollView.zoomScale = 1.0
     }
     
     override func viewDidLoad() {
-        self.imageView.image = image    // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
+        setupScrollView()
+        self.imageView.image = image
+        // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
         super.viewDidLoad()
     }
     
