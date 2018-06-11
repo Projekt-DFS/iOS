@@ -19,15 +19,7 @@ class MetaData {
         self.location = location
         self.tagList = tagList
     }
-    
-    init(json: [String: Any]){
-        owner     =  json["owner"   ]  as? String ?? ""
-        created   =  json["created" ]  as? String ?? ""
-        location  =  json["location"]  as? String ?? ""
-        tagList   =  json["tagList" ]  as? [String] ?? [""]
-    }
-   
-    
+      
     func getOwner() -> String {
         return self.owner
     }

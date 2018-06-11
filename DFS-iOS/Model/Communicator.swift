@@ -61,10 +61,6 @@ class Communicator {
         return true
     }
     
-    //GET ThumbnailLinks
-    func getThumbnails(){
-        
-    }
     
     //GET Thumbnails, als Image in Data-Form anhand der vorher erhaltenen Links
     /**
