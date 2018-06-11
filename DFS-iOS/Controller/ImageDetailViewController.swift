@@ -22,8 +22,9 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var trashBarButton: UIBarButtonItem!
     @IBOutlet weak var metaDataBarButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
-    var image = UIImage()
-    var galleryVC = GalleryCollectionViewController()
+    
+    var image : Image?
+    var galleryVC : GalleryCollectionViewController?
     
     
     // Scrollview um zu zoomen
@@ -51,20 +52,20 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     // Swipe zum vorherigen Bild
     @IBAction func swipedRight(_ sender: UISwipeGestureRecognizer) {
-        if let _ = galleryVC.pathOfImageInDetailView {
-            galleryVC.pathOfImageInDetailView! -= 1
+        if let _ = galleryVC?.pathOfImageInDetailView {
+            galleryVC?.pathOfImageInDetailView! -= 1
         }
-        image = galleryVC.thumbnails[galleryVC.pathOfImageInDetailView!]
+        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
         imageDetailView.slideInImage(fromDirection: "left", duration: SWIPE_ANIMATION_DURATION)
         viewDidLoad()
     }
     
     // Swipe zum nächsten Bild
     @IBAction func swipedLeft(_ sender: Any) {
-        if let _ = galleryVC.pathOfImageInDetailView {
-            galleryVC.pathOfImageInDetailView! += 1
+        if let _ = galleryVC?.pathOfImageInDetailView {
+            galleryVC?.pathOfImageInDetailView! += 1
         }
-        image = galleryVC.thumbnails[galleryVC.pathOfImageInDetailView!]
+        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView!)!]
         imageDetailView.slideInImage(fromDirection: "right", duration: SWIPE_ANIMATION_DURATION)
         viewDidLoad()
     }
@@ -77,12 +78,20 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         setupScrollView()
-        self.imageView.image = image
+        self.imageView.image = image?.getFullImage()
         // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
         super.viewDidLoad()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         // Bild und Metadaten aus RAM nehmen? Update 12.05.: Das macht iOS von selbst.
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "metaDataSegue" {
+            let destinationVC = segue.destination as! MetaDataViewController
+            destinationVC.galleryVC = self.galleryVC
+            destinationVC.image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
+        }
     }
 }

@@ -10,14 +10,16 @@ import Foundation
 import UIKit // hat eigentlich nichts im Model verloren. Geht weg, wenn Backend steht
 
 class Image {
-    var metaData : [String]?
+    var metaData : MetaData
     var source : URL            // ist noch nicht geklärt. URL wär einfach
     var thumbnail: UIImage
+    var fullImage: UIImage
     
     init() {
         source = URL(string: "iBims1CanNetzwerk")!
         thumbnail = Image.selectRandomThumbnail()
-        metaData = nil
+        fullImage = thumbnail
+        metaData = MetaData( owner: "phil", created: "30.08.2004", location: "Menge", tagList: ["ka", "ku", "ko"])
     }
     
     // debug-only: Image-Objekte werden mit Bildern aus Assets zufällig bestückt.
@@ -30,6 +32,14 @@ class Image {
     
     public func getThumbnail() -> UIImage {
         return self.thumbnail
+    }
+    
+    public func getFullImage() -> UIImage {
+        return self.fullImage
+    }
+    
+    public func getMetaData() -> MetaData {
+        return self.metaData
     }
     
     

@@ -13,7 +13,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     lazy var gallery = Gallery()    // Das Gallery-Model
     var pathOfImageInDetailView: Int?
-    lazy var thumbnails = gallery.getImageList()    // Array von UIImages werden als Thumbnails benutzt
+    lazy var images = gallery.getImageList()    // Array von UIImages werden als Thumbnails benutzt
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
         
@@ -57,7 +57,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         if segue.identifier == "imageDetailSegue" {
             let destinationVC = segue.destination as! ImageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! GalleryCollectionViewCell) {
-                destinationVC.image = thumbnails[indexPath.item]
+                destinationVC.image = images[indexPath.item]
                 pathOfImageInDetailView = indexPath.item
                 destinationVC.galleryVC = self
             }
@@ -77,14 +77,14 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
 
     // Anzahl der Zellen == Anzahl der Bilder im Gallery-Model
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return thumbnails.count
+        return images.count
     }
     
     // Initialisierung von Zellen in der galleryCollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
         
-        cell.thumbnail.image = thumbnails[indexPath.item]
+        cell.thumbnail.image = images[indexPath.item].getThumbnail()
         galleryCollectionViewCells.append(cell)
         return cell
     }

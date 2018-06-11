@@ -8,32 +8,103 @@
 
 import UIKit
 
-class MetaDataViewController: UITableViewController {
+class MetaDataViewController: UIViewController {
+    
+    
+    // Variablen
+    @IBOutlet weak var ownerLabel: UILabel!
+    @IBOutlet weak var createdLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var tagListLabel1: UILabel!
+    @IBOutlet weak var tagListLabel2: UILabel!
+    @IBOutlet weak var tagListLabel3: UILabel!
+    @IBOutlet weak var editButton: UIButton!
+    
+    @IBOutlet weak var ownerTextField: UITextField!
+    @IBOutlet weak var createdTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var tagListTextField1: UITextField!
+    @IBOutlet weak var tagListTextField2: UITextField!
+    @IBOutlet weak var tagListTextField3: UITextField!
+    
+    @IBOutlet weak var textFieldStack: UIStackView!
+    @IBOutlet weak var labelStack: UIStackView!
+    
+    lazy var labels = [ownerLabel, createdLabel, locationLabel, tagListLabel1, tagListLabel2, tagListLabel3]
+    lazy var textFields = [ownerTextField, createdTextField, locationTextField, tagListTextField1, tagListTextField2, tagListTextField3]
+    
+    var galleryVC : GalleryCollectionViewController?
+    var image : Image?
+    var metaData: MetaData?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
+        metaData = image?.getMetaData()
 
-    @IBOutlet weak var metaDataNavigationItem: UINavigationItem!
-    @IBOutlet var metaDataTableView: UITableView!
+        ownerLabel.text = metaData?.getOwner()
+        createdLabel.text = metaData?.getCreated()
+        locationLabel.text = metaData?.getLocation()
+        tagListLabel1.text = metaData?.getTagListAt(index: 0)
+        tagListLabel2.text = metaData?.getTagListAt(index: 1)
+        tagListLabel3.text = metaData?.getTagListAt(index: 2)
+        
+        ownerTextField.placeholder = ownerLabel.text
+        createdTextField.placeholder = createdLabel.text
+        locationTextField.placeholder = locationLabel.text
+        tagListTextField1.placeholder = tagListLabel1.text
+        tagListTextField2.placeholder = tagListLabel2.text
+        tagListTextField3.placeholder = tagListLabel3.text
+        
+        
+    }
+        
+    var editButtonIsPressed = false   
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        labelStack.isHidden = !labelStack.isHidden
+        textFieldStack.isHidden = !textFieldStack.isHidden
+        if !editButtonIsPressed {
+            editButton.setTitle("Done", for: UIControlState.normal)
+        } else {
+            editButton.setTitle("Edit Metadata", for: UIControlState.normal)
+            for index in 0..<textFields.count {
+                if textFields[index]?.text != "" {
+                    labels[index]?.text = textFields[index]?.text
+                }
+            }
+        }
+        metaData?.setOwner(newValue: ownerLabel.text!)
+        metaData?.setCreated(newValue: createdLabel.text!)
+        metaData?.setLocation(newValue: locationLabel.text!)
+        metaData?.setTagListAt(index: 0, newValue: tagListLabel1.text)
+        metaData?.setTagListAt(index: 1, newValue: tagListLabel2.text)
+        metaData?.setTagListAt(index: 2, newValue: tagListLabel3.text)
+
+        editButtonIsPressed = !editButtonIsPressed
+        print(image?.getMetaData().getLocation())
+        viewDidLoad()
+    }
+    
+    
+    
+    
+    func organizeTagListLabels() {
+        
+    }
     
     // keine Ahnung was diese drei Methoden machen sollen
     func getMetaData() {}
     
     func setMetaData() {}
     
-    func sendMetaData() {}
+    func sendMetaData() {
+
+    }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
 
-   
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
 
 }

@@ -18,7 +18,6 @@ class Gallery {
     
     var imageList = [Image]()
     
-    
     // init == "Konstruktor"
     init() {
         let numberOfImages = 4000 // fixe Anzahl an Bildern im Moment. Wird später computed property, die das Backend vorgibt
@@ -30,10 +29,10 @@ class Gallery {
         //Muesste das nicht "showThumbnails()" heißen?
     }
     
-    public func getImageList() -> [UIImage] {
-        var images = [UIImage]()
+    public func getImageList() -> [Image] {
+        var images = [Image]()
         for image in self.imageList{
-            images.append(image.getThumbnail())
+            images.append(image)
         }
         return images
     }
