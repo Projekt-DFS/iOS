@@ -36,6 +36,13 @@ class MetaDataViewController: UIViewController {
     var galleryVC : GalleryCollectionViewController?
     var image : Image?
     var metaData: MetaData?
+    var editingMode = false {
+        didSet{
+            labelStack.isHidden = !labelStack.isHidden
+            textFieldStack.isHidden = !textFieldStack.isHidden
+        }
+    }
+
     
     
     override func viewDidLoad() {
@@ -57,15 +64,14 @@ class MetaDataViewController: UIViewController {
         tagListTextField2.placeholder = tagListLabel2.text
         tagListTextField3.placeholder = tagListLabel3.text
         
-        
+        for textField in textFields {
+            textField?.text = ""
+        }
     }
         
-    var editButtonIsPressed = false   
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
-        labelStack.isHidden = !labelStack.isHidden
-        textFieldStack.isHidden = !textFieldStack.isHidden
-        if !editButtonIsPressed {
+        if !editingMode {
             editButton.setTitle("Done", for: UIControlState.normal)
         } else {
             editButton.setTitle("Edit Metadata", for: UIControlState.normal)
@@ -82,8 +88,7 @@ class MetaDataViewController: UIViewController {
         metaData?.setTagListAt(index: 1, newValue: tagListLabel2.text)
         metaData?.setTagListAt(index: 2, newValue: tagListLabel3.text)
 
-        editButtonIsPressed = !editButtonIsPressed
-        print(image?.getMetaData().getLocation())
+        editingMode = !editingMode
         viewDidLoad()
     }
     
