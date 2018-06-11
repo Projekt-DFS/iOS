@@ -47,7 +47,7 @@ class MetaDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
+        image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
         metaData = image?.getMetaData()
 
         ownerLabel.text = metaData?.getOwner()

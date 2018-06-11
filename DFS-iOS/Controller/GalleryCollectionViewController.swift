@@ -12,7 +12,7 @@ import UIKit
 class GalleryCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     lazy var gallery = Gallery()    // Das Gallery-Model
-    var pathOfImageInDetailView: Int?
+    var indexOfImageInDetailView: Int?
     lazy var images = gallery.getImageList()    // Array von UIImages werden als Thumbnails benutzt
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
@@ -58,7 +58,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             let destinationVC = segue.destination as! ImageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! GalleryCollectionViewCell) {
                 destinationVC.image = images[indexPath.item]
-                pathOfImageInDetailView = indexPath.item
+                indexOfImageInDetailView = indexPath.item
                 destinationVC.galleryVC = self
             }
         }

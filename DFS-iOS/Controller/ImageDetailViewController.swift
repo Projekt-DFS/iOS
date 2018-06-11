@@ -52,20 +52,22 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     // Swipe zum vorherigen Bild
     @IBAction func swipedRight(_ sender: UISwipeGestureRecognizer) {
-        if let _ = galleryVC?.pathOfImageInDetailView {
-            galleryVC?.pathOfImageInDetailView! -= 1
+        if let path = galleryVC?.indexOfImageInDetailView {
+            if path == 0 {return}
+            galleryVC?.indexOfImageInDetailView! -= 1
         }
-        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
+        image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
         imageDetailView.slideInImage(fromDirection: "left", duration: SWIPE_ANIMATION_DURATION)
         viewDidLoad()
     }
     
     // Swipe zum nächsten Bild
     @IBAction func swipedLeft(_ sender: Any) {
-        if let _ = galleryVC?.pathOfImageInDetailView {
-            galleryVC?.pathOfImageInDetailView! += 1
+        if let path = galleryVC?.indexOfImageInDetailView {
+            if path == (galleryVC?.images.count)!-1 { return }
+            galleryVC?.indexOfImageInDetailView! += 1
         }
-        image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView!)!]
+        image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView!)!]
         imageDetailView.slideInImage(fromDirection: "right", duration: SWIPE_ANIMATION_DURATION)
         viewDidLoad()
     }
@@ -91,7 +93,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
         if segue.identifier == "metaDataSegue" {
             let destinationVC = segue.destination as! MetaDataViewController
             destinationVC.galleryVC = self.galleryVC
-            destinationVC.image = galleryVC?.images[(galleryVC?.pathOfImageInDetailView)!]
+            destinationVC.image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
         }
     }
 }
