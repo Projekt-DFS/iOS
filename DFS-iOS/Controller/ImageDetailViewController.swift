@@ -80,7 +80,8 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         setupScrollView()
-        self.imageView.image = image?.getFullImage()
+        //gibt jetzt eine URL zurueck und kein UIImage mehr
+        //self.imageView.image = image?.getImageSource()
         // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
         super.viewDidLoad()
     }

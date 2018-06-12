@@ -84,7 +84,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
         
-        cell.thumbnail.image = images[indexPath.item].getThumbnail()
+        //cell.thumbnail.image = images[indexPath.item].getThumbnail()
         galleryCollectionViewCells.append(cell)
         return cell
     }
