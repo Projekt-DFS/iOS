@@ -23,7 +23,7 @@ class Communicator {
         let pwBase64 = Utils.encodeStringToBase64(str: userData.pw)
         
         //später statt der 1 den richtigen name des users
-        let url = URL(string: "http://192.168.0.161:8080/iosbootstrap/v1/users/1/images")!
+        let url = URL(string: "http://192.168.0.161/test/bild.txt")!
         
         var request = URLRequest(url: url)
         
@@ -35,6 +35,7 @@ class Communicator {
         
         var status = Int()
         var responseString = String()
+        
         
         let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
@@ -53,6 +54,7 @@ class Communicator {
             }
             
             responseString = String(data: data, encoding: .utf8)!
+            print(responseString)
             
             sem.signal()
         }

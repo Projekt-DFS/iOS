@@ -10,43 +10,55 @@ import Foundation
 
 class JsonParser{
     
-    static func parseFromJsonToImage(data: Data) -> Image{
-        let json = extractJsonData(data)
+    static func parseFromJsonToImageArray(data: Data) -> [Image]{
+        let json = extractJsonDataFromImageContainer(data)
         
-        let img = ImageStruct(json: json)
+        var imageStructArray = [ImageStruct]()
         
-        var ownerForMeta = "", createdForMeta = "", locationForMeta = ""
-        var tagListForMeta = [""]
-        
-        if let owner = img.metaData["owner"] as? String {
-            ownerForMeta = owner
-        }
-        if let created   = img.metaData["created"] as? String {
-            createdForMeta = created
-        }
-        if let location  = img.metaData["location"] as? String{
-            locationForMeta = location
-        }
-        if let tagList   = img.metaData["tagList"]  as? [String]{
-            tagListForMeta = tagList
+        for container in json{
+            let img = ImageStruct(json: container)
+            imageStructArray.append(img)
         }
         
-        let metaData = MetaData(owner: ownerForMeta, created: createdForMeta, location: locationForMeta, tagList: tagListForMeta)
+        var imageArray = [Image]()
+        for imageStruct in imageStructArray{
         
-        return Image(id: img.id, imageSource: img.imageSource, thumbnail: img.thumbnail, metaData: metaData)
+            var ownerForMeta = "", createdForMeta = "", locationForMeta = ""
+            var tagListForMeta = [""]
+            
+            if let owner = imageStruct.metaData["owner"] as? String {
+                ownerForMeta = owner
+            }
+            if let created   = imageStruct.metaData["created"] as? String {
+                createdForMeta = created
+            }
+            if let location  = imageStruct.metaData["location"] as? String{
+                locationForMeta = location
+            }
+            if let tagList   = imageStruct.metaData["tagList"]  as? [String]{
+                tagListForMeta = tagList
+            }
+            
+            let metaData = MetaData(owner: ownerForMeta, created: createdForMeta, location: locationForMeta, tagList: tagListForMeta)
+        
+            imageArray.append(Image(id: imageStruct.id, imageSource: imageStruct.imageSource, thumbnail: imageStruct.thumbnail, metaData: metaData))
+            
+        }
+        
+        return imageArray
     }
     
     
-    static func extractJsonData(_ data: Data) -> [String: Any] {
+    static func extractJsonDataFromImageContainer(_ data: Data) -> [[String: Any]] {
         
         do{
-            guard let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
-                return ["":""]
+            guard let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] else {
+                return [["":""]]
             }
             return jsonData
         }catch let jsonErr{
             print(jsonErr)
-            return ["":""]
+            return [["":""]]
         }
     }
     
