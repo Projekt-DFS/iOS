@@ -10,34 +10,32 @@ import Foundation
 
 class Communicator {
     
-    
-    init(){
-        
-    }
-    
     //POST Login
     /**
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery.
-    */
-    func logIn(){
+     */
+    static func logIn() -> Bool{
+        //kommt raus, sobald die IP-Adresse gespeichert werden kann
+        //kann man entfernen, ist aber Hardgecodet auf meinen Rechner
+        //segue geht trotzdem, allerdings wird bei euch eine Fehlermeldung kommen
+        return true
+        
         let userData = UserDataSettings()
         
         let userNameBase64 = Utils.encodeStringToBase64(str: userData.userName)
         let pwBase64 = Utils.encodeStringToBase64(str: userData.pw)
-        let url = URL(string: userData.ip)!
+        
+        //später statt der 1 den richtigen name des users
+        let url = URL(string: "http://192.168.0.161:8080/iosbootstrap/v1/users/1/images")!
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
         
-        //will Aude so haben. Hinter dem Code steckt "user:admin"
-        request.addValue("Basic dXNlcjphZG1pbg==", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //wurde jetzt wohl doch zur GET-Request...
+        request.httpMethod = "GET"
         
-        let json: [String: Any] = ["username": userNameBase64,
-                                   "password": pwBase64]
-        
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        //hier drin stecken die Anmeldedaten fuer user:user
+        request.addValue("Basic dXNlcjp1c2Vy", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
@@ -52,12 +50,18 @@ class Communicator {
             
             let responseString = String(data: data, encoding: .utf8)
             print(responseString!)
+            
         }
         task.resume()
+        
+        //TODO: der Task muss abgeschlossen sein, bevor etwas zurueckgegeben wird
+        //Wenn statusCode == 200, dann return true, sonst false
+        //Wie kommen wir an den Statuscode, der im task-thread erst entsteht
+        return true
     }
     
     //POST Logout
-    func logOut() -> Bool{
+    static func logOut() -> Bool{
         return true
     }
     
@@ -65,8 +69,8 @@ class Communicator {
     //GET Thumbnails, als Image in Data-Form anhand der vorher erhaltenen Links
     /**
      Download der Thumbnails anhand deren Link. Zurueckgegeben wird ein Data-Array
-    */
-    func getThumbnails(links: [String]) -> [Data]{
+     */
+    static func getThumbnails(links: [String]) -> [Data]{
         var data = [Data]()
         
         links.forEach{link in
@@ -84,22 +88,22 @@ class Communicator {
     }
     
     //GET Image
-    func getImage() -> Bool{
+    static func getImage() -> Bool{
         return true
     }
     
     //PUT MetaData
-    func updateMetaData() -> Bool{
+    static func updateMetaData() -> Bool{
         return true
     }
     
     //POST Image
-    func uploadImage() -> Bool{
+    static func uploadImage() -> Bool{
         return true
     }
     
     //DELETE Image
-    func deleteImage() -> Bool{
+    static func deleteImage() -> Bool{
         return true
     }
     

@@ -39,7 +39,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="login"/>
                                 <connections>
-                                    <segue destination="mej-yU-Aqj" kind="show" id="aOJ-M4-LWd"/>
+                                    <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CZf-I7-vQf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DFS-Frontend Login Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuD-kj-hAs">
@@ -58,6 +58,7 @@
                         <outlet property="loginLabel" destination="BuD-kj-hAs" id="8Vz-mR-OM0"/>
                         <outlet property="passwordTextField" destination="5lH-WQ-udP" id="yFf-hg-ILn"/>
                         <outlet property="userNameTextField" destination="1Lf-5K-Lhu" id="jp3-eU-7q8"/>
+                        <segue destination="mej-yU-Aqj" kind="show" identifier="loginSegue" id="9A8-Ss-bpJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
