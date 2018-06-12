@@ -10,16 +10,12 @@ import Foundation
 
 class Communicator {
     
-    //POST Login
+    //GET Login
     /**
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery.
      */
     static func logIn() -> Bool{
-        //kommt raus, sobald die IP-Adresse gespeichert werden kann
-        //kann man entfernen, ist aber Hardgecodet auf meinen Rechner
-        //segue geht trotzdem, allerdings wird bei euch eine Fehlermeldung kommen
-        return true
         
         let userData = UserDataSettings()
         
@@ -37,6 +33,10 @@ class Communicator {
         //hier drin stecken die Anmeldedaten fuer user:user
         request.addValue("Basic dXNlcjp1c2Vy", forHTTPHeaderField: "Authorization")
         
+        var status = Int()
+        var responseString = String()
+        
+        let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
                 print("error")
@@ -48,15 +48,23 @@ class Communicator {
                 print(response!)
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            print(responseString!)
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+            }
             
+            responseString = String(data: data, encoding: .utf8)!
+            
+            sem.signal()
         }
         task.resume()
         
-        //TODO: der Task muss abgeschlossen sein, bevor etwas zurueckgegeben wird
-        //Wenn statusCode == 200, dann return true, sonst false
-        //Wie kommen wir an den Statuscode, der im task-thread erst entsteht
+        sem.wait()
+        
+        if(status != 200){
+            return false
+        }
+        
+        print("Login successfull")
         return true
     }
     
