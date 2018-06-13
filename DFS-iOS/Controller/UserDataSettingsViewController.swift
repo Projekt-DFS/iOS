@@ -10,11 +10,36 @@ import UIKit
 
 class UserDataSettingsViewController: UIViewController {
 
+    let userDataSettings = UserDataSettings()
+    
     @IBOutlet weak var autoUploadLabel: UILabel!
     @IBOutlet weak var autoUploadSwitch: UISwitch!
     @IBOutlet var settingsView: UserDataSettingsView!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     @IBOutlet weak var logoutBarButton: UIBarButtonItem!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var ipTextField: UITextField!
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        if let username = usernameTextField.text{
+            userDataSettings.setDefaultUserName(username)
+        }
+        if let password = passwordTextField.text{
+            userDataSettings.setDefaultPw(password)
+        }
+        if let ip = ipTextField.text{
+            userDataSettings.setDefaultIp(ip)
+        }
+        
+        usernameTextField.placeholder = usernameTextField.text!
+        passwordTextField.placeholder = passwordTextField.text!
+        ipTextField.placeholder = ipTextField.text!
+        
+        usernameTextField.text! = ""
+        passwordTextField.text! = ""
+        ipTextField.text! = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

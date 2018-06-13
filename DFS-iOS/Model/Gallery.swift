@@ -18,6 +18,10 @@ class Gallery {
     
     var imageList = [Image]()
     
+    init(images: [Image]) {
+        self.imageList = images
+    }
+    
     // init == "Konstruktor"
     init() {
         let numberOfImages = 4000 // fixe Anzahl an Bildern im Moment. Wird später computed property, die das Backend vorgibt

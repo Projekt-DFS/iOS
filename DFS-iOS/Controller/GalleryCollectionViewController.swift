@@ -14,6 +14,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     lazy var gallery = Gallery()    // Das Gallery-Model
     var indexOfImageInDetailView: Int?
     lazy var images = gallery.getImageList()    // Array von UIImages werden als Thumbnails benutzt
+    lazy var imagesOnDisplay = [Image]()
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
         
@@ -63,7 +64,19 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             }
         }
     }
+    override func viewWillAppear(_ animated: Bool) {
+        resizeImagesOnDisplay(loadNext: 50)
+    }
     
+    func resizeImagesOnDisplay (loadNext: Int) {
+        let start = imagesOnDisplay.count
+        let end = imagesOnDisplay.count + loadNext
+        imagesOnDisplay = [Image]()
+        for index in start..<end {
+            imagesOnDisplay.append(images[index])
+        }
+        galleryCollectionView.reloadData()
+    }
     
     // Bestimmt, was passiert wenn die view geladed wurde
     override func viewDidLoad() {
@@ -77,16 +90,29 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
 
     // Anzahl der Zellen == Anzahl der Bilder im Gallery-Model
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return imagesOnDisplay.count
     }
     
     // Initialisierung von Zellen in der galleryCollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
+       
+        print(indexPath.item)
+        let data = try? Data(contentsOf: imagesOnDisplay[indexPath.item].getThumbnail())
         
-        //cell.thumbnail.image = images[indexPath.item].getThumbnail()
+        
+        
+        let image = UIImage(data: data!)
+        
+        cell.thumbnail.image = image
         galleryCollectionViewCells.append(cell)
+        
+        if indexPath.item-6 == indexPath.max() {
+            resizeImagesOnDisplay(loadNext: 25)
+        }
+        
         return cell
+        
     }
 
 

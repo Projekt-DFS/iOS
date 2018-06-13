@@ -15,27 +15,22 @@ class Communicator {
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery.
      */
-    static func logIn() -> Bool{
+    static func logIn(userName: String, password: String, ip: String) -> [Image]?{
         
-        let userData = UserDataSettings()
+        var images = [Image]()
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(userName):\(password)")
         
-        let userNameBase64 = Utils.encodeStringToBase64(str: userData.userName)
-        let pwBase64 = Utils.encodeStringToBase64(str: userData.pw)
+        let url = URL(string: "http://\(ip):8080/dfs/users/1/images")!
         
-        //später statt der 1 den richtigen name des users
-        let url = URL(string: "http://192.168.0.161/test/bild.txt")!
+        print(url)
+        print(userNameAndPwBase64)
         
         var request = URLRequest(url: url)
-        
-        //wurde jetzt wohl doch zur GET-Request...
         request.httpMethod = "GET"
         
-        //hier drin stecken die Anmeldedaten fuer user:user
-        request.addValue("Basic dXNlcjp1c2Vy", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
         
         var status = Int()
-        var responseString = String()
-        
         
         let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
@@ -53,8 +48,7 @@ class Communicator {
                 status = httpStatus.statusCode
             }
             
-            responseString = String(data: data, encoding: .utf8)!
-            print(responseString)
+            images = JsonParser.parseFromJsonToImageArray(data: data)
             
             sem.signal()
         }
@@ -63,11 +57,10 @@ class Communicator {
         sem.wait()
         
         if(status != 200){
-            return false
+            return nil
         }
-        
-        print("Login successfull")
-        return true
+        print("Login successful")
+        return images
     }
     
     //POST Logout

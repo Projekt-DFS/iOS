@@ -15,7 +15,6 @@
 		715DCCF320A2F70200A759E5 /* DFS_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCCF220A2F70200A759E5 /* DFS_iOSUITests.swift */; };
 		715DCD0620A2FA9200A759E5 /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0520A2FA9200A759E5 /* Communicator.swift */; };
 		715DCD0820A2FAB300A759E5 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0720A2FAB300A759E5 /* Uploader.swift */; };
-		715DCD0A20A2FAC800A759E5 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0920A2FAC800A759E5 /* Downloader.swift */; };
 		715DCD0E20A2FB0300A759E5 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0D20A2FB0300A759E5 /* Gallery.swift */; };
 		715DCD1020A2FB1600A759E5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0F20A2FB1600A759E5 /* Image.swift */; };
 		715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */; };
@@ -68,7 +67,6 @@
 		715DCCF420A2F70200A759E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715DCD0520A2FA9200A759E5 /* Communicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
 		715DCD0720A2FAB300A759E5 /* Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
-		715DCD0920A2FAC800A759E5 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		715DCD0D20A2FB0300A759E5 /* Gallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		715DCD0F20A2FB1600A759E5 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 			children = (
 				715DCD0520A2FA9200A759E5 /* Communicator.swift */,
 				715DCD0720A2FAB300A759E5 /* Uploader.swift */,
-				715DCD0920A2FAC800A759E5 /* Downloader.swift */,
 				715DCD0F20A2FB1600A759E5 /* Image.swift */,
 				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
 				715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */,
@@ -349,7 +346,6 @@
 				715DCD2C20A2FC6A00A759E5 /* MetaDataView.swift in Sources */,
 				715DCD2820A2FC5100A759E5 /* UserDataSettingsView.swift in Sources */,
 				715DCD3020A30BA400A759E5 /* MetaDataViewController.swift in Sources */,
-				715DCD0A20A2FAC800A759E5 /* Downloader.swift in Sources */,
 				715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */,
 				71F3B72420A61DF5005194BB /* GalleryCollectionViewController.swift in Sources */,
 				715DCD0820A2FAB300A759E5 /* Uploader.swift in Sources */,
