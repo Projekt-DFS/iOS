@@ -22,9 +22,6 @@ class Communicator {
         
         let url = URL(string: "http://\(ip):8080/dfs/users/1/images")!
         
-        print(url)
-        print(userNameAndPwBase64)
-        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
@@ -36,6 +33,7 @@ class Communicator {
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
                 print("error")
+                sem.signal()
                 return
             }
             
