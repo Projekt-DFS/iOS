@@ -87,6 +87,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
        
         print(indexPath.item)
+        print(images[indexPath.item].getMetaData().getCreated())
         var image = UIImage()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!)
