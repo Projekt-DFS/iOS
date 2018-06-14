@@ -65,30 +65,64 @@ class Communicator {
     static func logOut() -> Bool{
         return true
     }
+
     
-    
-    //GET Thumbnails, als Image in Data-Form anhand der vorher erhaltenen Links
-    /**
-     Download der Thumbnails anhand deren Link. Zurueckgegeben wird ein Data-Array
-     */
-    static func getThumbnails(links: [String]) -> [Data]{
-        var data = [Data]()
+    //POST Image
+    static func uploadImage(data: Data) -> Bool{
         
-        links.forEach{link in
-            
-            let url = URL(string: link)
-            
-            if let thumbnailData = try? Data(contentsOf: url!){
-                data.append(thumbnailData)
-            }else{
-                print("Failed at link number \(data.count)")
+        let imageBase64 = Utils.encodeDataToBase64(data: data)
+        
+        //wird noch anstaendig gemacht
+        let json = "{\n\t\"image\"=\"\(imageBase64)\"\n}"
+        
+        let uds = UserDataSettings()
+        
+        let url = URL(string: "http://\(uds.getDefaultIp):8080/dfs/users/1/images")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = imageBase64.data(using: .utf8)
+        
+        var status = Int()
+        
+        let sem = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request){data, response, error in
+            guard let data = data, error == nil else{
+                print("error")
+                sem.signal()
+                return
             }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print(httpStatus.statusCode)
+                print(response!)
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+            }
+            
+            sem.signal()
+        }
+        task.resume()
+        
+        sem.wait()
+        
+        if(status != 200){
+            return false
         }
         
-        return data
+        print("Image upload successful")
+        return true
     }
     
     //GET Image
+    //Passiert aktuell noch in der Gallery, wird gefixt
     static func getImage() -> Bool{
         return true
     }
@@ -98,10 +132,7 @@ class Communicator {
         return true
     }
     
-    //POST Image
-    static func uploadImage() -> Bool{
-        return true
-    }
+    
     
     //DELETE Image
     static func deleteImage() -> Bool{

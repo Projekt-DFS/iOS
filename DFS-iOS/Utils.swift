@@ -53,11 +53,20 @@ class Utils{
     
     
     /**
-    Base64 Encoder
+     Base64 Encoder: String -> Base64 String
     */
     static func encodeStringToBase64(str: String) -> String{
         return Data(str.utf8).base64EncodedString()
     }
+    
+    /**
+     Base64 Encoder: Data -> Base64
+    */
+    static func encodeDataToBase64(data: Data) -> String{
+        return data.base64EncodedString()
+    }
+    
+    
 
     
 }

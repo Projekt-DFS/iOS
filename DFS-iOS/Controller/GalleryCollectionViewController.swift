@@ -169,7 +169,6 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         return alert
     }
     
@@ -178,11 +177,10 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            let uploader = Uploader(image: image)
-            uploader.abDamitZumCommunicator() //nur damit XCode nicht wegen "unused" warnt
-            //TODO: Upload
-        }
+            let data = UIImageJPEGRepresentation(image, 1)
+            Communicator.uploadImage(data: data!)
         picker.dismiss(animated: true, completion: nil)
+        }
     }
     
     /**
