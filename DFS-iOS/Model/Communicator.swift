@@ -17,10 +17,9 @@ class Communicator {
      */
     static func logIn(userName: String, password: String, ip: String) -> [Image]?{
         
-        var images = [Image]()
         let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(userName):\(password)")
         
-        let url = URL(string: "http://\(ip):8080/dfs/users/1/images")!
+        let url = URL(string: "http://\(ip):8080/iosbootstrap/v1/users/1/images")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -28,6 +27,7 @@ class Communicator {
         request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
         
         var status = Int()
+        var imageData = Data()
         
         let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
@@ -46,7 +46,7 @@ class Communicator {
                 status = httpStatus.statusCode
             }
             
-            images = JsonParser.parseFromJsonToImageArray(data: data)
+            imageData = data
             
             sem.signal()
         }
@@ -58,7 +58,7 @@ class Communicator {
             return nil
         }
         print("Login successful")
-        return images
+        return JsonParser.parseFromJsonToImageArray(data: imageData)
     }
     
     //POST Logout

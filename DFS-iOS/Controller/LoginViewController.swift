@@ -44,6 +44,14 @@ class LoginViewController: UIViewController {
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         else{
+            let toastLabel = Utils.generateToast(message: "Login failed", width: Double(self.view.frame.size.width), height: Double(self.view.frame.size.height))
+            
+            self.view.addSubview(toastLabel)
+            UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseIn, animations:{
+                toastLabel.alpha = 0.0
+            }, completion: {(isCompleted) in
+                toastLabel.removeFromSuperview()
+            })
             print("Login failed")
         }
         

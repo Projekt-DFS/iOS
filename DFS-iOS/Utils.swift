@@ -26,7 +26,7 @@ class Utils{
      der Code hier im Kommentar dient gerade nur zur Erinnerung fuer den spaeteren Aufruf
      und kommt deshalb wieder weg
     */
-    static func showToast(message: String, width: Double, height: Double) -> UILabel{
+    static func generateToast(message: String, width: Double, height: Double) -> UILabel{
         let toastLabel = UILabel(frame: CGRect(x: width / 2 - 125, y: height - 100, width: 250, height: 40))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
