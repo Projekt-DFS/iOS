@@ -22,13 +22,8 @@ class Gallery {
         self.imageList = images
     }
     
-    // init == "Konstruktor"
-    init() {
-        let numberOfImages = 4000 // fixe Anzahl an Bildern im Moment. Wird später computed property, die das Backend vorgibt
-        for _ in 0..<numberOfImages {
-            imageList.append(Image(id: 1, imageSource: "abc", thumbnail: "def", metaData: MetaData(owner: "x",created: "y",location: "z", tagList: ["ghi"])))
-        }
-    }
+    init() {}
+    
     func showImage() {
         //Muesste das nicht "showThumbnails()" heißen?
     }
