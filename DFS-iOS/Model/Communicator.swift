@@ -77,16 +77,16 @@ class Communicator {
         
         let uds = UserDataSettings()
         
-        let url = URL(string: "http://\(uds.getDefaultIp):8080/dfs/users/1/images")!
+        let url = URL(string: "http://\(uds.getDefaultIp()):8080/iosbootstrap/v1/users/1/images")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
         request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
-        request.setValue("text/plain", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.httpBody = imageBase64.data(using: .utf8)
+        request.httpBody = json.data(using: .utf8)
         
         var status = Int()
         

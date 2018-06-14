@@ -24,10 +24,6 @@ class Gallery {
     
     init() {}
     
-    func showImage() {
-        //Muesste das nicht "showThumbnails()" heißen?
-    }
-    
     public func getImageList() -> [Image] {
         var images = [Image]()
         for image in self.imageList{
