@@ -178,8 +178,13 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            let data = UIImageJPEGRepresentation(image, 1)
-            Communicator.uploadImage(data: data!)
+            let data = UIImagePNGRepresentation(image)
+            if Communicator.uploadImage(data: data!){
+                //aktualisiere Galerie
+            }
+            else{
+                //Zeige Fehlermeldung
+            }
         picker.dismiss(animated: true, completion: nil)
         }
     }

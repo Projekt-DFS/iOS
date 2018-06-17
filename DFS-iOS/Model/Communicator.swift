@@ -25,7 +25,6 @@ class Communicator {
         request.httpMethod = "GET"
         
         request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
-        
         var status = Int()
         var imageData = Data()
         
@@ -54,7 +53,9 @@ class Communicator {
         
         sem.wait()
         
+        print(status)
         if(status != 200){
+            print("ich gebe nil zurueck")
             return nil
         }
         print("Login successful")
@@ -73,7 +74,7 @@ class Communicator {
         let imageBase64 = Utils.encodeDataToBase64(data: data)
         
         //wird noch anstaendig gemacht
-        let json = "{\n\t\"image\"=\"\(imageBase64)\"\n}"
+        let json = "{\n\t\"imageSource\":\"\(imageBase64)\"\n}"
         
         let uds = UserDataSettings()
         
