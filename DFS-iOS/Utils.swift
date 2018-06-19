@@ -26,7 +26,7 @@ class Utils{
      der Code hier im Kommentar dient gerade nur zur Erinnerung fuer den spaeteren Aufruf
      und kommt deshalb wieder weg
     */
-    static func showToast(message: String, width: Double, height: Double) -> UILabel{
+    static func generateToast(message: String, width: Double, height: Double) -> UILabel{
         let toastLabel = UILabel(frame: CGRect(x: width / 2 - 125, y: height - 100, width: 250, height: 40))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         toastLabel.textColor = UIColor.white
@@ -53,11 +53,20 @@ class Utils{
     
     
     /**
-    Base64 Encoder
+     Base64 Encoder: String -> Base64 String
     */
     static func encodeStringToBase64(str: String) -> String{
         return Data(str.utf8).base64EncodedString()
     }
+    
+    /**
+     Base64 Encoder: Data -> Base64
+    */
+    static func encodeDataToBase64(data: Data) -> String{
+        return data.base64EncodedString()
+    }
+    
+    
 
     
 }

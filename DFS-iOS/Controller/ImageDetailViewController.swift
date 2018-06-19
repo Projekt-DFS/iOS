@@ -79,15 +79,17 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLoad() {
-        setupScrollView()
-        //gibt jetzt eine URL zurueck und kein UIImage mehr
-        //self.imageView.image = image?.getImageSource()
-        // image wird in prepare() vom GalleryCollectionViewController gesetzt. Jetzt wird das image der imageView zugewiesen
         super.viewDidLoad()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        // Bild und Metadaten aus RAM nehmen? Update 12.05.: Das macht iOS von selbst.
+        setupScrollView()
+
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let urlContents = try? Data(contentsOf: (self?.image?.getImageSource())!)
+            if let imageData = urlContents {
+                DispatchQueue.main.async {
+                    self?.imageView.image = UIImage(data: imageData)!
+                }
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

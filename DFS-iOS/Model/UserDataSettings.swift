@@ -78,4 +78,37 @@ class UserDataSettings  {
     }
     
     
+    func getDefaultUserName() -> String{
+        if let userName = defaults.object(forKey: userNameKey) as? String {
+            return userName
+        }else{
+            return ""
+        }
+    }
+    
+    func getDefaultPw() -> String{
+        if let password = defaults.object(forKey: pwKey) as? String {
+            return password
+        }else{
+            return ""
+        }
+    }
+    
+    func getDefaultIp() -> String{
+        if let ip = defaults.object(forKey: ipKey) as? String {
+            return ip
+        }else{
+            return ""
+        }
+    }
+    
+    func getDefaultAutoUpload() -> Bool{
+        if let auto = defaults.bool(forKey: autoUploadKey) as? Bool{
+            return auto
+        }else{
+            return false
+        }
+    }
+    
+    
 }

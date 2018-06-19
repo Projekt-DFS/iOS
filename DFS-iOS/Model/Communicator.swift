@@ -10,36 +10,29 @@ import Foundation
 
 class Communicator {
     
-    //POST Login
+    //GET Login
     /**
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery.
      */
-    static func logIn() -> Bool{
-        //kommt raus, sobald die IP-Adresse gespeichert werden kann
-        //kann man entfernen, ist aber Hardgecodet auf meinen Rechner
-        //segue geht trotzdem, allerdings wird bei euch eine Fehlermeldung kommen
-        return true
+    static func logIn(userName: String, password: String, ip: String) -> [Image]?{
         
-        let userData = UserDataSettings()
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(userName):\(password)")
         
-        let userNameBase64 = Utils.encodeStringToBase64(str: userData.userName)
-        let pwBase64 = Utils.encodeStringToBase64(str: userData.pw)
-        
-        //später statt der 1 den richtigen name des users
-        let url = URL(string: "http://192.168.0.161:8080/iosbootstrap/v1/users/1/images")!
+        let url = URL(string: "http://\(ip):8080/iosbootstrap/v1/users/1/images")!
         
         var request = URLRequest(url: url)
-        
-        //wurde jetzt wohl doch zur GET-Request...
         request.httpMethod = "GET"
         
-        //hier drin stecken die Anmeldedaten fuer user:user
-        request.addValue("Basic dXNlcjp1c2Vy", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        var status = Int()
+        var imageData = Data()
         
+        let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
                 print("error")
+                sem.signal()
                 return
             }
             
@@ -48,46 +41,89 @@ class Communicator {
                 print(response!)
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            print(responseString!)
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+            }
             
+            imageData = data
+            
+            sem.signal()
         }
         task.resume()
         
-        //TODO: der Task muss abgeschlossen sein, bevor etwas zurueckgegeben wird
-        //Wenn statusCode == 200, dann return true, sonst false
-        //Wie kommen wir an den Statuscode, der im task-thread erst entsteht
-        return true
+        sem.wait()
+        
+        print(status)
+        if(status != 200){
+            print("ich gebe nil zurueck")
+            return nil
+        }
+        print("Login successful")
+        return JsonParser.parseFromJsonToImageArray(data: imageData)
     }
     
     //POST Logout
     static func logOut() -> Bool{
         return true
     }
+
     
-    
-    //GET Thumbnails, als Image in Data-Form anhand der vorher erhaltenen Links
-    /**
-     Download der Thumbnails anhand deren Link. Zurueckgegeben wird ein Data-Array
-     */
-    static func getThumbnails(links: [String]) -> [Data]{
-        var data = [Data]()
+    //POST Image
+    static func uploadImage(data: Data) -> Bool{
         
-        links.forEach{link in
-            
-            let url = URL(string: link)
-            
-            if let thumbnailData = try? Data(contentsOf: url!){
-                data.append(thumbnailData)
-            }else{
-                print("Failed at link number \(data.count)")
+        let imageBase64 = Utils.encodeDataToBase64(data: data)
+        
+        //wird noch anstaendig gemacht
+        let json = "{\n\t\"imageSource\":\"\(imageBase64)\"\n}"
+        
+        let uds = UserDataSettings()
+        
+        let url = URL(string: "http://\(uds.getDefaultIp()):8080/iosbootstrap/v1/users/1/images")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.httpBody = json.data(using: .utf8)
+        
+        var status = Int()
+        
+        let sem = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request){data, response, error in
+            guard let data = data, error == nil else{
+                print("error")
+                sem.signal()
+                return
             }
+            
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print(httpStatus.statusCode)
+                print(response!)
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+            }
+            
+            sem.signal()
+        }
+        task.resume()
+        
+        sem.wait()
+        
+        if(status != 200){
+            return false
         }
         
-        return data
+        print("Image upload successful")
+        return true
     }
     
     //GET Image
+    //Passiert aktuell noch in der Gallery, wird gefixt
     static func getImage() -> Bool{
         return true
     }
@@ -97,10 +133,7 @@ class Communicator {
         return true
     }
     
-    //POST Image
-    static func uploadImage() -> Bool{
-        return true
-    }
+    
     
     //DELETE Image
     static func deleteImage() -> Bool{

@@ -13,7 +13,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     lazy var gallery = Gallery()    // Das Gallery-Model
     var indexOfImageInDetailView: Int?
-    lazy var images = gallery.getImageList()    // Array von UIImages werden als Thumbnails benutzt
+    lazy var images = gallery.getImageList()  // Array von UIImages werden als Thumbnails benutzt
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
         
@@ -63,7 +63,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             }
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+    }
     
     // Bestimmt, was passiert wenn die view geladed wurde
     override func viewDidLoad() {
@@ -82,10 +83,22 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     // Initialisierung von Zellen in der galleryCollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
         
-        //cell.thumbnail.image = images[indexPath.item].getThumbnail()
-        galleryCollectionViewCells.append(cell)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
+       
+        print(indexPath.item)
+        print(images[indexPath.item].getMetaData().getCreated())
+        var image = UIImage()
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!)
+            if let imageData = urlContents {
+                image = UIImage(data: imageData)!
+                DispatchQueue.main.async {
+                cell.thumbnail.image = image
+                self?.galleryCollectionViewCells.append(cell)
+                }
+            }
+        }
         return cell
     }
 
@@ -157,7 +170,6 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
         return alert
     }
     
@@ -166,11 +178,15 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            let uploader = Uploader(image: image)
-            uploader.abDamitZumCommunicator() //nur damit XCode nicht wegen "unused" warnt
-            //TODO: Upload
-        }
+            let data = UIImagePNGRepresentation(image)
+            if Communicator.uploadImage(data: data!){
+                //aktualisiere Galerie
+            }
+            else{
+                //Zeige Fehlermeldung
+            }
         picker.dismiss(animated: true, completion: nil)
+        }
     }
     
     /**
