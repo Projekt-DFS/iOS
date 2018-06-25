@@ -23,6 +23,8 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var metaDataBarButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    
     var image : Image?
     var galleryVC : GalleryCollectionViewController?
     
@@ -82,11 +84,13 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         setupScrollView()
 
+        activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let urlContents = try? Data(contentsOf: (self?.image?.getImageSource())!)
             if let imageData = urlContents {
                 DispatchQueue.main.async {
                     self?.imageView.image = UIImage(data: imageData)!
+                    self?.activityIndicator.stopAnimating()
                 }
             }
         }

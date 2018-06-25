@@ -10,7 +10,14 @@ import UIKit
 
 class GalleryCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var thumbnail: UIImageView!    
-        
+    @IBOutlet weak var thumbnail: UIImageView!
+    
+    var image: UIImage? {        
+        didSet {
+            thumbnail.image = image
+            activityIndicator.stopAnimating()
+        }
+    }
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageSelectedView: UIImageView!
 }

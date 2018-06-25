@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -136,18 +137,27 @@
                                                 <constraint firstAttribute="width" constant="77" id="rff-Ob-AP3"/>
                                             </constraints>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-fo-xwb">
+                                            <rect key="frame" x="82" y="132" width="37" height="37"/>
+                                            <color key="color" red="0.3266127955" green="0.60251013590000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="i6A-fo-xwb" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="topMargin" constant="124" id="2eV-Mr-H0a"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="bottom" secondItem="NhY-hV-sx5" secondAttribute="bottom" id="By8-E2-25r"/>
+                                    <constraint firstItem="i6A-fo-xwb" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leadingMargin" constant="74" id="O1Q-Of-5qC"/>
                                     <constraint firstAttribute="trailing" secondItem="Fmz-eC-E4g" secondAttribute="trailing" id="YcM-tJ-Mjb"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="top" id="cgg-qB-1Z6"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leading" id="iqv-SV-qMV"/>
                                     <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" id="lc6-EY-hSK"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="trailing" secondItem="NhY-hV-sx5" secondAttribute="trailing" id="vA8-OF-bs8"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="i6A-fo-xwb" secondAttribute="bottom" constant="123" id="xQB-vB-EAq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="i6A-fo-xwb" secondAttribute="trailing" constant="73" id="zTw-Fa-kXn"/>
                                 </constraints>
                                 <size key="customSize" width="200" height="300"/>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="i6A-fo-xwb" id="I0t-35-pV8"/>
                                     <outlet property="imageSelectedView" destination="NhY-hV-sx5" id="Do8-48-1PB"/>
                                     <outlet property="thumbnail" destination="Fmz-eC-E4g" id="uBK-We-zaO"/>
                                 </connections>
@@ -237,6 +247,11 @@
                                     <constraint firstAttribute="bottom" secondItem="0kA-LX-0Mh" secondAttribute="bottom" id="uev-oA-Sx4"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-Yj-cQB">
+                                <rect key="frame" x="374" y="502" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.3266127955" green="0.60251013590000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -260,6 +275,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="UfO-Yj-cQB" id="ipu-Pj-0Bs"/>
                         <outlet property="imageDetailNavigationItem" destination="Nbc-ow-Jx6" id="9Ci-tX-Nvg"/>
                         <outlet property="imageDetailView" destination="JUp-Vy-1we" id="7o9-6V-8hU"/>
                         <outlet property="imageView" destination="0kA-LX-0Mh" id="OzN-TE-TAF"/>

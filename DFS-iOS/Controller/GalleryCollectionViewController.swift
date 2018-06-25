@@ -73,7 +73,9 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     // Bestimmt, was passiert wenn die view geladed wurde
     override func viewDidLoad() {
+        print(images.count)
         super.viewDidLoad()
+        galleryCollectionView.isPrefetchingEnabled = true
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
     }
@@ -92,15 +94,16 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
        
-        print(indexPath.item)
-        print(images[indexPath.item].getMetaData().getCreated())
+        
         var image = UIImage()
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        
+        cell.activityIndicator.startAnimating()
+        DispatchQueue.global(qos: .default).async { [weak self] in
             let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!)
             if let imageData = urlContents {
                 image = UIImage(data: imageData)!
                 DispatchQueue.main.async {
-                cell.thumbnail.image = image
+                cell.image = image
                 self?.galleryCollectionViewCells.append(cell)
                 }
             }
