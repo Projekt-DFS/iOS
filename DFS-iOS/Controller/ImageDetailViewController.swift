@@ -11,9 +11,9 @@ import UIKit
 class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
 
     // Konstanten
-    let MINIMUM_ZOOM_SCALE: CGFloat = 1.0
-    let MAXIMUM_ZOOM_SCALE: CGFloat = 3.0
-    let SWIPE_ANIMATION_DURATION = 0.3
+    private final let MINIMUM_ZOOM_SCALE: CGFloat = 1.0
+    private final let MAXIMUM_ZOOM_SCALE: CGFloat = 3.0
+    private final let SWIPE_ANIMATION_DURATION = 0.4
     
     
     //Variablen
