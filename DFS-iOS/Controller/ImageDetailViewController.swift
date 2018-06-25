@@ -98,6 +98,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "metaDataSegue" {
             let destinationVC = segue.destination as! MetaDataViewController

@@ -210,7 +210,21 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     //--Download--//
     
     @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
-        print("download")
+        var imagesSaved = 0
+        for cell in galleryCollectionViewCells {
+            if cell.isSelected {
+                if let image = cell.image {
+                    
+                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                    imagesSaved += 1
+                }
+            }
+        }
+        let alert = UIAlertController(title:"saved", message: "\(imagesSaved) image(s) saved.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "done", style: .default, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        selectBarButtonPressed(selectBarButton)
     }
     
     //--Trash--//
