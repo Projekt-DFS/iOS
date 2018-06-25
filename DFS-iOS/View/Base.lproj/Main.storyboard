@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -158,19 +158,19 @@
                             <outlet property="delegate" destination="G3b-WN-yw6" id="dhN-0D-dqI"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="(GalleryCollectionViewController)" id="SLF-iO-Tn0">
-                        <barButtonItem key="leftBarButtonItem" title="Upload" id="Hgh-Mq-ZRI">
+                    <navigationItem key="navigationItem" title="(GalleryCollectionViewController)" leftItemsSupplementBackButton="YES" id="SLF-iO-Tn0">
+                        <barButtonItem key="leftBarButtonItem" title="Upload" id="DlN-ef-6pn">
                             <connections>
-                                <action selector="prepareUpload:" destination="G3b-WN-yw6" id="n69-5e-Vim"/>
+                                <action selector="uploadBarButtonPressed:" destination="G3b-WN-yw6" id="yxD-8x-uXl"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem title="Settings" id="UMH-fB-Kue">
+                            <barButtonItem title="Settings" style="plain" id="UMH-fB-Kue">
                                 <connections>
                                     <segue destination="FS4-E8-mmU" kind="show" id="7PW-B6-NLY"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Select" id="32t-Lz-Sxm">
+                            <barButtonItem title="Select" style="plain" id="32t-Lz-Sxm">
                                 <connections>
                                     <action selector="selectBarButtonPressed:" destination="G3b-WN-yw6" id="fiV-Iy-qOX"/>
                                 </connections>
@@ -182,7 +182,7 @@
                         <outlet property="galleryViewNavigationItem" destination="SLF-iO-Tn0" id="CpM-jy-Ycv"/>
                         <outlet property="selectBarButton" destination="32t-Lz-Sxm" id="liA-L2-vbO"/>
                         <outlet property="settingsBarButton" destination="UMH-fB-Kue" id="6H5-b7-cLD"/>
-                        <outlet property="uploadBarButton" destination="Hgh-Mq-ZRI" id="hFb-ZT-6U4"/>
+                        <outlet property="uploadBarButton" destination="DlN-ef-6pn" id="GpO-ov-He7"/>
                         <segue destination="chr-mF-Vpp" kind="show" identifier="imageDetailSegue" id="Ks1-Pm-pPW"/>
                     </connections>
                 </collectionViewController>

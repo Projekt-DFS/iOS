@@ -49,6 +49,5 @@ class UserDataSettingsViewController: UIViewController {
         // Hier muss das Segue zum LoginViewController gecoded werden.
         // User abmelden + Segue ohne ZurückButton + Alle Controller in DFSNavigationController resetten
     }
-   
-
+       
 }

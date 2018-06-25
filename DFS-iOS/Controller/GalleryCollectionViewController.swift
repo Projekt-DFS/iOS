@@ -15,39 +15,42 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     var indexOfImageInDetailView: Int?
     lazy var images = gallery.getImageList()  // Array von UIImages werden als Thumbnails benutzt
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
+    var highlightingMode = false
+    
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
-        
+    
+    
     
     // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "highlightingMode", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.    
-    @IBOutlet weak var uploadBarButton: UIBarButtonItem!
     
     @IBOutlet weak var selectBarButton: UIBarButtonItem!
-    
     @IBOutlet weak var settingsBarButton: UIBarButtonItem!
+    @IBOutlet var uploadBarButton: UIBarButtonItem!
     
     var trashBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
     var downloadBarButtonItem = UIBarButtonItem(title: "Download", style: UIBarButtonItemStyle.plain, target: self, action: nil)
     
-    
+ 
     @IBOutlet weak var galleryViewNavigationItem: UINavigationItem!
 
     @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
-        if !galleryCollectionView.highlightingMode {
+        if !highlightingMode {
             selectBarButton.title = "Done"
             self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButtonItem, downloadBarButtonItem]
-            galleryCollectionView.highlightingMode = true
         }
         else {
+            selectBarButton.title = "Select"
+            self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
             for cell in galleryCollectionViewCells {
                 cell.isSelected = false
                 cell.imageSelectedView.isHidden = true
                 cell.thumbnail.alpha = 1.0
             }
-            selectBarButton.title = "Select"
-            self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
-            galleryCollectionView.highlightingMode = false
         }
+        highlightingMode = !highlightingMode
     }
+    
+    
     
     func refreshGalleryViewFromModel() {
     }
@@ -64,12 +67,14 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+
     }
     
     // Bestimmt, was passiert wenn die view geladed wurde
     override func viewDidLoad() {
         super.viewDidLoad()
         galleryCollectionView?.allowsMultipleSelection = true
+        galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -106,7 +111,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     // Bestimmt, was passiert wenn eine Zelle ausgewählt wird
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
-        if galleryCollectionView.highlightingMode {
+        if highlightingMode {
             cell.thumbnail.alpha = 0.4
             cell.isSelected = true
             cell.imageSelectedView.isHidden = false
@@ -118,7 +123,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     // Bestimmt, was passiert wenn eine Auswahl revidiert wird
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
-        if galleryCollectionView.highlightingMode {
+        if highlightingMode {
             cell.thumbnail.alpha = 1.0
             cell.imageSelectedView.isHidden = true
             cell.isSelected = false
@@ -129,12 +134,14 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     /**
      Erzeugt ueber einen Alert den benoetigten ImagePicker und zeigt diesen anschliessend an
      */
-    @IBAction func prepareUpload(_ sender: UIBarButtonItem) {
+    
+    
+    @IBAction func uploadBarButtonPressed(_ sender: UIBarButtonItem) {
         let imagePickerController = createPicker()
         let alert = createAlert(picker: imagePickerController)
-        
         self.present(alert, animated: true, completion: nil)
     }
+    
     
     
     /**

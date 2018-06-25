@@ -10,6 +10,4 @@ import UIKit
 
 class GalleryCollectionView: UICollectionView {
 
-    var highlightingMode = false
-
 }
