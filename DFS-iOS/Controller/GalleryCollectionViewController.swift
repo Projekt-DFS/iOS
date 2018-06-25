@@ -27,8 +27,9 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     @IBOutlet weak var settingsBarButton: UIBarButtonItem!
     @IBOutlet var uploadBarButton: UIBarButtonItem!
     
-    var trashBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
-    var downloadBarButtonItem = UIBarButtonItem(title: "Download", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+    
+    @IBOutlet var trashBarButton: UIBarButtonItem!
+    @IBOutlet var downloadBarButton: UIBarButtonItem!
     
  
     @IBOutlet weak var galleryViewNavigationItem: UINavigationItem!
@@ -36,7 +37,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
         if !highlightingMode {
             selectBarButton.title = "Done"
-            self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButtonItem, downloadBarButtonItem]
+            self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButton, downloadBarButton]
         }
         else {
             selectBarButton.title = "Select"
@@ -130,7 +131,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         }        
     }
     
-    //---Upload---//
+    //---BarButtonsPressed---//
+    //--Upload--//
     /**
      Erzeugt ueber einen Alert den benoetigten ImagePicker und zeigt diesen anschliessend an
      */
@@ -201,6 +203,18 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
      */
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    //--Download--//
+    
+    @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
+        print("download")
+    }
+    
+    //--Trash--//
+
+    @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
+        print("trash")
     }
     
 }

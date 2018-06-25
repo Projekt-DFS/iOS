@@ -159,11 +159,23 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="(GalleryCollectionViewController)" leftItemsSupplementBackButton="YES" id="SLF-iO-Tn0">
-                        <barButtonItem key="leftBarButtonItem" title="Upload" id="DlN-ef-6pn">
-                            <connections>
-                                <action selector="uploadBarButtonPressed:" destination="G3b-WN-yw6" id="yxD-8x-uXl"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Upload" id="DlN-ef-6pn">
+                                <connections>
+                                    <action selector="uploadBarButtonPressed:" destination="G3b-WN-yw6" id="yxD-8x-uXl"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="ctQ-Tc-9td">
+                                <connections>
+                                    <action selector="trashBarButtonPressed:" destination="G3b-WN-yw6" id="UvD-ea-oah"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Download" id="VuK-Es-Pcy">
+                                <connections>
+                                    <action selector="downloadBarButtonPressed:" destination="G3b-WN-yw6" id="j4R-kL-prM"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem title="Settings" style="plain" id="UMH-fB-Kue">
                                 <connections>
@@ -178,10 +190,12 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="downloadBarButton" destination="VuK-Es-Pcy" id="Fna-Cs-WRe"/>
                         <outlet property="galleryCollectionView" destination="KsJ-Kt-hhg" id="mkn-om-Ivp"/>
                         <outlet property="galleryViewNavigationItem" destination="SLF-iO-Tn0" id="CpM-jy-Ycv"/>
                         <outlet property="selectBarButton" destination="32t-Lz-Sxm" id="liA-L2-vbO"/>
                         <outlet property="settingsBarButton" destination="UMH-fB-Kue" id="6H5-b7-cLD"/>
+                        <outlet property="trashBarButton" destination="ctQ-Tc-9td" id="6pg-4z-fKI"/>
                         <outlet property="uploadBarButton" destination="DlN-ef-6pn" id="GpO-ov-He7"/>
                         <segue destination="chr-mF-Vpp" kind="show" identifier="imageDetailSegue" id="Ks1-Pm-pPW"/>
                     </connections>
