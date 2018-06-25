@@ -21,8 +21,11 @@ class ImageDetailView: UIView {
         }
         slideInTransition.duration = duration
         slideInTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        slideInTransition.fillMode = kCAFillModeRemoved
+        slideInTransition.fillMode = kCAFillModeForwards
+        
         
         self.layer.add(slideInTransition, forKey: "slideInTransition")
+        
+        
     }
 }

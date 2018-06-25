@@ -103,11 +103,8 @@ class UserDataSettings  {
     }
     
     func getDefaultAutoUpload() -> Bool{
-        if let auto = defaults.bool(forKey: autoUploadKey) as? Bool{
-            return auto
-        }else{
-            return false
-        }
+        return defaults.bool(forKey: autoUploadKey)
+        
     }
     
     

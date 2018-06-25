@@ -26,6 +26,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var image : Image?
+    
     var galleryVC : GalleryCollectionViewController?
     
     
@@ -85,6 +86,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
         setupScrollView()
 
         activityIndicator.startAnimating()
+        imageView.image = nil
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             let urlContents = try? Data(contentsOf: (self?.image?.getImageSource())!)
             if let imageData = urlContents {
