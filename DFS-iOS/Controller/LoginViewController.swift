@@ -62,6 +62,7 @@ class LoginViewController: UIViewController {
             let destinationVC = segue.destination as! UINavigationController
             let galleryVC = destinationVC.childViewControllers[0] as! GalleryCollectionViewController
             galleryVC.gallery = Gallery(images: LoginViewController.imageArray)
+            galleryVC.loginVC = self
         }
     }
     

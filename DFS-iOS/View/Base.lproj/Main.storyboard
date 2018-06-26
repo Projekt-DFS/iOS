@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="-906.25" y="106.640625"/>
         </scene>
-        <!--(GalleryCollectionViewController)-->
+        <!--Gallery-->
         <scene sceneID="I56-o0-EYk">
             <objects>
                 <collectionViewController id="G3b-WN-yw6" customClass="GalleryCollectionViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,7 +170,7 @@
                             <outlet property="delegate" destination="G3b-WN-yw6" id="dhN-0D-dqI"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="(GalleryCollectionViewController)" leftItemsSupplementBackButton="YES" id="SLF-iO-Tn0">
+                    <navigationItem key="navigationItem" title="Gallery" leftItemsSupplementBackButton="YES" id="SLF-iO-Tn0">
                         <leftBarButtonItems>
                             <barButtonItem title="Upload" id="DlN-ef-6pn">
                                 <connections>
@@ -252,7 +252,7 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-Yj-cQB">
                                 <rect key="frame" x="374" y="502" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="color" red="0.3266127955" green="0.60251013590000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="color" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -31,4 +31,8 @@ class Gallery {
         }
         return images
     }
+    
+    public func setImageList(images: [Image]) {
+        self.imageList = images
+    }
 }

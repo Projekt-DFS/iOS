@@ -11,49 +11,54 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //Outlets
+    @IBOutlet var galleryCollectionView: GalleryCollectionView!
+    @IBOutlet weak var galleryViewNavigationItem: UINavigationItem!
+    @IBOutlet weak var selectBarButton: UIBarButtonItem!
+    @IBOutlet weak var settingsBarButton: UIBarButtonItem!
+    @IBOutlet var uploadBarButton: UIBarButtonItem!
+    @IBOutlet var trashBarButton: UIBarButtonItem!
+    @IBOutlet var downloadBarButton: UIBarButtonItem!
+    
+    
+    //sonstige Variablen
     lazy var gallery = Gallery()    // Das Gallery-Model
     var indexOfImageInDetailView: Int?
     lazy var images = gallery.getImageList()  // Array von UIImages werden als Thumbnails benutzt
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
     var highlightingMode = false
-    
-    @IBOutlet var galleryCollectionView: GalleryCollectionView!
-    
-    
-    
-    // Im Bereich bis zum nächsten Kommentar geht es um die BarButtons in der oberen Leiste. Wenn Select gedrückt wird, wechselt die Scene in den "highlightingMode", wo Bilder ausgewählt werden können. Der nächste Klick beendet das wieder.    
-    
-    @IBOutlet weak var selectBarButton: UIBarButtonItem!
-    @IBOutlet weak var settingsBarButton: UIBarButtonItem!
-    @IBOutlet var uploadBarButton: UIBarButtonItem!
-    
-    
-    @IBOutlet var trashBarButton: UIBarButtonItem!
-    @IBOutlet var downloadBarButton: UIBarButtonItem!
-    
- 
-    @IBOutlet weak var galleryViewNavigationItem: UINavigationItem!
+    var loginVC = LoginViewController()
+    var refreshControl = UIRefreshControl()
 
-    @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
-        if !highlightingMode {
-            selectBarButton.title = "Done"
-            self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButton, downloadBarButton]
-        }
-        else {
-            selectBarButton.title = "Select"
-            self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
-            for cell in galleryCollectionViewCells {
-                cell.isSelected = false
-                cell.imageSelectedView.isHidden = true
-                cell.thumbnail.alpha = 1.0
-            }
-        }
-        highlightingMode = !highlightingMode
+    
+    
+    // Bestimmt, was passiert wenn die view geladen wurde
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupRefreshControl()
+        galleryCollectionView.isPrefetchingEnabled = false
+        galleryCollectionView?.allowsMultipleSelection = true
+        galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
     }
     
+    @objc func refreshGallery() {
+        if let newImages = Communicator.logIn(userName: loginVC.uds.getDefaultUserName(), password: loginVC.uds.getDefaultPw(), ip: loginVC.uds.getDefaultIp()) {
+            self.gallery.setImageList(images: newImages)
+        }
+        refreshControl.endRefreshing()
+        //viewDidLoad()
+        
+    }
     
-    
-    func refreshGalleryViewFromModel() {
+    func setupRefreshControl() {
+        if galleryCollectionView.refreshControl == nil {
+            refreshControl.addTarget(self, action: #selector(refreshGallery), for: .valueChanged)
+            refreshControl.tintColor = self.view.tintColor ?? UIColor.blue
+            let color = [NSAttributedStringKey.foregroundColor : self.view.tintColor ?? UIColor.blue ];
+            refreshControl.attributedTitle = NSAttributedString(string: "Reloading gallery from backend...", attributes: color)
+            galleryCollectionView.refreshControl = refreshControl
+            refreshControl.layer.zPosition = -100
+        }
     }
     
     // Bereitet den ImageDetailViewController darauf vor, dass gleich ein Segue zu ihm stattfindet
@@ -71,13 +76,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
 
     }
     
-    // Bestimmt, was passiert wenn die view geladed wurde
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        galleryCollectionView.isPrefetchingEnabled = false
-        galleryCollectionView?.allowsMultipleSelection = true
-        galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
-    }
+
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -231,6 +230,24 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
 
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
         print("trash")
+    }
+    
+    //--Select--//
+    @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
+        if !highlightingMode {
+            selectBarButton.title = "Done"
+            self.galleryViewNavigationItem.leftBarButtonItems = [trashBarButton, downloadBarButton]
+        }
+        else {
+            selectBarButton.title = "Select"
+            self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
+            for cell in galleryCollectionViewCells {
+                cell.isSelected = false
+                cell.imageSelectedView.isHidden = true
+                cell.thumbnail.alpha = 1.0
+            }
+        }
+        highlightingMode = !highlightingMode
     }
     
 }

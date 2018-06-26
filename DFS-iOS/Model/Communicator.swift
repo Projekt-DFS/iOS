@@ -44,7 +44,7 @@ class Communicator {
             if let httpStatus = response as? HTTPURLResponse{
                 status = httpStatus.statusCode
             }
-            
+
             imageData = data
             
             sem.signal()
