@@ -10,10 +10,10 @@ import Foundation
 import UIKit // hat eigentlich nichts im Model verloren. Geht weg, wenn Backend steht
 
 class Image {
-    var id           : Int
-    var imageSource  : URL
-    var thumbnail    : URL
-    var metaData     : MetaData
+    private let id           : Int
+    private let imageSource  : URL
+    private let thumbnail    : URL
+    private var metaData     : MetaData
     
     init(id: Int, imageSource: String, thumbnail: String, metaData: MetaData) {
         self.id = id
@@ -36,6 +36,10 @@ class Image {
     
     public func getMetaData() -> MetaData {
         return self.metaData
+    }
+    
+    public func setMetaData(metaData: MetaData) {
+        self.metaData = metaData
     }
     
 

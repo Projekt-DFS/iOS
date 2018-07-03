@@ -93,20 +93,11 @@ class MetaDataViewController: UIViewController {
     }
     
     
-    
-    
     func organizeTagListLabels() {
-        
+        //TODO: Schöner ausrichten, wenn Einträge entfernt/hinzugefügt werden
     }
     
-    // keine Ahnung was diese drei Methoden machen sollen
-    func getMetaData() {}
-    
-    func setMetaData() {}
-    
-    func sendMetaData() {
 
-    }
     
     
 

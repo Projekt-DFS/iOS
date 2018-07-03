@@ -8,10 +8,10 @@
 
 import Foundation
 class MetaData {
-    var owner: String
-    var created: String
-    var location: String
-    var tagList: [String?]
+    private var owner: String
+    private var created: String
+    private var location: String
+    private var tagList: [String?]
     
     init(owner: String, created:String, location: String, tagList:[String]) {
         self.owner = owner

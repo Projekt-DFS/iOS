@@ -16,7 +16,7 @@ class Gallery {
     // UIImage = die Imageklasse von UIKit
     // UIImageView = ein Container, der ein Bild darstellen kann
     
-    var imageList = [Image]()
+    private var imageList = [Image]()
     
     init(images: [Image]) {
         self.imageList = images

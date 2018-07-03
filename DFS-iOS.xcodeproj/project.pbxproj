@@ -194,10 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				715DCD0520A2FA9200A759E5 /* Communicator.swift */,
-				715DCD0F20A2FB1600A759E5 /* Image.swift */,
-				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
-				715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */,
 				CC0A9C7F20BC81320042FFB6 /* JsonParser.swift */,
+				715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */,
+				715DCD0D20A2FB0300A759E5 /* Gallery.swift */,
+				715DCD0F20A2FB1600A759E5 /* Image.swift */,
 				719B807920CE9617004BF200 /* MetaData.swift */,
 			);
 			path = Model;

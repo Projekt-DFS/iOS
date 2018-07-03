@@ -264,7 +264,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4K8-uo-EIO"/>
                     </view>
-                    <navigationItem key="navigationItem" title="(ImageDetailViewController)" id="Nbc-ow-Jx6">
+                    <navigationItem key="navigationItem" title="Image Detail" id="Nbc-ow-Jx6">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="trash" id="Tao-nJ-36Z"/>
                             <barButtonItem title="Info" id="9VU-6O-rQc">
@@ -475,7 +475,7 @@
             </objects>
             <point key="canvasLocation" x="2275" y="106.0546875"/>
         </scene>
-        <!--(SettingsViewController)-->
+        <!--Settings-->
         <scene sceneID="Dic-jW-CbE">
             <objects>
                 <viewController id="FS4-E8-mmU" customClass="UserDataSettingsViewController" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -555,7 +555,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="T5F-G6-Y3B"/>
                     </view>
-                    <navigationItem key="navigationItem" title="(SettingsViewController)" id="hS8-td-pRa">
+                    <navigationItem key="navigationItem" title="Settings" id="hS8-td-pRa">
                         <barButtonItem key="rightBarButtonItem" title="logout" id="MsH-Pw-8oR">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="show" id="GEV-8e-cUz"/>

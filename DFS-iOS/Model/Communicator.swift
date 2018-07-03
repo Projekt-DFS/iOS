@@ -62,10 +62,6 @@ class Communicator {
         return JsonParser.parseFromJsonToImageArray(data: imageData)
     }
     
-    //POST Logout
-    static func logOut() -> Bool{
-        return true
-    }
 
     
     //POST Image
