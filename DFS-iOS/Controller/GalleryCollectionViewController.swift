@@ -193,7 +193,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
                 //aktualisiere Galerie
             }
             else{
-                //Zeige Fehlermeldung
+                //Zeige Fehlermeldung in der App
+                print("GalleryCollectionViewController: Failed to upload")
             }
         picker.dismiss(animated: true, completion: nil)
         }

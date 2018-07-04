@@ -17,14 +17,7 @@ class Communicator {
      */
     static func logIn(userName: String, password: String, ip: String) -> [Image]?{
         
-        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(userName):\(password)")
-        
-        let url = URL(string: "http://\(ip):4434/iosbootstrap/v1/images/\(userName)")!
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        
-        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        let request = initRequest(url: "http://\(ip):4434/iosbootstrap/v1/images/\(userName)", method: "GET", auth: Utils.encodeStringToBase64(str: "\(userName):\(password)"))
         var status = Int()
         var imageData = Data()
         
@@ -35,30 +28,25 @@ class Communicator {
                 sem.signal()
                 return
             }
-            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print(httpStatus.statusCode)
                 print(response!)
             }
-            
             if let httpStatus = response as? HTTPURLResponse{
                 status = httpStatus.statusCode
             }
-
             imageData = data
-            
             sem.signal()
         }
         task.resume()
         
         sem.wait()
         
-        print(status)
         if(status != 200){
-            print("ich gebe nil zurueck")
+            print(status)
             return nil
         }
-        print("Login successful")
+        print("Communicator: Login successful")
         return JsonParser.parseFromJsonToImageArray(data: imageData)
     }
     
@@ -74,13 +62,8 @@ class Communicator {
         
         let uds = UserDataSettings()
         
-        let url = URL(string: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/\(uds.getDefaultUserName())/images")!
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        var request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())", method: "POST", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
 
-        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
-        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpBody = json.data(using: .utf8)
@@ -94,16 +77,13 @@ class Communicator {
                 sem.signal()
                 return
             }
-            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print(httpStatus.statusCode)
                 print(response!)
             }
-            
             if let httpStatus = response as? HTTPURLResponse{
                 status = httpStatus.statusCode
             }
-            
             sem.signal()
         }
         task.resume()
@@ -113,9 +93,20 @@ class Communicator {
         if(status != 200){
             return false
         }
-        
-        print("Image upload successful")
         return true
+    }
+    
+    
+    static func initRequest(url: String, method: String, auth: String) -> URLRequest{
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
+        
+        let userNameAndPwBase64 = auth
+        
+        request.httpMethod = "GET"
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        
+        return request
     }
     
     //GET Image
