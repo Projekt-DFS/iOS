@@ -7,23 +7,22 @@
 //
 
 import Foundation
-import UIKit // hat eigentlich nichts im Model verloren. Geht weg, wenn Backend steht
 
 class Image {
-    private let id           : Int
+    private let imageName    : String
     private let imageSource  : URL
     private let thumbnail    : URL
     private var metaData     : MetaData
     
-    init(id: Int, imageSource: String, thumbnail: String, metaData: MetaData) {
-        self.id = id
+    init(imageName: String, imageSource: String, thumbnail: String, metaData: MetaData) {
+        self.imageName = imageName
         self.imageSource = URL(string: imageSource)!
         self.thumbnail = URL(string: thumbnail)!
         self.metaData = metaData
     }
     
-    public func getId() -> Int{
-        return self.id
+    public func getImageName() -> String{
+        return self.imageName
     }
     
     public func getThumbnail() -> URL {

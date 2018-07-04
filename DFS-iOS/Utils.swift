@@ -67,6 +67,22 @@ class Utils{
     }
     
     
+    /**
+     Generates the name of an image to get uploaded
+    */
+    static func generateImageName() -> String{
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .medium
+        var str = formatter.string(from: Date())
+        str = str.replacingOccurrences(of: ".", with: "")
+        str = str.replacingOccurrences(of: ", ", with: "_")
+        str = str.replacingOccurrences(of: ":", with: "")
+        
+        return "IMG_\(str).jpg"
+    }
+    
+    
 
     
 }

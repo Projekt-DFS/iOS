@@ -46,7 +46,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             self.gallery.setImageList(images: newImages)
         }
         refreshControl.endRefreshing()
-        //viewDidLoad()
+        viewDidLoad()
         
     }
     
@@ -189,13 +189,13 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
             let data = UIImagePNGRepresentation(image)
-            if Communicator.uploadImage(data: data!){
+            if Communicator.uploadImage(data: data!, imgName: Utils.generateImageName()){
                 //aktualisiere Galerie
             }
             else{
                 //Zeige Fehlermeldung in der App
-                print("GalleryCollectionViewController: Failed to upload")
             }
+            
         picker.dismiss(animated: true, completion: nil)
         }
     }
@@ -231,6 +231,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
 
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
         print("trash")
+        Communicator.deleteImage()
     }
     
     //--Select--//

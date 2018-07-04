@@ -53,12 +53,12 @@ class Communicator {
 
     
     //POST Image
-    static func uploadImage(data: Data) -> Bool{
+    static func uploadImage(data: Data, imgName: String) -> Bool{
         
         let imageBase64 = Utils.encodeDataToBase64(data: data)
         
         //wird noch anstaendig gemacht
-        let json = "{\n\t\"imageSource\":\"\(imageBase64)\"\n}"
+        let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(imgName)\"\n}"
         
         let uds = UserDataSettings()
         
@@ -77,7 +77,7 @@ class Communicator {
                 sem.signal()
                 return
             }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
                 print(httpStatus.statusCode)
                 print(response!)
             }
@@ -90,24 +90,15 @@ class Communicator {
         
         sem.wait()
         
-        if(status != 200){
+        if(status != 201){
             return false
         }
+        print("Communicator: Upload successful")
         return true
     }
     
     
-    static func initRequest(url: String, method: String, auth: String) -> URLRequest{
-        let url = URL(string: url)!
-        var request = URLRequest(url: url)
-        
-        let userNameAndPwBase64 = auth
-        
-        request.httpMethod = "GET"
-        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
-        
-        return request
-    }
+   
     
     //GET Image
     //Passiert aktuell noch in der Gallery, wird gefixt
@@ -124,7 +115,53 @@ class Communicator {
     
     //DELETE Image
     static func deleteImage() -> Bool{
+        
+        let uds = UserDataSettings()
+        
+        //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
+        var request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())?imageName=Noname.jpg", method: "DELETE", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
+        
+        var status = Int()
+        
+        let sem = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request){data, response, error in
+            guard let _ = data, error == nil else{
+                print("error")
+                sem.signal()
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print(httpStatus.statusCode)
+                print(response!)
+            }
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+            }
+            sem.signal()
+        }
+        task.resume()
+        
+        sem.wait()
+        
+        if(status != 204){
+            return false
+        }
+        print("Communicator: Deletion successful")
         return true
+    }
+    
+    
+    
+    static func initRequest(url: String, method: String, auth: String) -> URLRequest{
+        let url = URL(string: url)!
+        var request = URLRequest(url: url)
+        
+        let userNameAndPwBase64 = auth
+        
+        request.httpMethod = method
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        
+        return request
     }
     
 }

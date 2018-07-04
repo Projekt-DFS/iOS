@@ -41,7 +41,7 @@ class JsonParser{
             
             let metaData = MetaData(owner: ownerForMeta, created: createdForMeta, location: locationForMeta, tagList: tagListForMeta)
         
-            imageArray.append(Image(id: imageStruct.id, imageSource: imageStruct.imageSource, thumbnail: imageStruct.thumbnail, metaData: metaData))
+            imageArray.append(Image(imageName: imageStruct.imageName, imageSource: imageStruct.imageSource, thumbnail: imageStruct.thumbnail, metaData: metaData))
             
         }
         
@@ -84,17 +84,17 @@ struct MetaDataStruct{
 
 //Damit koennen wir das komplette Image-Objekt erstellen
 struct ImageStruct{
-    let id          : Int
+    let imageName   : String
     let imageSource : String
     let thumbnail   : String
     let metaData    : [String: Any]
     
     
     init(json: [String: Any]){
-        id            =  json["id"   ]          as?  Int             ??  -1
-        imageSource   =  json["imageSource" ]   as?  String          ??  ""
-        thumbnail     =  json["thumbnail"]      as?  String          ??  ""
-        metaData      =  json["metaData" ]      as?  [String: Any]   ??  ["":""]
+        imageName     =  json["imageName"   ]      as?  String          ??  ""
+        imageSource   =  json["imageSource" ]      as?  String          ??  ""
+        thumbnail     =  json["thumbnail"   ]      as?  String          ??  ""
+        metaData      =  json["metaData"    ]      as?  [String: Any]   ??  ["":""]
     }
     
 }
