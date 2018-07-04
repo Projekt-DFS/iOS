@@ -19,7 +19,7 @@ class Communicator {
         
         let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(userName):\(password)")
         
-        let url = URL(string: "http://\(ip):8080/iosbootstrap/v1/users/1/images")!
+        let url = URL(string: "http://\(ip):4434/iosbootstrap/v1/images/\(userName)")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -74,7 +74,7 @@ class Communicator {
         
         let uds = UserDataSettings()
         
-        let url = URL(string: "http://\(uds.getDefaultIp()):8080/iosbootstrap/v1/users/1/images")!
+        let url = URL(string: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/\(uds.getDefaultUserName())/images")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
