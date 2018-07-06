@@ -48,7 +48,6 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             self.collectionView?.reloadData()
         }
         refreshControl.endRefreshing()
-        viewDidLoad()
     }
     
     func setupRefreshControl() {
