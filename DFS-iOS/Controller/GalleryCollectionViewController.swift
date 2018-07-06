@@ -186,7 +186,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
      Wird ausgefuehrt, sobald der ImagePicker ein Bild gepickt hat (entweder ueber Kamera oder als Auswahl in der Galerie)
      */
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+        if var image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            image = image.updateImageOrientionUpSide()!
             let data = UIImagePNGRepresentation(image)
             let imageBase64 = Utils.encodeDataToBase64(data: data!)
             if Communicator.uploadImage(imageString: imageBase64, imgName: Utils.generateImageName()){
