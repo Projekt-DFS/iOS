@@ -93,16 +93,14 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
        cell.image = nil
         
-        var image = UIImage()
-        
         cell.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .background).async { [weak self] in
-            let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!)
-            if let imageData = urlContents {
-                image = UIImage(data: imageData)!
-                DispatchQueue.main.async {
-                cell.image = image
-                self?.galleryCollectionViewCells.append(cell)
+            if let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!) {
+                if let image = UIImage(data: urlContents) {
+                    DispatchQueue.main.async {
+                        cell.image = image
+                        self?.galleryCollectionViewCells.append(cell)
+                    }
                 }
             }
         }

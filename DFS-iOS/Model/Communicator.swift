@@ -119,7 +119,7 @@ class Communicator {
         let uds = UserDataSettings()
         
         //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
-        var request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())?imageName=Noname.jpg", method: "DELETE", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
+        let request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())?imageName=Noname.jpg", method: "DELETE", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
         
         var status = Int()
         

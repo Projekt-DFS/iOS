@@ -88,11 +88,12 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
         activityIndicator.startAnimating()
         imageView.image = nil
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let urlContents = try? Data(contentsOf: (self?.image?.getImageSource())!)
-            if let imageData = urlContents {
+            if let urlContents = try? Data(contentsOf: (self?.image?.getImageSource())!) {
                 DispatchQueue.main.async {
-                    self?.imageView.image = UIImage(data: imageData)!
+                    if let image = UIImage(data: urlContents) {
+                        self?.imageView.image = image
                     self?.activityIndicator.stopAnimating()
+                    }
                 }
             }
         }
