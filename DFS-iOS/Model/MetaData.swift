@@ -44,6 +44,13 @@ class MetaData {
         self.created = newValue
     }
     
+    func getTagList() -> [String]{
+        if let tagList = self.tagList as? [String]{
+            return tagList
+        }
+        return [""]
+    }
+    
     func getTagListAt(index: Int) -> String? {
         if self.tagList.count <= index {
             return nil

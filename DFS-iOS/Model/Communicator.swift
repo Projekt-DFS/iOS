@@ -106,12 +106,9 @@ class Communicator {
     /**
      Downloadet Bild-Daten anhand eines Links
     */
-    static func getImage(url: URL) -> Data{
-        let uds = UserDataSettings()
+    static func getImage(urlAsString: String) -> Data{
         
-        var request = URLRequest(url: url)
-        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
-        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        let request = initRequest(url: urlAsString, method: "GET")
         
         var status = Int()
         var imageData = Data()

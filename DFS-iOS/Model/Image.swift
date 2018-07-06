@@ -10,26 +10,33 @@ import Foundation
 
 class Image {
     private let imageName    : String
-    private let imageSource  : URL
-    private let thumbnail    : URL
+    private let imageSource  : String
+    private let thumbnail    : String
     private var metaData     : MetaData
     
     init(imageName: String, imageSource: String, thumbnail: String, metaData: MetaData) {
         self.imageName = imageName
-        self.imageSource = URL(string: imageSource)!
-        self.thumbnail = URL(string: thumbnail)!
+        self.imageSource = imageSource
+        self.thumbnail = thumbnail
         self.metaData = metaData
+    }
+    
+    init(json: [String: Any]){
+        imageName     =  json["imageName"   ]      as?  String          ??  ""
+        imageSource   =  json["imageSource" ]      as?  String          ??  ""
+        thumbnail     =  json["thumbnail"   ]      as?  String          ??  ""
+        metaData      =  json["metaData"    ]      as?  MetaData        ??  MetaData(owner: "", created: "", location: "", tagList:[""])
     }
     
     public func getImageName() -> String{
         return self.imageName
     }
     
-    public func getThumbnail() -> URL {
+    public func getThumbnail() -> String {
         return self.thumbnail
     }
     
-    public func getImageSource() -> URL {
+    public func getImageSource() -> String {
         return self.imageSource
     }
     

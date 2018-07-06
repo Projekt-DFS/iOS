@@ -96,7 +96,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         cell.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .background).async { [weak self] in
             
-            if let urlContents = Communicator.getImage(url: (self?.images[indexPath.item].getThumbnail())!) as Data?{
+            if let urlContents = Communicator.getImage(urlAsString: (self?.images[indexPath.item].getThumbnail())!) as Data?{
                 if let image = UIImage(data: urlContents) {
                     DispatchQueue.main.async {
                         cell.image = image
