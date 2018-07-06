@@ -140,9 +140,10 @@ class Communicator {
         sem.wait()
         
         if(status != 200){
-            print("Communicator: Loading thumbnail failed")
+            print("Communicator: Loading image failed")
+        }else{
+            print("Communicator: Getting thumbnail successful")
         }
-        print("Communicator: Getting thumbnail successful")
         
         return imageData
     }
