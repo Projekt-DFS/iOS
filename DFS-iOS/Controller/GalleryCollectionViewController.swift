@@ -188,7 +188,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
             let data = UIImagePNGRepresentation(image)
-            if Communicator.uploadImage(data: data!, imgName: Utils.generateImageName()){
+            let imageBase64 = Utils.encodeDataToBase64(data: data!)
+            if Communicator.uploadImage(imageString: imageBase64, imgName: Utils.generateImageName()){
                 //aktualisiere Galerie
             }
             else{

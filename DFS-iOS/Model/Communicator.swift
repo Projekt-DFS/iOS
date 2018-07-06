@@ -57,12 +57,10 @@ class Communicator {
 
     
     //POST Image
-    static func uploadImage(data: Data, imgName: String) -> Bool{
-        
-        let imageBase64 = Utils.encodeDataToBase64(data: data)
+    static func uploadImage(imageString: String, imgName: String) -> Bool{
         
         //wird noch anstaendig gemacht
-        let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(imgName)\"\n}"
+        let json = "{\n\t\"imageSource\":\"\(imageString)\",\n\t\"imageName\":\"\(imgName)\"\n}"
         
         let uds = UserDataSettings()
         
@@ -142,7 +140,7 @@ class Communicator {
         if(status != 200){
             print("Communicator: Loading image failed")
         }else{
-            print("Communicator: Getting thumbnail successful")
+            print("Communicator: Loading image successful")
         }
         
         return imageData
