@@ -36,7 +36,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
-        galleryCollectionView.isPrefetchingEnabled = false
+        galleryCollectionView.isPrefetchingEnabled = true
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
     }
@@ -44,10 +44,11 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     @objc func refreshGallery() {
         if let newImages = Communicator.getImageInfo(userName: loginVC.uds.getDefaultUserName(), password: loginVC.uds.getDefaultPw(), ip: loginVC.uds.getDefaultIp()) {
             self.gallery.setImageList(images: newImages)
+            self.images = newImages
+            self.collectionView?.reloadData()
         }
         refreshControl.endRefreshing()
         viewDidLoad()
-        
     }
     
     func setupRefreshControl() {
@@ -191,7 +192,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             let data = UIImagePNGRepresentation(image)
             let imageBase64 = Utils.encodeDataToBase64(data: data!)
             if Communicator.uploadImage(imageString: imageBase64, imgName: Utils.generateImageName()){
-                //aktualisiere Galerie
+                refreshGallery()
             }
             else{
                 //Zeige Fehlermeldung in der App
