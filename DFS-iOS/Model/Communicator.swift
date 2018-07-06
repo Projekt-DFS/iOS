@@ -10,16 +10,19 @@ import Foundation
 
 class Communicator {
     
-    //GET Login
+    //GET imageList
     /**
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery.
      */
-    static func logIn(userName: String, password: String, ip: String) -> [Image]?{
+    static func getImageInfo(userName: String, password: String, ip: String) -> [Image]?{
         
-        let request = initRequest(url: "http://\(ip):4434/iosbootstrap/v1/images/\(userName)", method: "GET", auth: Utils.encodeStringToBase64(str: "\(userName):\(password)"))
+        var request = initRequest(url: "http://\(ip):4434/iosbootstrap/v1/images/\(userName)", method: "GET")
+        //request.addValue(Utils.encodeStringToBase64(str: "Basic \(userName):\(password)"), forHTTPHeaderField: "Authorization")
         var status = Int()
         var imageData = Data()
+        
+        
         
         let sem = DispatchSemaphore(value: 0)
         let task = URLSession.shared.dataTask(with: request){data, response, error in
@@ -28,6 +31,7 @@ class Communicator {
                 sem.signal()
                 return
             }
+            
             if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
                 print(httpStatus.statusCode)
                 print(response!)
@@ -62,7 +66,7 @@ class Communicator {
         
         let uds = UserDataSettings()
         
-        var request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())", method: "POST", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
+        var request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())", method: "POST")
 
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -101,9 +105,46 @@ class Communicator {
    
     
     //GET Image
-    //Passiert aktuell noch in der Gallery, wird gefixt
-    static func getImage() -> Bool{
-        return true
+    /**
+     Downloadet Bild-Daten anhand eines Links
+    */
+    static func getImage(url: URL) -> Data{
+        let uds = UserDataSettings()
+        
+        var request = URLRequest(url: url)
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
+        request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
+        
+        var status = Int()
+        var imageData = Data()
+        
+        let sem = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: request){data, response, error in
+            guard let data = data, error == nil else{
+                print("error")
+                sem.signal()
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print(httpStatus.statusCode)
+                print(response!)
+            }
+            if let httpStatus = response as? HTTPURLResponse{
+                status = httpStatus.statusCode
+                imageData = data
+            }
+            sem.signal()
+        }
+        task.resume()
+        
+        sem.wait()
+        
+        if(status != 200){
+            print("Communicator: Loading thumbnail failed")
+        }
+        print("Communicator: Getting thumbnail successful")
+        
+        return imageData
     }
     
     //PUT MetaData
@@ -119,7 +160,7 @@ class Communicator {
         let uds = UserDataSettings()
         
         //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
-        let request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())?imageName=Noname.jpg", method: "DELETE", auth: Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())"))
+        let request = initRequest(url: "http://\(uds.getDefaultIp()):4434/iosbootstrap/v1/images/\(uds.getDefaultUserName())?imageName=Noname.jpg", method: "DELETE")
         
         var status = Int()
         
@@ -152,15 +193,15 @@ class Communicator {
     
     
     
-    static func initRequest(url: String, method: String, auth: String) -> URLRequest{
+    static func initRequest(url: String, method: String) -> URLRequest{
+        let uds = UserDataSettings()
+        
         let url = URL(string: url)!
         var request = URLRequest(url: url)
         
-        let userNameAndPwBase64 = auth
-        
+        let userNameAndPwBase64 = Utils.encodeStringToBase64(str: "\(uds.getDefaultUserName()):\(uds.getDefaultPw())")
         request.httpMethod = method
         request.addValue("Basic \(userNameAndPwBase64)", forHTTPHeaderField: "Authorization")
-        
         return request
     }
     

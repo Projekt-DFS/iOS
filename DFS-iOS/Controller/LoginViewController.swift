@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func logIn(_ sender: UIButton) {
         
-        if let images = Communicator.logIn(userName: uds.getDefaultUserName(), password: uds.getDefaultPw(), ip: uds.getDefaultIp()) {
+        if let images = Communicator.getImageInfo(userName: uds.getDefaultUserName(), password: uds.getDefaultPw(), ip: uds.getDefaultIp()) {
             LoginViewController.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }

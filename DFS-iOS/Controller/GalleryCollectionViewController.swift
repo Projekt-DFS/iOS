@@ -42,7 +42,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     }
     
     @objc func refreshGallery() {
-        if let newImages = Communicator.logIn(userName: loginVC.uds.getDefaultUserName(), password: loginVC.uds.getDefaultPw(), ip: loginVC.uds.getDefaultIp()) {
+        if let newImages = Communicator.getImageInfo(userName: loginVC.uds.getDefaultUserName(), password: loginVC.uds.getDefaultPw(), ip: loginVC.uds.getDefaultIp()) {
             self.gallery.setImageList(images: newImages)
         }
         refreshControl.endRefreshing()
@@ -95,7 +95,8 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         
         cell.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .background).async { [weak self] in
-            if let urlContents = try? Data(contentsOf: (self?.images[indexPath.item].getThumbnail())!) {
+            
+            if let urlContents = Communicator.getImage(url: (self?.images[indexPath.item].getThumbnail())!) as Data?{
                 if let image = UIImage(data: urlContents) {
                     DispatchQueue.main.async {
                         cell.image = image
