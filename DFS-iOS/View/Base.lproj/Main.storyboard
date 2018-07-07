@@ -20,16 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="39M-4M-48V">
-                                <rect key="frame" x="253.5" y="380.5" width="261.5" height="263.5"/>
+                                <rect key="frame" x="329.5" y="414.5" width="110" height="196"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DFS-Frontend Login Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuD-kj-hAs">
-                                        <rect key="frame" x="0.0" y="0.0" width="261.5" height="27.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="0iz-CP-Qan" userLabel="Buttons">
-                                        <rect key="frame" x="76" y="67.5" width="110" height="196"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="196"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="2VD-fS-X8l" userLabel="TextInput">
                                                 <rect key="frame" x="0.0" y="0.0" width="85" height="120"/>
@@ -97,7 +91,6 @@
                     <connections>
                         <outlet property="ipTextField" destination="fSy-ZO-Ur1" id="1qZ-S4-Cud"/>
                         <outlet property="loginButton" destination="9GC-p7-ufg" id="1Eu-sC-jnZ"/>
-                        <outlet property="loginLabel" destination="BuD-kj-hAs" id="8Vz-mR-OM0"/>
                         <outlet property="passwordTextField" destination="5lH-WQ-udP" id="yFf-hg-ILn"/>
                         <outlet property="rememberSwitch" destination="4R1-QJ-59d" id="cNi-Qx-72j"/>
                         <outlet property="userNameTextField" destination="1Lf-5K-Lhu" id="jp3-eU-7q8"/>

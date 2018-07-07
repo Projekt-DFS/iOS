@@ -11,7 +11,6 @@ import UIKit
 class LoginViewController: UIViewController {
     
     let uds = UserDataSettings()
-    @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -34,8 +33,6 @@ class LoginViewController: UIViewController {
         if let ip = ipTextField.text{
             uds.setDefaultIp(ip)
         }
-        
-        updateLabel()
     }
     
     @IBAction func logIn(_ sender: UIButton) {
@@ -94,14 +91,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateLabel()
         updateTextFieldsIfDataRemebered()
     }
-    
-    func updateLabel(){
-        loginLabel.text = "Username: \(uds.getDefaultUserName())\nPassword: \(uds.getDefaultPw())\nIP: \(uds.getDefaultIp())"
-    }
-    
-    
     
 }
