@@ -16,13 +16,14 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var ipTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var rememberSwitch: UISwitch!
     
     
     static var imageArray = [Image]()
     
+
     
-    @IBAction func setDataButtonTapped(_ sender: UIButton) {
-        
+    func setData(){
         if let userName = userNameTextField.text{
             uds.setDefaultUserName(userName)
         }
@@ -38,8 +39,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func logIn(_ sender: UIButton) {
+        if rememberSwitch.isOn{
+            setData()
+        }
         
-        if let images = Communicator.getImageInfo(userName: uds.getDefaultUserName(), password: uds.getDefaultPw(), ip: uds.getDefaultIp()) {
+        Communicator.userName = userNameTextField.text!
+        Communicator.password = passwordTextField.text!
+        Communicator.ip       = ipTextField.text!
+        
+        if let images = Communicator.getImageInfo(){
             LoginViewController.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
@@ -66,10 +74,22 @@ class LoginViewController: UIViewController {
         }
     }
     
+    func updateTextFieldsIfDataRemebered(){
+        if uds.getDefaultUserName() != ""{
+            userNameTextField.text = uds.getDefaultUserName()
+        }
+        if uds.getDefaultPw() != ""{
+            passwordTextField.text = uds.getDefaultPw()
+        }
+        if uds.getDefaultIp() != ""{
+            ipTextField.text = uds.getDefaultIp()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabel()
+        updateTextFieldsIfDataRemebered()
     }
     
     func updateLabel(){

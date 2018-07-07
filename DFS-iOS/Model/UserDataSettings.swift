@@ -21,14 +21,12 @@ class UserDataSettings  {
     var userName   = ""
     var pw         = ""
     var ip         = ""
-    var autoUpload = false
     
     //User Defaults und Keys
     let defaults = UserDefaults.standard
     let userNameKey    = "userName"
     let pwKey          = "pw"
     let ipKey          = "ip"
-    let autoUploadKey  = "autoUpload"
     
     /**
      Die Initialisierung passiert in loadDefaultsIfSet()
@@ -56,9 +54,6 @@ class UserDataSettings  {
             self.ip = ip
         }
         
-        if defaults.bool(forKey: autoUploadKey) {
-            self.autoUpload = true
-        }
     }
     
     func setDefaultUserName(_ to: String){
@@ -71,10 +66,6 @@ class UserDataSettings  {
     
     func setDefaultIp(_ to: String){
         defaults.set(to, forKey: ipKey)
-    }
-    
-    func setDefaultAutoUpload(_ to: Bool){
-        defaults.set(to, forKey: autoUploadKey)
     }
     
     
@@ -101,11 +92,5 @@ class UserDataSettings  {
             return ""
         }
     }
-    
-    func getDefaultAutoUpload() -> Bool{
-        return defaults.bool(forKey: autoUploadKey)
-        
-    }
-    
     
 }

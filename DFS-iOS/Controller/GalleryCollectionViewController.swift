@@ -42,7 +42,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     }
     
     @objc func refreshGallery() {
-        if let newImages = Communicator.getImageInfo(userName: loginVC.uds.getDefaultUserName(), password: loginVC.uds.getDefaultPw(), ip: loginVC.uds.getDefaultIp()) {
+        if let newImages = Communicator.getImageInfo() {
             self.gallery.setImageList(images: newImages)
             self.images = newImages
             self.collectionView?.reloadData()
