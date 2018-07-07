@@ -24,7 +24,7 @@ class Communicator {
     static var getImageInfoData = Data()
     static var getImageData     = Data()
     
-    //Names of Status Codes
+    //Marks of a request to identify it
     static let getImageInfoMark = 1
     static let getImageMark     = 2
     static let uploadImageMark  = 3
