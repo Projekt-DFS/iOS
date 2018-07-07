@@ -45,9 +45,13 @@ class LoginViewController: UIViewController {
             uds.resetUserDefaults()
         }
         
-        Communicator.userName = userNameTextField.text!
-        Communicator.password = passwordTextField.text!
-        Communicator.ip       = ipTextField.text!
+        if(userNameTextField.text != "" && passwordTextField.text != "" && ipTextField.text != ""){
+            Communicator.userName = userNameTextField.text!
+            Communicator.password = passwordTextField.text!
+            Communicator.ip       = ipTextField.text!
+        }else{
+            return
+        }
         
         if let images = Communicator.getImageInfo(){
             LoginViewController.imageArray = images

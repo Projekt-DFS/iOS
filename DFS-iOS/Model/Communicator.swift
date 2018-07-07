@@ -16,28 +16,36 @@ class Communicator {
     static var ip       = ""
     
     //Link constants
-    static let loginLink    = "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"
-    static let uploadLink   = "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"
-    static let deletionLink = "http://\(ip):4434/iosbootstrap/v1/images/\(userName)?imageName="  //wird ab hier um die Namen erweitern, also Name, Name, Name,...
-    
+    static var loginLink     : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
+    static var uploadLink    : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
+    static var deletionLink  : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)?imageName="}//wird ab hier um die Namen erweitert, also Name, Name, Name,...
     
     //Data grown out of a request
     static var getImageInfoData = Data()
     static var getImageData     = Data()
     
     //Names of Status Codes
-    static var getImageInfoStatusCode = "getImageInfoStatusCode"
-    static var getImageStatusCode     = "getImageStatusCode"
-    static var uploadImageStatusCode  = "uploadImageStatusCode"
-    static var deleteImageStatusCode  = "deleteImageStatusCode"
+    static let getImageInfoMark = 1
+    static let getImageMark     = 2
+    static let uploadImageMark  = 3
+    static let deleteImageMark  = 4
     
     //Statuscodes
-    static var statusCodeDictionary = [
-                                       getImageInfoStatusCode: 200,
-                                       getImageStatusCode    : 200,
-                                       uploadImageStatusCode : 201,
-                                       deleteImageStatusCode : 204
+    static let statusCodeDictionary = [
+                                       getImageInfoMark : 200,
+                                       getImageMark     : 200,
+                                       uploadImageMark  : 201,
+                                       deleteImageMark  : 204
                                       ]
+    
+    //If != preferred status code, these will be set false
+    static var failDictionary = [
+                                    getImageInfoMark : true,
+                                    getImageMark     : true,
+                                    uploadImageMark  : true,
+                                    deleteImageMark  : true
+                                ]
+    
     
     /**
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
@@ -48,10 +56,15 @@ class Communicator {
         let request = initRequest(url: loginLink, method: "GET")
         
         let sem = DispatchSemaphore(value: 0)
-        let task = initTask(request: request, semaphore: sem, statusCodeName: getImageInfoStatusCode)
+        let task = initTask(request: request, semaphore: sem, requestMark: getImageInfoMark)
         task.resume()
+        
         sem.wait()
         
+        if failDictionary[getImageInfoMark] == false{
+            failDictionary[getImageInfoMark] = true
+            return nil
+        }
         print("Communicator: Login successful")
         return JsonParser.parseFromJsonToImageArray(data: getImageInfoData)
     }
@@ -66,7 +79,7 @@ class Communicator {
         
         let sem = DispatchSemaphore(value: 0)
         
-        let task = initTask(request: request, semaphore: sem, statusCodeName: "uploadImageStatusCode")
+        let task = initTask(request: request, semaphore: sem, requestMark: uploadImageMark)
         task.resume()
         
         sem.wait()
@@ -86,7 +99,7 @@ class Communicator {
         let request = initRequest(url: urlAsString, method: "GET")
        
         let sem = DispatchSemaphore(value: 0)
-        let task = initTask(request: request, semaphore: sem, statusCodeName: getImageStatusCode)
+        let task = initTask(request: request, semaphore: sem, requestMark: getImageMark)
         task.resume()
         
         sem.wait()
@@ -108,7 +121,7 @@ class Communicator {
         let request = initRequest(url: deletionLink, method: "DELETE")
         
         let sem = DispatchSemaphore(value: 0)
-        let task = initTask(request: request, semaphore: sem, statusCodeName: deleteImageStatusCode)
+        let task = initTask(request: request, semaphore: sem, requestMark: deleteImageMark)
         task.resume()
         
         sem.wait()
@@ -129,22 +142,26 @@ class Communicator {
         return request
     }
     
-    static func initTask(request: URLRequest, semaphore: DispatchSemaphore, statusCodeName: String) -> URLSessionDataTask{
+    static func initTask(request: URLRequest, semaphore: DispatchSemaphore, requestMark: Int) -> URLSessionDataTask{
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
                 print("error")
+                failDictionary[requestMark] = false
                 semaphore.signal()
                 return
             }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != statusCodeDictionary[statusCodeName] {
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != statusCodeDictionary[requestMark] {
                 print(httpStatus.statusCode)
                 print(response!)
+                failDictionary[requestMark] = false
+                semaphore.signal()
+                return
             }
-
-            if(statusCodeName == getImageInfoStatusCode){
+            
+            if(requestMark == getImageInfoMark){
                 getImageInfoData = data
             }
-            if(statusCodeName == getImageStatusCode){
+            if(requestMark == getImageMark){
                 getImageData = data
             }
             
@@ -152,4 +169,5 @@ class Communicator {
         }
         return task
     }
+    
 }
