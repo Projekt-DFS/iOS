@@ -79,6 +79,8 @@ class Utils{
         str = str.replacingOccurrences(of: ", ", with: "_")
         str = str.replacingOccurrences(of: ":", with: "")
         
+        str = "\(str)_\(arc4random() % 1000)"
+        
         return "IMG_\(str).jpg"
     }
     

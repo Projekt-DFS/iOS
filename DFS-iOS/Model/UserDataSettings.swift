@@ -56,6 +56,16 @@ class UserDataSettings  {
         
     }
     
+    
+    /**
+     Resets the user defaults
+    */
+    func resetUserDefaults(){
+        setDefaultIp("")
+        setDefaultPw("")
+        setDefaultUserName("")
+    }
+    
     func setDefaultUserName(_ to: String){
         defaults.set(to, forKey: userNameKey)
     }

@@ -190,7 +190,10 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             image = image.updateImageOrientionUpSide()!
             let data = UIImagePNGRepresentation(image)
             let imageBase64 = Utils.encodeDataToBase64(data: data!)
-            if Communicator.uploadImage(imageString: imageBase64, imgName: Utils.generateImageName()){
+            
+            let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(Utils.generateImageName())\"\n}"
+            
+            if Communicator.uploadImage(jsonString: json){
                 refreshGallery()
             }
             else{

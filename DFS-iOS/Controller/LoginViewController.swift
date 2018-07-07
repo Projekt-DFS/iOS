@@ -41,6 +41,8 @@ class LoginViewController: UIViewController {
     @IBAction func logIn(_ sender: UIButton) {
         if rememberSwitch.isOn{
             setData()
+        }else{
+            uds.resetUserDefaults()
         }
         
         Communicator.userName = userNameTextField.text!

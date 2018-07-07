@@ -19,6 +19,13 @@ class MetaData {
         self.location = location
         self.tagList = tagList
     }
+    
+    init(){
+        self.owner    =  ""
+        self.created  =  ""
+        self.location =  ""
+        self.tagList  = [""]
+    }
       
     func getOwner() -> String {
         return self.owner
