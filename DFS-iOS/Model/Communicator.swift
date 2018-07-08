@@ -15,10 +15,13 @@ class Communicator {
     static var password = ""
     static var ip       = ""
     
-    //Link constants
-    static var loginLink     : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
-    static var uploadLink    : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
-    static var deletionLink  : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)?imageName="}//wird ab hier um die Namen erweitert, also Name, Name, Name,...
+    //Links
+    static var loginLink       : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
+    static var uploadLink      : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
+    static var deletionLink    : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)?imageName="}
+    static var setMetaDataLink : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)\(imageName)/metadata"}
+    static var imageName = ""
+    
     
     //Data grown out of a request
     static var getImageInfoData = Data()
@@ -29,13 +32,15 @@ class Communicator {
     static let getImageMark     = 2
     static let uploadImageMark  = 3
     static let deleteImageMark  = 4
+    static let putMetaDataMark  = 5
     
     //Statuscodes
     static let statusCodeDictionary = [
                                        getImageInfoMark : 200,
                                        getImageMark     : 200,
                                        uploadImageMark  : 201,
-                                       deleteImageMark  : 204
+                                       deleteImageMark  : 204,
+                                       putMetaDataMark  : 200
                                       ]
     
     //If != preferred status code, these will be set false
@@ -43,7 +48,8 @@ class Communicator {
                                     getImageInfoMark : true,
                                     getImageMark     : true,
                                     uploadImageMark  : true,
-                                    deleteImageMark  : true
+                                    deleteImageMark  : true,
+                                    putMetaDataMark  : true
                                 ]
     
     
@@ -108,7 +114,17 @@ class Communicator {
     }
     
     //PUT MetaData
-    static func updateMetaData() -> Bool{
+    static func updateMetaData(imageName: String, jsonString: String) -> Bool{
+        self.imageName = imageName
+        var request = initRequest(url: setMetaDataLink, method: "PUT")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonString.data(using: .utf8)
+        
+        let sem = DispatchSemaphore(value: 0)
+        let task = initTask(request: request, semaphore: sem, requestMark: putMetaDataMark)
+        task.resume()
+        sem.wait()
+        
         return true
     }
     
@@ -129,7 +145,9 @@ class Communicator {
         return true
     }
     
-    
+    /**
+     Initializes a URLRequest
+    */
     static func initRequest(url: String, method: String) -> URLRequest{
         
         let url = URL(string: url)!
@@ -142,6 +160,9 @@ class Communicator {
         return request
     }
     
+    /**
+     Initializes a URLSessionDataTask
+     */
     static func initTask(request: URLRequest, semaphore: DispatchSemaphore, requestMark: Int) -> URLSessionDataTask{
         let task = URLSession.shared.dataTask(with: request){data, response, error in
             guard let data = data, error == nil else{
