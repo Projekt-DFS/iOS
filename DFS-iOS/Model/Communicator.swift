@@ -16,10 +16,10 @@ class Communicator {
     static var ip       = ""
     
     //Links
-    static var loginLink       : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
-    static var uploadLink      : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)"}
-    static var deletionLink    : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)?imageName="}
-    static var setMetaDataLink : String {return "http://\(ip):4434/iosbootstrap/v1/images/\(userName)\(imageName)/metadata"}
+    static var loginLink       : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)"}
+    static var uploadLink      : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)"}
+    static var deletionLink    : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)?imageName="}
+    static var setMetaDataLink : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)\(imageName)/metadata"}
     static var imageName = ""
     
     
