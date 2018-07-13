@@ -234,8 +234,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     //--Trash--//
 
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
-        print("trash")
-        Communicator.deleteImage()
+        Communicator.deleteImage(imageNames: "")
     }
     
     //--Select--//

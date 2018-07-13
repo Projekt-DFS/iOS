@@ -131,8 +131,9 @@ class Communicator {
     
     
     //DELETE Image
-    static func deleteImage() -> Bool{
+    static func deleteImage(imageNames: String) -> Bool{
         
+        let deletionLink = "\(self.deletionLink)\(imageNames)"
         //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
         let request = initRequest(url: deletionLink, method: "DELETE")
         
