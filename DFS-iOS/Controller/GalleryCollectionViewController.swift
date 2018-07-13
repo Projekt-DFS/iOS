@@ -22,10 +22,10 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     
     //sonstige Variablen
-    lazy var gallery = Gallery()    // Das Gallery-Model
+    lazy var gallery = Gallery()
     var indexOfImageInDetailView: Int?
-    lazy var images = gallery.getImageList()  // Array von UIImages werden als Thumbnails benutzt
-    lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]() // Zellen der GalleryCollectionView
+    lazy var images = gallery.getImageList()
+    lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]()
     var highlightingMode = false
     var loginVC = LoginViewController()
     var refreshControl = UIRefreshControl()
@@ -91,15 +91,16 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
-       cell.image = nil
+       cell.uiImage = nil
         
         cell.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .background).async { [weak self] in
             
             if let urlContents = Communicator.getImage(urlAsString: (self?.images[indexPath.item].getThumbnail())!) as Data?{
-                if let image = UIImage(data: urlContents) {
+                if let uiImage = UIImage(data: urlContents) {
                     DispatchQueue.main.async {
-                        cell.image = image
+                        cell.image = self?.images[indexPath.item]
+                        cell.uiImage = uiImage
                         self?.galleryCollectionViewCells.append(cell)
                     }
                 }
@@ -217,7 +218,7 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
         var imagesSaved = 0
         for cell in galleryCollectionViewCells {
             if cell.isSelected {
-                if let image = cell.image {
+                if let image = cell.uiImage {
                     
                     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                     imagesSaved += 1
@@ -234,7 +235,19 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     //--Trash--//
 
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
-        Communicator.deleteImage(imageNames: "")
+        
+        var selectedImagesAsString = ""
+        
+        for cell in galleryCollectionViewCells {
+            if cell.isSelected {
+                if selectedImagesAsString.count != 0  {
+                    selectedImagesAsString += ","
+                }
+                selectedImagesAsString += (cell.image?.getImageName())!
+            }
+        }
+        print(selectedImagesAsString)
+        Communicator.deleteImage(imageNames: selectedImagesAsString)
     }
     
     //--Select--//

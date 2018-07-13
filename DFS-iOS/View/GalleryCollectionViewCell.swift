@@ -11,10 +11,10 @@ import UIKit
 class GalleryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var thumbnail: UIImageView!
-    
-    var image: UIImage? {        
+    var image : Image?
+    var uiImage: UIImage? {
         didSet {
-            thumbnail.image = image
+            thumbnail.image = uiImage
             activityIndicator.stopAnimating()
         }
     }
