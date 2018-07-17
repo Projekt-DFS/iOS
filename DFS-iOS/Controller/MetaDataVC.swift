@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MetaDataViewController: UIViewController {
+class MetaDataVC: UIViewController {
     
     
     // Variablen
@@ -33,7 +33,7 @@ class MetaDataViewController: UIViewController {
     lazy var labels = [ownerLabel, createdLabel, locationLabel, tagListLabel1, tagListLabel2, tagListLabel3]
     lazy var textFields = [ownerTextField, createdTextField, locationTextField, tagListTextField1, tagListTextField2, tagListTextField3]
     
-    var galleryVC : GalleryCollectionViewController?
+    var galleryVC : GalleryVC?
     var image : Image?
     var metaData: MetaData?
     var editingMode = false {

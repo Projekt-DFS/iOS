@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserDataSettingsViewController: UIViewController {
+class UserDataSettingsVC: UIViewController {
 
     let userDataSettings = UserDataSettings()
     

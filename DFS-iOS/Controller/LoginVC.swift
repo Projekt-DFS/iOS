@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginVC: UIViewController {
     
     let uds = UserDataSettings()
     @IBOutlet weak var userNameTextField: UITextField!
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         }
         
         if let images = Communicator.getImageInfo(){
-            LoginViewController.imageArray = images
+            LoginVC.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         else{
@@ -71,8 +71,8 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
             let destinationVC = segue.destination as! UINavigationController
-            let galleryVC = destinationVC.childViewControllers[0] as! GalleryCollectionViewController
-            galleryVC.gallery = Gallery(images: LoginViewController.imageArray)
+            let galleryVC = destinationVC.childViewControllers[0] as! GalleryVC
+            galleryVC.gallery = Gallery(images: LoginVC.imageArray)
         }
     }
     

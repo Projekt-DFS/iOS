@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
+class ImageDetailVC: UIViewController, UIScrollViewDelegate {
 
     // Konstanten
     private final let MINIMUM_ZOOM_SCALE: CGFloat = 1.0
@@ -27,7 +27,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     var image : Image?
     
-    var galleryVC : GalleryCollectionViewController?
+    var galleryVC : GalleryVC?
     
     
     // Scrollview um zu zoomen
@@ -102,7 +102,7 @@ class ImageDetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "metaDataSegue" {
-            let destinationVC = segue.destination as! MetaDataViewController
+            let destinationVC = segue.destination as! MetaDataVC
             destinationVC.galleryVC = self.galleryVC
             destinationVC.image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
         }
