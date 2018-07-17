@@ -22,20 +22,17 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
     
     
     //sonstige Variablen
-    lazy var gallery = Gallery()
+    var gallery = Gallery()
     var indexOfImageInDetailView: Int?
     lazy var images = gallery.getImageList()
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]()
     var highlightingMode = false
-    var loginVC = LoginViewController()
-    var refreshControl = UIRefreshControl()
 
     
     
     // Bestimmt, was passiert wenn die view geladen wurde
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupRefreshControl()
         galleryCollectionView.isPrefetchingEnabled = true
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
@@ -47,19 +44,9 @@ class GalleryCollectionViewController: UICollectionViewController, UIImagePicker
             self.images = newImages
             self.collectionView?.reloadData()
         }
-        refreshControl.endRefreshing()
     }
     
-    func setupRefreshControl() {
-        if galleryCollectionView.refreshControl == nil {
-            refreshControl.addTarget(self, action: #selector(refreshGallery), for: .valueChanged)
-            refreshControl.tintColor = self.view.tintColor ?? UIColor.blue
-            let color = [NSAttributedStringKey.foregroundColor : self.view.tintColor ?? UIColor.blue ];
-            refreshControl.attributedTitle = NSAttributedString(string: "Reloading gallery from backend...", attributes: color)
-            galleryCollectionView.refreshControl = refreshControl
-            refreshControl.layer.zPosition = -100
-        }
-    }
+
     
     // Bereitet den ImageDetailViewController darauf vor, dass gleich ein Segue zu ihm stattfindet
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
