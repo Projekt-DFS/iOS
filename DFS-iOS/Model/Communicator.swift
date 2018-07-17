@@ -77,7 +77,7 @@ class Communicator {
     
     
     //POST Image
-    static func uploadImage(jsonString: String) -> Bool{
+    static func uploadImage(jsonString: String, sender: GalleryVC) -> Bool{
         
         var request = initRequest(url: uploadLink, method: "POST")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -86,9 +86,15 @@ class Communicator {
         let sem = DispatchSemaphore(value: 0)
         
         let task = initTask(request: request, semaphore: sem, requestMark: uploadImageMark)
-        task.resume()
         
-        sem.wait()
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            task.resume()
+            sem.wait()
+            DispatchQueue.main.async {
+                sender.refreshGallery()
+            }
+        }
         
         return true
     }

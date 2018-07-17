@@ -57,7 +57,7 @@ extension GalleryVC: UIImagePickerControllerDelegate {
             
             let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(Utils.generateImageName())\"\n}"
             
-            if Communicator.uploadImage(jsonString: json){
+            if Communicator.uploadImage(jsonString: json, sender: self){
                 refreshGallery()
             }
             else{
