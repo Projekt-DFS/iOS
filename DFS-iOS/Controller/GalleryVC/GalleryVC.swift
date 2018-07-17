@@ -22,9 +22,13 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     
     //sonstige Variablen
-    var gallery = Gallery()
+    var gallery = Gallery() {
+        didSet{
+            images = gallery.getImageList()
+        }
+    }
     var indexOfImageInDetailView: Int?
-    lazy var images = gallery.getImageList()
+    var images = [Image]()
     lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]()
     var highlightingMode = false
 
@@ -40,8 +44,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     @objc func refreshGallery() {
         if let newImages = Communicator.getImageInfo() {
-            self.gallery.setImageList(images: newImages)
-            self.images = newImages
+            self.gallery = Gallery(images: newImages)
             self.collectionView?.reloadData()
         }
     }
@@ -77,7 +80,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
        cell.uiImage = nil
         
         cell.activityIndicator.startAnimating()
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             
             if let urlContents = Communicator.getImage(urlAsString: (self?.images[indexPath.item].getThumbnail())!) as Data?{
                 if let uiImage = UIImage(data: urlContents) {
@@ -89,6 +92,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
                 }
             }
         }
+        print(indexPath.item)
         return cell
     }
     
@@ -103,6 +107,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         } else {
             self.performSegue(withIdentifier: "imageDetailSegue", sender: cell)
         }
+        print(indexPath.item)
     }
     
     // Bestimmt, was passiert wenn eine Auswahl revidiert wird
