@@ -50,7 +50,8 @@ class LoginVC: UIViewController {
             return
         }
         
-        if let images = Communicator.getImageInfo(){
+        if let imageData = Communicator.getImageInfo(){
+            let images = JsonParser.parseFromJsonToImageArray(data: imageData)
             LoginVC.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }

@@ -57,7 +57,7 @@ class Communicator {
      Schickt pw und id codidert als Base64 an das Backend. Dort wird auf Richtigkeit der Daten geprueft
      Bei Erfolg erhaelt der Nutzer Zugang zur Gallery und ein Daten-Array bestehend aus Bilddateien.
      */
-    static func getImageInfo() -> [Image]?{
+    static func getImageInfo() -> Data?{
         
         let request = initRequest(url: loginLink, method: "GET")
         
@@ -72,7 +72,8 @@ class Communicator {
             return nil
         }
         print("Communicator: Login successful")
-        return JsonParser.parseFromJsonToImageArray(data: getImageInfoData)
+        //return JsonParser.parseFromJsonToImageArray(data: getImageInfoData)
+        return getImageInfoData
     }
     
     

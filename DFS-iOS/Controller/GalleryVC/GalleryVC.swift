@@ -43,8 +43,9 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     }
     
     @objc func refreshGallery() {
-        if let newImages = Communicator.getImageInfo() {
-            self.gallery = Gallery(images: newImages)
+        if let imageData = Communicator.getImageInfo() {
+            let images = JsonParser.parseFromJsonToImageArray(data: imageData)
+            self.gallery = Gallery(images: images)
             self.collectionView?.reloadData()
         }
     }
