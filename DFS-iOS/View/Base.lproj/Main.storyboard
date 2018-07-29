@@ -610,7 +610,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="hS8-td-pRa">
                         <barButtonItem key="rightBarButtonItem" title="logout" id="MsH-Pw-8oR">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="GEV-8e-cUz"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="loginSegue" id="GEV-8e-cUz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

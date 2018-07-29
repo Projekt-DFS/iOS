@@ -91,6 +91,9 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let navVC = navigationController {
+            navVC.setNavigationBarHidden(true, animated: true)
+        }
         updateTextFieldsIfDataRemebered()
         // Listen for keyboard events
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
