@@ -104,7 +104,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
         if segue.identifier == "metaDataSegue" {
             let destinationVC = segue.destination as! MetaDataVC
             destinationVC.galleryVC = self.galleryVC
-            destinationVC.image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
+            destinationVC.image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!
         }
     }
 }

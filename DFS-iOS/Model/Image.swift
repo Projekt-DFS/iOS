@@ -21,6 +21,13 @@ class Image {
         self.metaData = metaData
     }
     
+    init() {
+        self.imageName = ""
+        self.imageSource = ""
+        self.thumbnail = ""
+        self.metaData = MetaData()
+    }
+    
     init(json: [String: Any]){
         imageName     =  json["imageName"   ]      as?  String          ??  ""
         imageSource   =  json["imageSource" ]      as?  String          ??  ""

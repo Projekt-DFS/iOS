@@ -31,6 +31,7 @@ class JsonParser{
             guard let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] else {
                 return [["":""]]
             }
+            print (jsonData)
             return jsonData
         }catch let jsonErr{
             print(jsonErr)
