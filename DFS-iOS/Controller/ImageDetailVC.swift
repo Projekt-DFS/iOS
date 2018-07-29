@@ -84,6 +84,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
+        metaDataBarButton.isEnabled = false
 
         activityIndicator.startAnimating()
         imageView.image = nil
@@ -93,6 +94,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                     if let image = UIImage(data: urlContents) {
                         self?.imageView.image = image
                     self?.activityIndicator.stopAnimating()
+                        self?.metaDataBarButton.isEnabled = true
                     }
                 }
             }

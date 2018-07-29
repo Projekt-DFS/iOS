@@ -19,5 +19,6 @@ class GalleryCollectionViewCell: UICollectionViewCell {
         }
     }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     @IBOutlet weak var imageSelectedView: UIImageView!
 }

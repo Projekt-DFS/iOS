@@ -21,18 +21,37 @@ class Image {
         self.metaData = metaData
     }
     
-    init() {
+    init(){
         self.imageName = ""
         self.imageSource = ""
         self.thumbnail = ""
-        self.metaData = MetaData()
+        self.metaData = MetaData(owner: "", created: "", location: "", tagList: [String()])
     }
     
     init(json: [String: Any]){
         imageName     =  json["imageName"   ]      as?  String          ??  ""
         imageSource   =  json["imageSource" ]      as?  String          ??  ""
         thumbnail     =  json["thumbnail"   ]      as?  String          ??  ""
-        metaData      =  json["metaData"    ]      as?  MetaData        ??  MetaData(owner: "", created: "", location: "", tagList:[""])
+        
+        
+        let jsonMeta      =  json["metaData"    ]      as?  [String:Any]        ??  ["":""]
+        let owner = jsonMeta["owner"]!
+        let created = jsonMeta["created"]!
+        
+        var location = String()
+        if let locationTmp = jsonMeta["location"] as? String{
+            location = locationTmp
+        }
+        
+        var tagList = [String()]
+        if let tagListTmp = jsonMeta["tagList"] as? [String]{
+            tagList = tagListTmp
+        }
+        
+        
+        
+        metaData = MetaData(owner: owner as! String, created: created as! String, location: location as! String, tagList:tagList as! [String])
+        
     }
     
     public func getImageName() -> String{
@@ -55,5 +74,5 @@ class Image {
         self.metaData = metaData
     }
     
-
+    
 }

@@ -12,13 +12,12 @@ class JsonParser{
     
     static func parseFromJsonToImageArray(data: Data) -> [Image]{
         let json = extractJsonDataFromImageContainer(data)
-        
+        print(json)
         var imageArray = [Image]()
         
         for container in json{
             let img = Image(json: container)
             imageArray.append(img)
-            print(imageArray[0].getImageSource())
         }
         
         return imageArray
@@ -31,7 +30,6 @@ class JsonParser{
             guard let jsonData = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String: Any]] else {
                 return [["":""]]
             }
-            print (jsonData)
             return jsonData
         }catch let jsonErr{
             print(jsonErr)
@@ -40,4 +38,5 @@ class JsonParser{
     }
     
 }
+
 

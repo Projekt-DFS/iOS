@@ -37,6 +37,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     // Bestimmt, was passiert wenn die view geladen wurde
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         galleryCollectionView.isPrefetchingEnabled = true
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]

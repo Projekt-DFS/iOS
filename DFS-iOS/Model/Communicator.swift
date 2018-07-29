@@ -19,7 +19,7 @@ class Communicator {
     static var loginLink       : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)"}
     static var uploadLink      : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)"}
     static var deletionLink    : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)?imageName="}
-    static var setMetaDataLink : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)\(imageName)/metadata"}
+    static var setMetaDataLink : String {return "http://\(ip):4434/bootstrap/v1/images/\(userName)/\(imageName)/metadata"}
     static var imageName = ""
     
     
@@ -72,7 +72,7 @@ class Communicator {
             return nil
         }
         print("Communicator: Login successful")
-        //return JsonParser.parseFromJsonToImageArray(data: getImageInfoData)
+
         return getImageInfoData
     }
     
@@ -123,6 +123,9 @@ class Communicator {
     //PUT MetaData
     static func updateMetaData(imageName: String, jsonString: String) -> Bool{
         self.imageName = imageName
+        print(imageName)
+        print(jsonString)
+        print(setMetaDataLink)
         var request = initRequest(url: setMetaDataLink, method: "PUT")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = jsonString.data(using: .utf8)
@@ -141,6 +144,7 @@ class Communicator {
     static func deleteImage(imageNames: String) -> Bool{
         
         let deletionLink = "\(self.deletionLink)\(imageNames)"
+        
         //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
         let request = initRequest(url: deletionLink, method: "DELETE")
         
