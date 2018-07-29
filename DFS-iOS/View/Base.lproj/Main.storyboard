@@ -256,9 +256,8 @@
                                     <constraint firstAttribute="bottom" secondItem="0kA-LX-0Mh" secondAttribute="bottom" id="uev-oA-Sx4"/>
                                 </constraints>
                             </scrollView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-Yj-cQB">
-                                <rect key="frame" x="374" y="502" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-Yj-cQB">
+                                <rect key="frame" x="398.5" y="537.5" width="37" height="37"/>
                                 <color key="color" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                             </activityIndicatorView>
                         </subviews>
@@ -266,8 +265,10 @@
                         <constraints>
                             <constraint firstItem="GFu-Ob-Eco" firstAttribute="leading" secondItem="JUp-Vy-1we" secondAttribute="leading" id="9SL-HV-P5O"/>
                             <constraint firstItem="GFu-Ob-Eco" firstAttribute="bottom" secondItem="JUp-Vy-1we" secondAttribute="bottom" id="Fbf-ya-Ups"/>
+                            <constraint firstItem="UfO-Yj-cQB" firstAttribute="centerX" secondItem="JUp-Vy-1we" secondAttribute="centerX" id="ItD-71-nAQ"/>
                             <constraint firstItem="GFu-Ob-Eco" firstAttribute="top" secondItem="JUp-Vy-1we" secondAttribute="top" constant="64" id="Kze-hY-t9L"/>
                             <constraint firstItem="GFu-Ob-Eco" firstAttribute="trailing" secondItem="JUp-Vy-1we" secondAttribute="trailing" id="idi-Pd-5wI"/>
+                            <constraint firstItem="UfO-Yj-cQB" firstAttribute="centerY" secondItem="JUp-Vy-1we" secondAttribute="centerY" id="joW-tn-MF1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4K8-uo-EIO"/>
                     </view>
