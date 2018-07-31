@@ -25,6 +25,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
+    
     var image : Image?
     var galleryVC : GalleryVC?
     
@@ -107,6 +108,33 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
             let destinationVC = segue.destination as! MetaDataVC
             destinationVC.galleryVC = self.galleryVC
             destinationVC.image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!
+        } else if segue.identifier == "unwindToGallerySegue" {
+            if let name = image?.getImageName() {
+                if Communicator.deleteImage(imageNames: name) {
+                    print("done")
+                }
+            }
+            let destinationVC = segue.destination as! GalleryVC
+            destinationVC.refreshGallery()
         }
+        
     }
+    
+    @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
+        showTrashAlert()
+    }
+    
+    
+    func showTrashAlert() {
+        let alert = UIAlertController(title:"Delete?", message: "Do you really want to delete \(image?.getImageName() ?? "")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "yes", style: .default, handler: { (_) in
+            self.performSegue(withIdentifier: "unwindToGallerySegue", sender: self)
+        })
+        let nopeAction = UIAlertAction(title: "no", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(nopeAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    
 }

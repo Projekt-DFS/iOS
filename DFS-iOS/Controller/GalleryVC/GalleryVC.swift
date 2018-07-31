@@ -122,6 +122,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
             cell.isHighlighted = false
         }        
     }
-    
+    @IBAction func unwindToGallery(segue: UIStoryboardSegue){}
+
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -274,7 +274,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Image Detail" id="Nbc-ow-Jx6">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="trash" id="Tao-nJ-36Z"/>
+                            <barButtonItem systemItem="trash" id="Tao-nJ-36Z">
+                                <connections>
+                                    <action selector="trashBarButtonPressed:" destination="chr-mF-Vpp" id="jru-iz-fVC"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Info" id="9VU-6O-rQc">
                                 <connections>
                                     <segue destination="EQE-3t-Z3l" kind="popoverPresentation" identifier="metaDataSegue" popoverAnchorBarButtonItem="9VU-6O-rQc" id="f1n-pr-del">
@@ -292,9 +296,11 @@
                         <outlet property="metaDataBarButton" destination="9VU-6O-rQc" id="mVd-uY-Peq"/>
                         <outlet property="scrollView" destination="GFu-Ob-Eco" id="eZY-Vx-fWy"/>
                         <outlet property="trashBarButton" destination="Tao-nJ-36Z" id="abv-dx-FJI"/>
+                        <segue destination="0dh-D6-nIC" kind="unwind" identifier="unwindToGallerySegue" unwindAction="unwindToGalleryWithSegue:" id="O35-rp-6Bo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bXv-jF-NMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="0dh-D6-nIC" userLabel="Exit" sceneMemberID="exit"/>
                 <swipeGestureRecognizer direction="right" id="9Rf-lb-CBQ">
                     <connections>
                         <action selector="swipedRight:" destination="chr-mF-Vpp" id="std-IB-ZfQ"/>
