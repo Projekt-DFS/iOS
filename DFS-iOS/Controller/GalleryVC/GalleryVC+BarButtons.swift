@@ -23,16 +23,14 @@ extension GalleryVC {
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-
-    
     //--Download--//
     
     @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
         var imagesSaved = 0
+        
+        
         for cell in galleryCollectionViewCells {
-            if cell.isSelected {
+            if cell.isHighlighted {
                 if let image = cell.uiImage {
                     
                     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
@@ -45,6 +43,7 @@ extension GalleryVC {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
         selectBarButtonPressed(selectBarButton)
+
     }
     
     //--Trash--//
@@ -54,7 +53,7 @@ extension GalleryVC {
         var selectedImagesAsString = ""
         
         for cell in galleryCollectionViewCells {
-            if cell.isSelected {
+            if cell.isHighlighted {
                 if selectedImagesAsString.count != 0  {
                     selectedImagesAsString += ","
                 }
@@ -78,7 +77,7 @@ extension GalleryVC {
             selectBarButton.title = "Select"
             self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
             for cell in galleryCollectionViewCells {
-                cell.isSelected = false
+                cell.isHighlighted = false
                 cell.imageSelectedView.isHidden = true
                 cell.thumbnail.alpha = 1.0
             }

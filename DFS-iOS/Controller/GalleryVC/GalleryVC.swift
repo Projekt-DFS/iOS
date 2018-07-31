@@ -79,7 +79,8 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
-       cell.uiImage = nil
+        cell.uiImage = nil
+        cell.isHighlighted = false
         
         cell.activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -104,7 +105,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if highlightingMode {
             cell.thumbnail.alpha = 0.4
-            cell.isSelected = true
+            cell.isHighlighted = true
             cell.imageSelectedView.isHidden = false
         } else {
             self.performSegue(withIdentifier: "imageDetailSegue", sender: cell)
@@ -118,7 +119,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         if highlightingMode {
             cell.thumbnail.alpha = 1.0
             cell.imageSelectedView.isHidden = true
-            cell.isSelected = false
+            cell.isHighlighted = false
         }        
     }
     
