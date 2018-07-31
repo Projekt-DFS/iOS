@@ -120,7 +120,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
             cell.thumbnail.alpha = 1.0
             cell.imageSelectedView.isHidden = true
             cell.isHighlighted = false
-        }        
+        }
     }
     @IBAction func unwindToGallery(segue: UIStoryboardSegue){}
 

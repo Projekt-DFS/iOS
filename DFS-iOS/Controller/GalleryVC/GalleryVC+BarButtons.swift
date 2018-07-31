@@ -51,6 +51,7 @@ extension GalleryVC {
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
         
         var selectedImagesAsString = ""
+        var imagesToDelete = 0
         
         for cell in galleryCollectionViewCells {
             if cell.isHighlighted {
@@ -58,13 +59,26 @@ extension GalleryVC {
                     selectedImagesAsString += ","
                 }
                 selectedImagesAsString += (cell.image?.getImageName())!
+                imagesToDelete += 1
             }
         }
-        print(selectedImagesAsString)
-        if Communicator.deleteImage(imageNames: selectedImagesAsString){
-            refreshGallery()
-            selectBarButtonPressed(selectBarButton)
-        }
+        
+        let alert = UIAlertController(title:"Delete?", message: "Do you really want to delete \(imagesToDelete) image(s)?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "yes", style: .default, handler: { (_) in
+            if Communicator.deleteImage(imageNames: selectedImagesAsString){
+                self.refreshGallery()
+                self.selectBarButtonPressed(self.selectBarButton)
+            }
+        })
+        
+        let nopeAction = UIAlertAction(title: "no", style: .default, handler: { (_) in
+            self.selectBarButtonPressed(self.selectBarButton)
+        })
+        
+        alert.addAction(okAction)
+        alert.addAction(nopeAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     //--Select--//
