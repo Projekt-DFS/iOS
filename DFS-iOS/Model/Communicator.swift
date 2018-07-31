@@ -145,7 +145,6 @@ class Communicator {
         
         let deletionLink = "\(self.deletionLink)\(imageNames)"
         
-        //der link ist noch hardgecodet, sollte fuer ein Bild "Noname.jpg" im Backend funktionieren
         let request = initRequest(url: deletionLink, method: "DELETE")
         
         let sem = DispatchSemaphore(value: 0)

@@ -62,7 +62,10 @@ extension GalleryVC {
             }
         }
         print(selectedImagesAsString)
-        Communicator.deleteImage(imageNames: selectedImagesAsString)
+        if Communicator.deleteImage(imageNames: selectedImagesAsString){
+            refreshGallery()
+            selectBarButtonPressed(selectBarButton)
+        }
     }
     
     //--Select--//
