@@ -26,9 +26,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var image : Image?
-    
     var galleryVC : GalleryVC?
-    
     
     // Scrollview um zu zoomen
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -61,7 +59,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
         }
         image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!]
         imageDetailView.slideInImage(fromDirection: "left", duration: SWIPE_ANIMATION_DURATION)
-        viewDidLoad()
+        setupScrollView()
     }
     
     // Swipe zum nächsten Bild
@@ -72,20 +70,16 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
         }
         image = galleryVC?.images[(galleryVC?.indexOfImageInDetailView!)!]
         imageDetailView.slideInImage(fromDirection: "right", duration: SWIPE_ANIMATION_DURATION)
-        viewDidLoad()
+        setupScrollView()
+        
     }
  
     // Größe und Zoom der ScrollView wird initialisiert
     func setupScrollView() {
         scrollView.contentSize = imageView.frame.size
         scrollView.zoomScale = 1.0
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupScrollView()
         metaDataBarButton.isEnabled = false
-
+        
         activityIndicator.startAnimating()
         imageView.image = nil
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -93,12 +87,18 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                 DispatchQueue.main.async {
                     if let image = UIImage(data: urlContents) {
                         self?.imageView.image = image
-                    self?.activityIndicator.stopAnimating()
+                        self?.activityIndicator.stopAnimating()
                         self?.metaDataBarButton.isEnabled = true
                     }
                 }
             }
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupScrollView()
+        
     }
     
     
