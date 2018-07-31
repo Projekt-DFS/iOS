@@ -49,10 +49,9 @@ class MetaDataVC: UIViewController {
         metaData = image.getMetaData()
         
         ownerLabel.text = metaData.getOwner()
-        
-        let created = metaData.getCreated()
-        let indexEnd = created.index(created.endIndex, offsetBy: -13)
-        createdLabel.text = String(created[..<indexEnd])
+        Utils.secondsSince1970(image: image)
+
+        createdLabel.text = Utils.shortenCreationDate(image: image)
         
         locationLabel.text = metaData.getLocation()
         tagListLabel1.text = metaData.getTagListAt(index: 0)

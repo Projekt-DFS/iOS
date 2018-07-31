@@ -84,6 +84,20 @@ class Utils{
         return "IMG_\(str).jpg"
     }
     
+    static func shortenCreationDate(image: Image) -> String {
+        let created = image.getMetaData().getCreated()
+        let indexEnd = created.index(created.endIndex, offsetBy: -13)
+        return String(created[..<indexEnd])
+    }
+    
+    static func secondsSince1970(image: Image) -> Double {
+        let shortenedDate = image.getMetaData().getCreated().replacingOccurrences(of: "T", with: "-")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss.SSS"
+        let date = dateFormatter.date(from: shortenedDate)
+
+        return Double((date?.timeIntervalSince1970)!)
+    }
     
 
     

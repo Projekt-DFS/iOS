@@ -18,11 +18,19 @@ class Gallery {
     
     private var imageList = [Image]()
     
+    
     init(images: [Image]) {
         self.imageList = images
+        sortImagesByTime()
     }
     
     init() {}
+    
+    public func sortImagesByTime() {
+        imageList.sort { (i1, i2) -> Bool in
+        Utils.secondsSince1970(image: i1) > Utils.secondsSince1970(image: i2)
+        }
+    }
     
     public func getImageList() -> [Image] {
         var images = [Image]()

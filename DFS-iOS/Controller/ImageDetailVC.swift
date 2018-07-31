@@ -94,12 +94,12 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
+        print(Utils.secondsSince1970(image: image!))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScrollView()
-        
     }
     
     

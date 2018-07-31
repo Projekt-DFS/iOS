@@ -50,7 +50,7 @@ class Image {
         
         
         
-        metaData = MetaData(owner: owner as! String, created: created as! String, location: location as! String, tagList:tagList as! [String])
+        metaData = MetaData(owner: owner as! String, created: created as! String, location: location, tagList: tagList)
         
     }
     

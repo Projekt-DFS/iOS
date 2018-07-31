@@ -25,6 +25,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     var gallery = Gallery() {
         didSet{
             images = gallery.getImageList()
+            gallery.sortImagesByTime()
         }
     }
     var indexOfImageInDetailView: Int?
@@ -45,8 +46,8 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     @objc func refreshGallery() {
         if let imageData = Communicator.getImageInfo() {
-            let images = JsonParser.parseFromJsonToImageArray(data: imageData)
-            self.gallery = Gallery(images: images)
+            self.gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
+            images = gallery.getImageList()
             self.collectionView?.reloadData()
         }
     }
