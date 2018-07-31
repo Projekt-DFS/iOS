@@ -45,16 +45,15 @@ class MetaDataVC: UIViewController {
         for textField in textFields { textField?.isHidden = !(textField?.isHidden)!}
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!
+    func refreshView() {
         metaData = image.getMetaData()
-
+        
         ownerLabel.text = metaData.getOwner()
+        
         let created = metaData.getCreated()
         let indexEnd = created.index(created.endIndex, offsetBy: -13)
-        
         createdLabel.text = String(created[..<indexEnd])
+        
         locationLabel.text = metaData.getLocation()
         tagListLabel1.text = metaData.getTagListAt(index: 0)
         tagListLabel2.text = metaData.getTagListAt(index: 1)
@@ -68,6 +67,12 @@ class MetaDataVC: UIViewController {
         for textField in textFields {
             textField?.text = ""
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!
+        refreshView()
         
     }
         
@@ -89,24 +94,23 @@ class MetaDataVC: UIViewController {
 
             Communicator.updateMetaData(imageName: image.getImageName(), jsonString: json)
             
-            if locationTextField.text != "" {
-            image.getMetaData().setLocation(newValue: locationTextField.text ?? "")
+            if locationTextField.hasText {
+                metaData.setLocation(newValue: locationTextField.text ?? "")
             }
-            if tagListTextField1.text != "" {
-            image.getMetaData().setTagListAt(index: 0, newValue: tagListTextField1.text)
+            if tagListTextField1.hasText {
+                metaData.appendToTagList(index: 0, newValue: tagListTextField1.text ?? "")
             }
-            if tagListTextField2.text != "" {
-            image.getMetaData().setTagListAt(index: 1, newValue: tagListTextField2.text)
+            if tagListTextField2.hasText {
+                metaData.appendToTagList(index: 1, newValue: tagListTextField2.text ?? "")
             }
-            if tagListTextField3.text != "" {
-            image.getMetaData().setTagListAt(index: 2, newValue: tagListTextField3.text)
+            if tagListTextField3.hasText {
+                metaData.appendToTagList(index: 2, newValue: tagListTextField3.text ?? "")
             }
-            viewDidLoad()
         }
         
 
         editingMode = !editingMode
-        viewDidLoad()
+        refreshView()
     }
     
     

@@ -11,7 +11,7 @@ class MetaData {
     private var owner: String
     private var created: String
     private var location: String
-    private var tagList: [String?]
+    private var tagList : [String]
     
     init(owner: String, created:String, location: String, tagList:[String]) {
         self.owner = owner
@@ -24,7 +24,7 @@ class MetaData {
         self.owner    =  ""
         self.created  =  ""
         self.location =  ""
-        self.tagList  = [""]
+        self.tagList  = [String]()
     }
       
     func getOwner() -> String {
@@ -52,25 +52,24 @@ class MetaData {
     }
     
     func getTagList() -> [String]{
-        if let tagList = self.tagList as? [String]{
             return tagList
-        }
-        return [""]
     }
     
-    func getTagListAt(index: Int) -> String? {
+    func getTagListAt(index: Int) -> String {
         if self.tagList.count <= index {
-            return nil
+            return ""
         }
         
         return self.tagList[index]
     }
     
-    func setTagListAt(index: Int, newValue: String?) {
-        if self.tagList.count <= index {
-            return
+    func appendToTagList(index: Int, newValue: String) {
+        if tagList.count < 3 {
+        self.tagList.append(newValue)
+        } else {
+            tagList[index] = newValue
         }
-        self.tagList[index] = newValue
+        
     }
     
     //TODO: Organize tagList (index 0 may not be nil if others aren't nil)
