@@ -80,6 +80,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = imageView.frame.size
         scrollView.zoomScale = 1.0
         metaDataBarButton.isEnabled = false
+        trashBarButton.isEnabled = false
         
         activityIndicator.startAnimating()
         imageView.image = nil
@@ -90,10 +91,12 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                         self?.imageView.image = image
                         self?.activityIndicator.stopAnimating()
                         self?.metaDataBarButton.isEnabled = true
+                        self?.trashBarButton.isEnabled = true
                     }
                 }
             }
         }
+        //DEBUG:
         print(Utils.secondsSince1970(image: image!))
     }
     

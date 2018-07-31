@@ -274,7 +274,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Image Detail" id="Nbc-ow-Jx6">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="trash" id="Tao-nJ-36Z">
+                            <barButtonItem enabled="NO" systemItem="trash" id="Tao-nJ-36Z">
                                 <connections>
                                     <action selector="trashBarButtonPressed:" destination="chr-mF-Vpp" id="jru-iz-fVC"/>
                                 </connections>
