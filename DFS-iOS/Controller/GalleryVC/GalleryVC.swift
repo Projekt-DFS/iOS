@@ -96,7 +96,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
                 }
             }
         }
-        print(indexPath.item)
+       
         return cell
     }
     

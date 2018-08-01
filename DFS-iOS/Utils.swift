@@ -96,7 +96,7 @@ class Utils{
         dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss.SSS"
         let date = dateFormatter.date(from: shortenedDate)
 
-        return Double((date?.timeIntervalSince1970)!)
+        return Double((date?.timeIntervalSince1970) ?? 0.0)
     }
     
 

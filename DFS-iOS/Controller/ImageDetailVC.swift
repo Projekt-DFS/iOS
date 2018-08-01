@@ -96,7 +96,6 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        //DEBUG:
         print(Utils.secondsSince1970(image: image!))
     }
     
