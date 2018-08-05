@@ -27,8 +27,8 @@ extension GalleryVC {
     @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
         var imagesSaved = 0
         
-        print(galleryCollectionViewCells.count)
-        for cell in galleryCollectionViewCells {
+        print(galleryCollectionView.visibleCells.count)
+        for cell in galleryCollectionView.visibleCells as! [GalleryCollectionViewCell] {
             if cell.isHighlighted {
                 if let image = cell.uiImage {
                     
@@ -52,7 +52,7 @@ extension GalleryVC {
         var selectedImagesAsString = ""
         var imagesToDelete = 0
         
-        for cell in galleryCollectionViewCells {
+        for cell in galleryCollectionView.visibleCells as! [GalleryCollectionViewCell] {
             if cell.isHighlighted {
                 if selectedImagesAsString.count != 0  {
                     selectedImagesAsString += ","
@@ -91,7 +91,7 @@ extension GalleryVC {
         else {
             selectBarButton.title = "Select"
             self.galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
-            for cell in galleryCollectionViewCells {
+            for cell in (galleryCollectionView.visibleCells as? [GalleryCollectionViewCell])! {
                 cell.isHighlighted = false
                 cell.imageSelectedView.isHidden = true
                 cell.thumbnail.alpha = 1.0

@@ -29,7 +29,6 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     }
     var indexOfImageInDetailView: Int?
     var images = [Image]()
-    lazy var galleryCollectionViewCells = [GalleryCollectionViewCell]()
     var highlightingMode = false
 
     
@@ -79,24 +78,22 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     // Initialisierung von Zellen in der galleryCollectionView
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
+        let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
         cell.uiImage = nil
-        cell.isHighlighted = false
-        
+        cell.changeHighlighting(to: false)
+       
         cell.activityIndicator.startAnimating()
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in            
             if let urlContents = Communicator.getImage(urlAsString: (self?.images[indexPath.item].getThumbnail())!) as Data?{
                 if let uiImage = UIImage(data: urlContents) {
                     DispatchQueue.main.async {
                         cell.image = self?.images[indexPath.item]
-                        cell.uiImage = uiImage
-                        self?.galleryCollectionViewCells.append(cell)
+                        cell.uiImage = uiImage                        
                     }
                 }
             }
         }
-       
         return cell
     }
     
@@ -105,9 +102,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if highlightingMode {
-            cell.thumbnail.alpha = 0.4
-            cell.isHighlighted = true
-            cell.imageSelectedView.isHidden = false
+            cell.changeHighlighting(to: true)
         } else {
             self.performSegue(withIdentifier: "imageDetailSegue", sender: cell)
         }
@@ -117,13 +112,14 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     // Bestimmt, was passiert wenn eine Auswahl revidiert wird
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
-        if highlightingMode {
-            cell.thumbnail.alpha = 1.0
-            cell.imageSelectedView.isHidden = true
-            cell.isHighlighted = false
-        }
+        cell.changeHighlighting(to: false)
     }
     @IBAction func unwindToGallery(segue: UIStoryboardSegue){}
 
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        collectionView?.frame = self.view.frame
+        galleryCollectionView.rotateAnimation()        
+    }
     
+
 }

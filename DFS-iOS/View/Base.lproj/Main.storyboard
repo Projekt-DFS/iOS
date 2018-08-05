@@ -116,54 +116,67 @@
         <scene sceneID="I56-o0-EYk">
             <objects>
                 <collectionViewController id="G3b-WN-yw6" customClass="GalleryVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KsJ-Kt-hhg" customClass="GalleryCollectionView" customModule="DFS_iOS" customModuleProvider="target">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" id="KsJ-Kt-hhg" customClass="GalleryCollectionView" customModule="DFS_iOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" sectionInsetReference="safeArea" id="cFf-Td-hNQ">
-                            <size key="itemSize" width="150" height="150"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="layoutMargins" id="cFf-Td-hNQ">
+                            <size key="itemSize" width="130" height="130"/>
+                            <size key="headerReferenceSize" width="4" height="5"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="6" minY="0.0" maxX="6" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="Cell" id="Ezf-am-R9q" customClass="GalleryCollectionViewCell" customModule="DFS_iOS" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="14" y="13" width="130" height="130"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmz-eC-E4g">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YzM-pv-NNv">
-                                            <rect key="frame" x="56.5" y="56.5" width="37" height="37"/>
+                                            <rect key="frame" x="47" y="55" width="37" height="21"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-wI-iOa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="21"/>
                                                     <subviews>
                                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i6A-fo-xwb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="21"/>
                                                             <color key="color" red="0.3266127955" green="0.60251013590000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </activityIndicatorView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="i6A-fo-xwb" secondAttribute="trailing" id="URg-Ii-1P0"/>
+                                                        <constraint firstAttribute="bottom" secondItem="i6A-fo-xwb" secondAttribute="bottom" id="gyZ-fn-1P2"/>
+                                                        <constraint firstItem="i6A-fo-xwb" firstAttribute="top" secondItem="ftL-wI-iOa" secondAttribute="top" id="u4a-uO-ArY"/>
+                                                        <constraint firstItem="i6A-fo-xwb" firstAttribute="leading" secondItem="ftL-wI-iOa" secondAttribute="leading" id="wc2-sI-j8t"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                         </stackView>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="imageSelectedView" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="4l2-61-pMQ">
-                                            <rect key="frame" x="104" y="109" width="40" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="imageSelectedView" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="4l2-61-pMQ">
+                                            <rect key="frame" x="84" y="84" width="46" height="46"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="Eil-z1-W6H"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" white="0.91328413284132837" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="4l2-61-pMQ" secondAttribute="trailing" constant="-30" id="08f-8m-PDG"/>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerX" secondItem="Ezf-am-R9q" secondAttribute="centerX" id="60I-4O-1oV"/>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerY" secondItem="Ezf-am-R9q" secondAttribute="centerY" id="JW1-U5-Xjx"/>
                                     <constraint firstAttribute="trailing" secondItem="Fmz-eC-E4g" secondAttribute="trailing" id="YcM-tJ-Mjb"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="top" id="cgg-qB-1Z6"/>
+                                    <constraint firstItem="4l2-61-pMQ" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leadingMargin" constant="88" id="fXd-LI-Lm9"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="4l2-61-pMQ" secondAttribute="bottom" constant="-19" id="gAG-o2-dhS"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leading" id="iqv-SV-qMV"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="YzM-pv-NNv" secondAttribute="bottom" constant="46" id="lZk-qO-hdD"/>
                                     <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" id="lc6-EY-hSK"/>
                                 </constraints>
                                 <connections>
@@ -173,6 +186,10 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CrF-Ae-5AB">
+                            <rect key="frame" x="0.0" y="8" width="834" height="5"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="G3b-WN-yw6" id="jEn-4g-NNs"/>
                             <outlet property="delegate" destination="G3b-WN-yw6" id="dhN-0D-dqI"/>
