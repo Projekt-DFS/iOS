@@ -12,7 +12,6 @@ class JsonParser{
     
     static func parseFromJsonToImageArray(data: Data) -> [Image]{
         let json = extractJsonDataFromImageContainer(data)
-        print(json)
         var imageArray = [Image]()
         
         for container in json{

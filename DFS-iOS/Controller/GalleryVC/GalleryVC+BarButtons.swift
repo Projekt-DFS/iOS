@@ -17,10 +17,9 @@ extension GalleryVC {
      */
     
     
+    
     @IBAction func uploadBarButtonPressed(_ sender: UIBarButtonItem) {
-        let imagePickerController = createPicker()
-        let alert = createAlert(picker: imagePickerController)
-        self.present(alert, animated: true, completion: nil)
+        createImagePicker()        
     }
     
     //--Download--//
@@ -28,7 +27,7 @@ extension GalleryVC {
     @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
         var imagesSaved = 0
         
-        
+        print(galleryCollectionViewCells.count)
         for cell in galleryCollectionViewCells {
             if cell.isHighlighted {
                 if let image = cell.uiImage {
@@ -64,6 +63,11 @@ extension GalleryVC {
         }
         
         let alert = UIAlertController(title:"Delete?", message: "Do you really want to delete \(imagesToDelete) image(s)?", preferredStyle: .alert)
+        
+        let nopeAction = UIAlertAction(title: "no", style: .default, handler: { (_) in
+            self.selectBarButtonPressed(self.selectBarButton)
+        })
+        
         let okAction = UIAlertAction(title: "yes", style: .default, handler: { (_) in
             if Communicator.deleteImage(imageNames: selectedImagesAsString){
                 self.refreshGallery()
@@ -71,12 +75,9 @@ extension GalleryVC {
             }
         })
         
-        let nopeAction = UIAlertAction(title: "no", style: .default, handler: { (_) in
-            self.selectBarButtonPressed(self.selectBarButton)
-        })
-        
-        alert.addAction(okAction)
         alert.addAction(nopeAction)
+        alert.addAction(okAction)
+        
         self.present(alert, animated: true, completion: nil)
         
     }

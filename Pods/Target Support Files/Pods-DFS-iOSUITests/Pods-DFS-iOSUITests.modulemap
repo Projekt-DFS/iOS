@@ -1,0 +1,6 @@
+framework module Pods_DFS_iOSUITests {
+  umbrella header "Pods-DFS-iOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

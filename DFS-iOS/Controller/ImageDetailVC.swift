@@ -96,7 +96,6 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
                 }
             }
         }
-        print(Utils.secondsSince1970(image: image!))
     }
     
     override func viewDidLoad() {
@@ -129,12 +128,16 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
     
     func showTrashAlert() {
         let alert = UIAlertController(title:"Delete?", message: "Do you really want to delete \(image?.getImageName() ?? "")", preferredStyle: .alert)
+
+        let nopeAction = UIAlertAction(title: "no", style: .default, handler: nil)
+        
         let okAction = UIAlertAction(title: "yes", style: .default, handler: { (_) in
             self.performSegue(withIdentifier: "unwindToGallerySegue", sender: self)
         })
-        let nopeAction = UIAlertAction(title: "no", style: .default, handler: nil)
-        alert.addAction(okAction)
+         
         alert.addAction(nopeAction)
+        alert.addAction(okAction)
+        
         self.present(alert, animated: true, completion: nil)
     }
 

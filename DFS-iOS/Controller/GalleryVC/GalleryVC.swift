@@ -20,7 +20,6 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     @IBOutlet var trashBarButton: UIBarButtonItem!
     @IBOutlet var downloadBarButton: UIBarButtonItem!
     
-    
     //sonstige Variablen
     var gallery = Gallery() {
         didSet{
@@ -46,9 +45,10 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     @objc func refreshGallery() {
         if let imageData = Communicator.getImageInfo() {
-            self.gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
+            gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
             images = gallery.getImageList()
-            self.collectionView?.reloadData()
+            collectionView?.reloadData()
+            collectionView?.alpha = 1
         }
     }
     

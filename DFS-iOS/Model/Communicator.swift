@@ -92,7 +92,7 @@ class Communicator {
         DispatchQueue.global(qos: .userInitiated).async {
             task.resume()
             sem.wait()
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 sender.refreshGallery()
             }
         }

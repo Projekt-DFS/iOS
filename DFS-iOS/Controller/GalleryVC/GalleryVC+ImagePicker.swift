@@ -8,70 +8,44 @@
 
 import Foundation
 import UIKit
+import ImagePicker
+import Photos
 
-extension GalleryVC: UIImagePickerControllerDelegate {
-    /**
-     Erzeugt einen ImagePicker
-     */
-    func createPicker() -> UIImagePickerController{
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = false
-        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-        
-        return imagePickerController
+extension GalleryVC: ImagePickerDelegate {
+    
+    
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {        
     }
     
-    /**
-     Erzeugt einen UIAlertController, welcher eine Auswahl zwischen Kamera und Galerie bietet
-     */
-    func createAlert(picker: UIImagePickerController) -> UIAlertController{
-        let alert = UIAlertController(title: "Image Source", message: "Please select", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(action: UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera){
-                picker.sourceType = .camera
-                self.present(picker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: {(action: UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
-                picker.sourceType = .photoLibrary
-                self.present(picker, animated: true, completion: nil)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        return alert
-    }
-    
-    /**
-     Wird ausgefuehrt, sobald der ImagePicker ein Bild gepickt hat (entweder ueber Kamera oder als Auswahl in der Galerie)
-     */
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]){
-        if var image = info[UIImagePickerControllerOriginalImage] as? UIImage{
-            image = image.updateImageOrientionUpSide()!
-            let data = UIImagePNGRepresentation(image)
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+       
+        for img in images {
+            let data = UIImagePNGRepresentation(img.updateImageOrientionUpSide()!)
             let imageBase64 = Utils.encodeDataToBase64(data: data!)
             
             let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(Utils.generateImageName())\"\n}"
             
-            if Communicator.uploadImage(jsonString: json, sender: self){
-                refreshGallery()
+            DispatchQueue.global(qos: .userInitiated).async {
+                Communicator.uploadImage(jsonString: json, sender: self)
             }
-            else{
-                //Zeige Fehlermeldung in der App
-            }
-            
-            picker.dismiss(animated: true, completion: nil)
         }
+
+        collectionView?.alpha = 0.3
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    /**
-     Wenn kein Bild ausgewaehlt wurde, so wird der Picker trotzdem korrekt beendet
-     */
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController){
-        picker.dismiss(animated: true, completion: nil)
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
     }
+    
+    func createImagePicker() {
+        var configuration = Configuration()
+        configuration.cancelButtonTitle = "Cancel"
+        let imagePickerController = ImagePickerController(configuration: configuration)
+        imagePickerController.delegate = self
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+
 }
