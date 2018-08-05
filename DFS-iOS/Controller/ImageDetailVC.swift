@@ -77,6 +77,7 @@ class ImageDetailVC: UIViewController, UIScrollViewDelegate {
  
     // Größe und Zoom der ScrollView wird initialisiert
     func setupScrollView() {
+        imageDetailNavigationItem.title = image?.getImageName()
         scrollView.contentSize = imageView.frame.size
         scrollView.zoomScale = 1.0
         metaDataBarButton.isEnabled = false

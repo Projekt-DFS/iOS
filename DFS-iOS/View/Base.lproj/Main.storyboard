@@ -158,26 +158,28 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="imageSelectedView" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="4l2-61-pMQ">
-                                            <rect key="frame" x="84" y="84" width="46" height="46"/>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageSelectedView" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="4l2-61-pMQ">
+                                            <rect key="frame" x="95" y="95" width="35" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="Eil-z1-W6H"/>
+                                                <constraint firstAttribute="height" constant="35" id="XOe-2K-Ynp"/>
+                                                <constraint firstAttribute="width" constant="35" id="nmb-Rx-5xw"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="4l2-61-pMQ" secondAttribute="trailing" constant="-30" id="08f-8m-PDG"/>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerX" secondItem="Ezf-am-R9q" secondAttribute="centerX" id="60I-4O-1oV"/>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerY" secondItem="Ezf-am-R9q" secondAttribute="centerY" id="JW1-U5-Xjx"/>
+                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" id="SZP-Zr-G6s"/>
                                     <constraint firstAttribute="trailing" secondItem="Fmz-eC-E4g" secondAttribute="trailing" id="YcM-tJ-Mjb"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="top" id="cgg-qB-1Z6"/>
-                                    <constraint firstItem="4l2-61-pMQ" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leadingMargin" constant="88" id="fXd-LI-Lm9"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="4l2-61-pMQ" secondAttribute="bottom" constant="-19" id="gAG-o2-dhS"/>
+                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" id="dV4-rJ-aTM"/>
+                                    <constraint firstAttribute="trailing" secondItem="4l2-61-pMQ" secondAttribute="trailing" id="e3I-Vx-XDT"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leading" id="iqv-SV-qMV"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="YzM-pv-NNv" secondAttribute="bottom" constant="46" id="lZk-qO-hdD"/>
                                     <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" id="lc6-EY-hSK"/>
+                                    <constraint firstAttribute="trailing" secondItem="4l2-61-pMQ" secondAttribute="trailing" id="oyb-08-zKH"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="activityIndicator" destination="i6A-fo-xwb" id="I0t-35-pV8"/>

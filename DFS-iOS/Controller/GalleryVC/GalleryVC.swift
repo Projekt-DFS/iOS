@@ -118,8 +118,6 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         collectionView?.frame = self.view.frame
-        galleryCollectionView.rotateAnimation()        
+        galleryCollectionView.rotateAnimation()
     }
-    
-
 }
