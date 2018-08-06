@@ -18,11 +18,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cqv-Zk-uzM">
-                                <rect key="frame" x="289" y="427.5" width="256" height="257"/>
+                                <rect key="frame" x="289" y="403" width="256" height="257"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="39M-4M-48V">
                                         <rect key="frame" x="73" y="0.0" width="110" height="196"/>
@@ -105,7 +105,7 @@
                         <outlet property="passwordTextField" destination="5lH-WQ-udP" id="yFf-hg-ILn"/>
                         <outlet property="rememberSwitch" destination="4R1-QJ-59d" id="cNi-Qx-72j"/>
                         <outlet property="userNameTextField" destination="1Lf-5K-Lhu" id="jp3-eU-7q8"/>
-                        <segue destination="mej-yU-Aqj" kind="show" identifier="loginSegue" id="9A8-Ss-bpJ"/>
+                        <segue destination="MdV-OG-Zau" kind="show" identifier="loginSegue" id="9A8-Ss-bpJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -117,7 +117,7 @@
             <objects>
                 <collectionViewController id="G3b-WN-yw6" customClass="GalleryVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" id="KsJ-Kt-hhg" customClass="GalleryCollectionView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" sectionInsetReference="layoutMargins" id="cFf-Td-hNQ">
@@ -197,6 +197,7 @@
                             <outlet property="delegate" destination="G3b-WN-yw6" id="dhN-0D-dqI"/>
                         </connections>
                     </collectionView>
+                    <tabBarItem key="tabBarItem" title="Item" id="iw0-to-kzX"/>
                     <navigationItem key="navigationItem" title="Gallery" leftItemsSupplementBackButton="YES" id="SLF-iO-Tn0">
                         <leftBarButtonItems>
                             <barButtonItem title="Upload" id="DlN-ef-6pn">
@@ -241,21 +242,21 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Utg-aF-fbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="865.46762589928062" y="106.29496402877699"/>
+            <point key="canvasLocation" x="1450" y="106"/>
         </scene>
         <!--ImageDetailViewController-->
         <scene sceneID="rIe-IC-Cet">
             <objects>
                 <viewController storyboardIdentifier="ImageDetailViewController" title="ImageDetailViewController" id="chr-mF-Vpp" customClass="ImageDetailVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JUp-Vy-1we" customClass="ImageDetailView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFu-Ob-Eco">
-                                <rect key="frame" x="0.0" y="64" width="834" height="1048"/>
+                                <rect key="frame" x="0.0" y="64" width="834" height="999"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
-                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1048"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="999"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -277,7 +278,7 @@
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="UfO-Yj-cQB">
-                                <rect key="frame" x="398.5" y="537.5" width="37" height="37"/>
+                                <rect key="frame" x="398.5" y="513" width="37" height="37"/>
                                 <color key="color" name="keyboardFocusIndicatorColor" catalog="System" colorSpace="catalog"/>
                             </activityIndicatorView>
                         </subviews>
@@ -337,7 +338,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1584.8" y="106.59670164917542"/>
+            <point key="canvasLocation" x="2280" y="106"/>
         </scene>
         <!--Meta DataVC-->
         <scene sceneID="vV6-1t-stY">
@@ -529,18 +530,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CcY-lL-r26" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2275" y="106.0546875"/>
+            <point key="canvasLocation" x="3026" y="107"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Dic-jW-CbE">
             <objects>
                 <viewController id="FS4-E8-mmU" customClass="UserDataSettingsVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qkr-Ty-hY8" customClass="UserDataSettingsView" customModule="DFS_iOS" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="2iw-eE-Ong">
-                                <rect key="frame" x="269.5" y="408.5" width="295" height="295"/>
+                                <rect key="frame" x="269.5" y="384" width="295" height="295"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="tft-71-rFk">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="31"/>
@@ -655,10 +656,11 @@
             </objects>
             <point key="canvasLocation" x="1586" y="-621"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Gallery-->
         <scene sceneID="ncx-8i-ZKU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mej-yU-Aqj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mej-yU-Aqj" customClass="NavigationVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Gallery" id="HPA-6v-v32"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6zF-e1-MT9">
                         <rect key="frame" x="0.0" y="20" width="834" height="44"/>
@@ -666,12 +668,81 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="G3b-WN-yw6" kind="relationship" relationship="rootViewController" id="pC3-hz-9NZ"/>
+                        <segue destination="G3b-WN-yw6" kind="relationship" relationship="rootViewController" id="U7d-Lj-KoI"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ejs-xa-4jm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-87" y="107"/>
+            <point key="canvasLocation" x="665.46762589928062" y="106.83453237410072"/>
+        </scene>
+        <!--MapVC-->
+        <scene sceneID="C6Q-mG-Mue">
+            <objects>
+                <viewController id="lbL-ui-1gH" customClass="MapVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CKe-JF-yGt">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-94-iKE">
+                                <rect key="frame" x="0.0" y="64" width="834" height="1011"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvN-DF-zWZ">
+                                        <rect key="frame" x="8" y="8" width="818" height="1003"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </mapView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zdl-n1-sec"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5J1-3L-MIF"/>
+                    <connections>
+                        <outlet property="mapView" destination="mvN-DF-zWZ" id="h6W-db-GBJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfK-Oi-afY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1449.6402877697842" y="768.88489208633098"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="Laq-9k-xBz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UDT-vO-WVT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" id="2R1-Gf-gp5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CCC-SY-ciF">
+                        <rect key="frame" x="0.0" y="20" width="834" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lbL-ui-1gH" kind="relationship" relationship="rootViewController" id="ZH3-mN-ka7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v9a-WY-G7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="769"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="tJZ-xO-1rz">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="MdV-OG-Zau" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="iTf-l5-04w">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="mej-yU-Aqj" kind="relationship" relationship="viewControllers" id="mt7-dJ-lO9"/>
+                        <segue destination="UDT-vO-WVT" kind="relationship" relationship="viewControllers" id="gd5-UU-nJo"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CaP-M9-e5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87.050359712230218" y="106.83453237410072"/>
         </scene>
     </scenes>
     <resources>

@@ -42,6 +42,10 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        gallery = Gallery(images: LoginVC.imageArray)
+    }
+    
     @objc func refreshGallery() {
         if let imageData = Communicator.getImageInfo() {
             gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))

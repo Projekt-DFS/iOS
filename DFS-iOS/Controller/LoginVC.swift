@@ -71,9 +71,8 @@ class LoginVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
-            let destinationVC = segue.destination as! UINavigationController
-            let galleryVC = destinationVC.childViewControllers[0] as! GalleryVC
-            galleryVC.gallery = Gallery(images: LoginVC.imageArray)
+            let tabBarVC = segue.destination as! UITabBarController
+            let navVC = tabBarVC.childViewControllers[0] as! NavigationVC
         }
     }
     
