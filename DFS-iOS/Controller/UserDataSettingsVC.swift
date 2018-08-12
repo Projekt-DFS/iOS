@@ -70,17 +70,4 @@ class UserDataSettingsVC: UIViewController {
             view.frame.origin.y = 0
         }
     }
-    
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSegue" {
-            segue.destination.navigationController?.viewControllers = [self]
-            segue.destination.navigationController?.setNavigationBarHidden(true, animated: false)
-            
-        }
-        // Hier muss das Segue zum LoginViewController gecoded werden.
-        // User abmelden + Segue ohne ZurückButton + Alle Controller in DFSNavigationController resetten
-        
-    }
-       
 }

@@ -71,7 +71,4 @@ class MetaData {
         }
         
     }
-    
-    //TODO: Organize tagList (index 0 may not be nil if others aren't nil)
-    
 }

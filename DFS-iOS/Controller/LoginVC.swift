@@ -69,13 +69,6 @@ class LoginVC: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSegue" {
-            let tabBarVC = segue.destination as! UITabBarController
-            let navVC = tabBarVC.childViewControllers[0] as! NavigationVC
-        }
-    }
-    
     func updateTextFieldsIfDataRemebered(){
         if uds.getDefaultUserName() != ""{
             userNameTextField.text = uds.getDefaultUserName()
@@ -90,9 +83,8 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let navVC = navigationController {
-            navVC.setNavigationBarHidden(true, animated: true)
-        }
+        
+        
         updateTextFieldsIfDataRemebered()
         // Listen for keyboard events
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -122,5 +114,8 @@ class LoginVC: UIViewController {
         }
             
     }
+    
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue){}
+
     
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		196DC9977F6C5A35B48802B4 /* Pods_DFS_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C1209E595D9E19BA17250 /* Pods_DFS_iOSTests.framework */; };
+		1E57009A2120C02200F4AB77 /* TabVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5700992120C02200F4AB77 /* TabVCViewController.swift */; };
 		395B8197E37A4FCBE3ED5E25 /* Pods_DFS_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353563BE76607216764C4760 /* Pods_DFS_iOSUITests.framework */; };
 		3C14031439D6B7C0F5704BFC /* Pods_DFS_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5E04809C9EDEBAFC8F95BD /* Pods_DFS_iOS.framework */; };
 		7147814420F00CE200AC8A9F /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7147814320F00CE200AC8A9F /* UIImage+Rotation.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		034FCE098F0703D5B64643EB /* Pods-DFS-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOS/Pods-DFS-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		1C5E04809C9EDEBAFC8F95BD /* Pods_DFS_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFS_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5700992120C02200F4AB77 /* TabVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabVCViewController.swift; sourceTree = "<group>"; };
 		22341040502EE3B1B41DDEFA /* Pods-DFS-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOSUITests/Pods-DFS-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		353563BE76607216764C4760 /* Pods_DFS_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFS_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		368A670B1B506FED8ED63201 /* Pods-DFS-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOS/Pods-DFS-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				715DCD2F20A30BA400A759E5 /* MetaDataVC.swift */,
 				715DCD1D20A2FBDD00A759E5 /* UserDataSettingsVC.swift */,
 				719E149021187C1D00EEFBEA /* MapVC.swift */,
+				1E5700992120C02200F4AB77 /* TabVCViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */,
 				714F905F20FE6B3400DB188B /* GalleryVC+BarButtons.swift in Sources */,
 				71F3B72420A61DF5005194BB /* GalleryVC.swift in Sources */,
+				1E57009A2120C02200F4AB77 /* TabVCViewController.swift in Sources */,
 				719E149121187C1D00EEFBEA /* MapVC.swift in Sources */,
 				715DCD1E20A2FBDD00A759E5 /* UserDataSettingsVC.swift in Sources */,
 				CC0D435A20BD6D7300399A68 /* Utils.swift in Sources */,
