@@ -684,19 +684,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-94-iKE">
-                                <rect key="frame" x="0.0" y="64" width="834" height="1011"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-94-iKE">
+                                <rect key="frame" x="0.0" y="64" width="834" height="1022.5"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvN-DF-zWZ">
-                                        <rect key="frame" x="8" y="8" width="818" height="1003"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvN-DF-zWZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="834" height="1022"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="mvN-DF-zWZ" secondAttribute="height" multiplier="818:1003" id="Ejm-wP-Wvk"/>
+                                        </constraints>
                                     </mapView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="leading" secondItem="MU5-94-iKE" secondAttribute="leading" id="DHQ-G2-NBI"/>
+                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="centerY" secondItem="MU5-94-iKE" secondAttribute="centerY" id="ELI-pN-eki"/>
+                                    <constraint firstAttribute="trailing" secondItem="mvN-DF-zWZ" secondAttribute="trailing" id="VrR-tO-BWo"/>
+                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="centerX" secondItem="MU5-94-iKE" secondAttribute="centerX" id="gyg-3y-AOv"/>
+                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="top" secondItem="MU5-94-iKE" secondAttribute="top" id="mfc-b5-y2A"/>
+                                    <constraint firstAttribute="bottom" secondItem="mvN-DF-zWZ" secondAttribute="bottom" id="oGV-cz-kkj"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MU5-94-iKE" secondAttribute="trailing" id="0Tf-GC-kdr"/>
+                            <constraint firstItem="MU5-94-iKE" firstAttribute="top" secondItem="zdl-n1-sec" secondAttribute="top" id="A0O-FF-B1K"/>
+                            <constraint firstItem="MU5-94-iKE" firstAttribute="leading" secondItem="CKe-JF-yGt" secondAttribute="leading" id="Fn6-cK-r9T"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zdl-n1-sec"/>
                     </view>
                     <navigationItem key="navigationItem" id="5J1-3L-MIF"/>
