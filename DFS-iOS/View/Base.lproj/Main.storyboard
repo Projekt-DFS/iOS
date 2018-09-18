@@ -135,11 +135,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmz-eC-E4g">
-                                            <rect key="frame" x="0.0" y="0.0" width="130" height="32"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="81"/>
                                             <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YzM-pv-NNv">
-                                            <rect key="frame" x="47" y="-2.5" width="37" height="37"/>
+                                            <rect key="frame" x="47" y="-10" width="37" height="37"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ftL-wI-iOa">
                                                     <rect key="frame" x="0.0" y="0.0" width="37" height="37"/>
@@ -159,7 +159,7 @@
                                             </subviews>
                                         </stackView>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="imageSelectedView" image="check" translatesAutoresizingMaskIntoConstraints="NO" id="4l2-61-pMQ">
-                                            <rect key="frame" x="95" y="-3" width="35" height="35"/>
+                                            <rect key="frame" x="95" y="46" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="XOe-2K-Ynp"/>
                                                 <constraint firstAttribute="width" constant="35" id="nmb-Rx-5xw"/>
@@ -170,14 +170,15 @@
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerX" secondItem="Ezf-am-R9q" secondAttribute="centerX" id="60I-4O-1oV"/>
-                                    <constraint firstItem="YzM-pv-NNv" firstAttribute="centerY" secondItem="Ezf-am-R9q" secondAttribute="centerY" constant="-24.5" id="JW1-U5-Xjx"/>
-                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" constant="49" id="SZP-Zr-G6s"/>
+                                    <constraint firstItem="YzM-pv-NNv" firstAttribute="centerY" secondItem="Ezf-am-R9q" secondAttribute="centerY" id="JW1-U5-Xjx"/>
+                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" id="SZP-Zr-G6s"/>
                                     <constraint firstAttribute="trailing" secondItem="Fmz-eC-E4g" secondAttribute="trailing" id="YcM-tJ-Mjb"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="top" secondItem="Ezf-am-R9q" secondAttribute="top" id="cgg-qB-1Z6"/>
-                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" constant="49" id="dV4-rJ-aTM"/>
+                                    <constraint firstAttribute="bottom" secondItem="4l2-61-pMQ" secondAttribute="bottom" id="dV4-rJ-aTM"/>
                                     <constraint firstAttribute="trailing" secondItem="4l2-61-pMQ" secondAttribute="trailing" id="e3I-Vx-XDT"/>
                                     <constraint firstItem="Fmz-eC-E4g" firstAttribute="leading" secondItem="Ezf-am-R9q" secondAttribute="leading" id="iqv-SV-qMV"/>
-                                    <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" constant="49" id="lc6-EY-hSK"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="YzM-pv-NNv" secondAttribute="bottom" constant="46" id="lZk-qO-hdD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fmz-eC-E4g" secondAttribute="bottom" id="lc6-EY-hSK"/>
                                     <constraint firstAttribute="trailing" secondItem="4l2-61-pMQ" secondAttribute="trailing" id="oyb-08-zKH"/>
                                 </constraints>
                                 <connections>
@@ -683,33 +684,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-94-iKE">
-                                <rect key="frame" x="0.0" y="64" width="834" height="1022.5"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MU5-94-iKE">
+                                <rect key="frame" x="0.0" y="64" width="834" height="1011"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvN-DF-zWZ">
-                                        <rect key="frame" x="0.0" y="-1" width="834" height="1022"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="mvN-DF-zWZ" secondAttribute="height" multiplier="818:1003" id="XEk-dR-fW9"/>
-                                        </constraints>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mvN-DF-zWZ">
+                                        <rect key="frame" x="8" y="8" width="818" height="1003"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </mapView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="centerX" secondItem="MU5-94-iKE" secondAttribute="centerX" id="5e8-MV-W2I"/>
-                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="centerY" secondItem="MU5-94-iKE" secondAttribute="centerY" id="Eys-qP-hHi"/>
-                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="top" secondItem="MU5-94-iKE" secondAttribute="top" id="Zi7-PM-OJT"/>
-                                    <constraint firstAttribute="bottom" secondItem="mvN-DF-zWZ" secondAttribute="bottom" id="iPU-QG-7sO"/>
-                                    <constraint firstAttribute="trailing" secondItem="mvN-DF-zWZ" secondAttribute="trailing" id="jvZ-Sz-Ojx"/>
-                                    <constraint firstItem="mvN-DF-zWZ" firstAttribute="leading" secondItem="MU5-94-iKE" secondAttribute="leading" id="xOW-4F-VQo"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="MU5-94-iKE" firstAttribute="leading" secondItem="CKe-JF-yGt" secondAttribute="leading" id="GSe-lh-Hx3"/>
-                            <constraint firstAttribute="trailing" secondItem="MU5-94-iKE" secondAttribute="trailing" id="Q3B-iV-rpr"/>
-                            <constraint firstItem="MU5-94-iKE" firstAttribute="top" secondItem="zdl-n1-sec" secondAttribute="top" id="uQM-dy-ewb"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zdl-n1-sec"/>
                     </view>
                     <navigationItem key="navigationItem" id="5J1-3L-MIF"/>
