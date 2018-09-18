@@ -87,15 +87,8 @@ class Communicator {
         let sem = DispatchSemaphore(value: 0)
         
         let task = initTask(request: request, semaphore: sem, requestMark: uploadImageMark)
-        
-        
-        DispatchQueue.global(qos: .userInitiated).async {
             task.resume()
-            sem.wait()
-            DispatchQueue.main.sync {
-                sender.refreshGallery()
-            }
-        }
+            sem.wait()        
         
         return true
     }

@@ -21,6 +21,8 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     @IBOutlet var downloadBarButton: UIBarButtonItem!
     
     var refreshControl = UIRefreshControl()
+    var progressView = UIProgressView()
+
 
     
     //sonstige Variablen
@@ -43,21 +45,29 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
         setupRefreshControl()
+        print("viewDidLoad called")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear called")
+
         refreshGallery()
     }
+    
     
     
         
     @objc func refreshGallery() {
         refreshControl.beginRefreshing()
+        collectionView?.alpha = 0.6
         DispatchQueue.global(qos: .userInitiated).async {
             if let imageData = Communicator.getImageInfo() {
                 self.gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
                 self.images = self.gallery.getImageList()
                 DispatchQueue.main.async {
                     self.collectionView?.reloadData()
-                    self.collectionView?.alpha = 1
-                    if self.refreshControl.isRefreshing {                        
+                    if self.refreshControl.isRefreshing {
+                        self.collectionView?.alpha = 1.0
                         self.refreshControl.endRefreshing()
                     }
                 }

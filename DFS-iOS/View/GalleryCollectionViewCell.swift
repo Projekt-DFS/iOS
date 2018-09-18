@@ -34,4 +34,5 @@ class GalleryCollectionViewCell: UICollectionViewCell {
             isHighlighted = false
         }
     }
+
 }
