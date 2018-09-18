@@ -20,6 +20,9 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     @IBOutlet var trashBarButton: UIBarButtonItem!
     @IBOutlet var downloadBarButton: UIBarButtonItem!
     
+    var refreshControl = UIRefreshControl()
+
+    
     //sonstige Variablen
     var gallery = Gallery() {
         didSet{
@@ -36,22 +39,29 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     // Bestimmt, was passiert wenn die view geladen wurde
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         galleryCollectionView.isPrefetchingEnabled = true
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
+        setupRefreshControl()
+        refreshGallery()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        gallery = Gallery(images: LoginVC.imageArray)
-    }
     
+        
     @objc func refreshGallery() {
-        if let imageData = Communicator.getImageInfo() {
-            gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
-            images = gallery.getImageList()
-            collectionView?.reloadData()
-            collectionView?.alpha = 1
+        refreshControl.beginRefreshing()
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let imageData = Communicator.getImageInfo() {
+                self.gallery = Gallery(images: JsonParser.parseFromJsonToImageArray(data: imageData))
+                self.images = self.gallery.getImageList()
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                    self.collectionView?.alpha = 1
+                    if self.refreshControl.isRefreshing {                        
+                        self.refreshControl.endRefreshing()
+                    }
+                }
+            }
         }
     }
     
@@ -124,4 +134,16 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         collectionView?.frame = self.view.frame
         galleryCollectionView.rotateAnimation()
     }
+    
+    func setupRefreshControl() {
+        if galleryCollectionView.refreshControl == nil {
+            refreshControl.addTarget(self, action: #selector(refreshGallery), for: .valueChanged)
+            refreshControl.tintColor = self.view.tintColor ?? UIColor.blue
+            let color = [NSAttributedStringKey.foregroundColor : self.view.tintColor ?? UIColor.blue ];
+            refreshControl.attributedTitle = NSAttributedString(string: "loading gallery from backend...", attributes: color)
+            galleryCollectionView.refreshControl = refreshControl
+            refreshControl.layer.zPosition = -100
+        }
+    }
+
 }

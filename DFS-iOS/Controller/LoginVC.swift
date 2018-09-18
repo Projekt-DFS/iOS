@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var rememberSwitch: UISwitch!
     
     
-    static var imageArray = [Image]()
+    //static var imageArray = [Image]()
     
 
     
@@ -50,9 +50,9 @@ class LoginVC: UIViewController {
             return
         }
         
-        if let imageData = Communicator.getImageInfo(){
-            let images = JsonParser.parseFromJsonToImageArray(data: imageData)
-            LoginVC.imageArray = images
+        if let _ = Communicator.getImageInfo(){
+            //let images = JsonParser.parseFromJsonToImageArray(data: imageData)
+            //LoginVC.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         else{

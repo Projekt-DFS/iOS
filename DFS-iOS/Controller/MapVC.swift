@@ -14,7 +14,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var galleryVC = GalleryVC()
-    var imagesByLocation = [CLPlacemark : Image]()
+    var imagesByLocation = [CLPlacemark : [Image]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -60,7 +59,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
                     let topResult: CLPlacemark = placemarks![0]
                     let placemark: MKPlacemark = MKPlacemark(placemark: topResult)
                     self.mapView.addAnnotation(placemark)
-                    self.imagesByLocation[placemark] = image
+                    self.imagesByLocation[placemark]?.append(image)
                 }
             }
         })
