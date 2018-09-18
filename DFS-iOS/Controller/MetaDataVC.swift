@@ -91,7 +91,9 @@ class MetaDataVC: UIViewController {
             let json = "{\n\t\"location\":\"\(locationLabel.text ?? "")\",\n\t\"tagList\":[\(tags)]\n}"
             
 
-            Communicator.updateMetaData(imageName: image.getImageName(), jsonString: json)
+            if (Communicator.updateMetaData(imageName: image.getImageName(), jsonString: json)) {
+                galleryVC?.refreshGallery()
+            }
             
             if locationTextField.hasText {
                 metaData.setLocation(newValue: locationTextField.text ?? "")

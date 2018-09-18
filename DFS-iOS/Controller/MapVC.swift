@@ -21,8 +21,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.showsCompass = true
-        mapView.region.span = MKCoordinateSpan(latitudeDelta: 128, longitudeDelta: 96)
-        setAnnotations()
+        mapView.region.span = MKCoordinateSpan(latitudeDelta: 120, longitudeDelta: 90)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +50,6 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     private func setAnnotation(_ location: String, for image: Image) {
         let geocoder: CLGeocoder = CLGeocoder()
-        print("setAnnotation called for \(location)")
         
         geocoder.geocodeAddressString(location,completionHandler: {(placemarks: [CLPlacemark]?, error: Error?) -> Void in
             if let count = placemarks?.count {

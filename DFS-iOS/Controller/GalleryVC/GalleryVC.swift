@@ -46,13 +46,10 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         galleryCollectionView?.allowsMultipleSelection = true
         galleryViewNavigationItem.leftBarButtonItems = [uploadBarButton]
         setupRefreshControl()
-        print("viewDidLoad called")
+        refreshGallery()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear called")
-
-        refreshGallery()
     }
     
     
@@ -60,6 +57,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         
     @objc func refreshGallery() {
         refreshControl.beginRefreshing()
+        refreshControl.isHidden = false
         collectionView?.alpha = 0.6
         DispatchQueue.global(qos: .userInitiated).async {
             if let imageData = Communicator.getImageInfo() {

@@ -20,6 +20,8 @@ extension GalleryVC: ImagePickerDelegate {
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         progressView.isHidden = false
         progressLabel.isHidden = false
+        
+        imagePicker.bottomContainer.isUserInteractionEnabled = false
 
         self.progressLabel.text = "uploading image \(1) of \(images.count)..."
 
@@ -38,9 +40,9 @@ extension GalleryVC: ImagePickerDelegate {
             }
             DispatchQueue.main.async {
                 imagePicker.dismiss(animated: true, completion: nil)
-            }
+            }            
         }
-
+        refreshGallery()
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
