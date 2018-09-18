@@ -19,6 +19,10 @@ extension GalleryVC: ImagePickerDelegate {
     
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         progressView.isHidden = false
+        progressLabel.isHidden = false
+
+        self.progressLabel.text = "uploading image \(1) of \(images.count)..."
+
         DispatchQueue.global(qos: .userInitiated).async {
             for img in images {
                 let data = UIImagePNGRepresentation(img.updateImageOrientionUpSide()!)
@@ -28,6 +32,7 @@ extension GalleryVC: ImagePickerDelegate {
                     Communicator.uploadImage(jsonString: json, sender: self)
                 DispatchQueue.main.async {
                     self.progressView.progress = self.progressView.progress + Float(1.0 / Double(images.count))
+                    self.progressLabel.text = "uploading image \(2 + images.index(of: img)!) of \(images.count)..."
                 }
                 
             }
@@ -50,6 +55,8 @@ extension GalleryVC: ImagePickerDelegate {
         
         initializeProgressView()
         imagePickerController.view.addSubview(progressView)
+        imagePickerController.view.addSubview(progressLabel)
+
         
         present(imagePickerController, animated: true, completion: nil)
 
@@ -66,10 +73,16 @@ extension GalleryVC: ImagePickerDelegate {
         progressView.layer.borderWidth = 0.07
         progressView.isHidden = true
         
-        
         let transform = CGAffineTransform(scaleX: 4.0, y: 5.0)
         progressView.transform = transform
         progressView.center = view.center
+        
+        progressLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+        progressLabel.center = CGPoint(x: progressView.center.x, y: progressView.center.y + 30)
+        progressLabel.textColor = UIColor.white
+        progressLabel.layer.zPosition = 100
+        progressLabel.isHidden = true
+        progressLabel.textAlignment = .center
     }
     
 

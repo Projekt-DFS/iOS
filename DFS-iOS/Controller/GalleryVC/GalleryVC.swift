@@ -22,6 +22,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     var refreshControl = UIRefreshControl()
     var progressView = UIProgressView()
+    var progressLabel = UILabel()
 
 
     
