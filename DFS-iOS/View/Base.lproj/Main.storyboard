@@ -155,9 +155,12 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_icon" translatesAutoresizingMaskIntoConstraints="NO" id="u1s-TG-51d">
-                                <rect key="frame" x="297" y="62" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_icon" translatesAutoresizingMaskIntoConstraints="NO" id="u1s-TG-51d">
+                                <rect key="frame" x="307" y="112" width="220" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="BKe-vX-aPG"/>
+                                    <constraint firstAttribute="width" secondItem="u1s-TG-51d" secondAttribute="height" multiplier="1:1" id="C6B-8r-dHq"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dezentraler Fotospeicher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIl-qC-85b">
                                 <rect key="frame" x="320.5" y="347" width="193.5" height="20.5"/>
@@ -168,8 +171,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="WIl-qC-85b" firstAttribute="top" secondItem="u1s-TG-51d" secondAttribute="bottom" constant="15" id="62r-Mw-b6E"/>
                             <constraint firstItem="cqv-Zk-uzM" firstAttribute="top" secondItem="WIl-qC-85b" secondAttribute="bottom" constant="40" id="BFP-iR-eOG"/>
                             <constraint firstItem="cqv-Zk-uzM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cxD-6l-YpO"/>
+                            <constraint firstItem="u1s-TG-51d" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f79-HW-T7g"/>
                             <constraint firstItem="cqv-Zk-uzM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fpt-XL-5nR"/>
                             <constraint firstItem="WIl-qC-85b" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sqv-Fq-zQa"/>
                         </constraints>
