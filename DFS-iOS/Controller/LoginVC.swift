@@ -84,6 +84,9 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        rememberSwitch.transform = transform
+        
         
         updateTextFieldsIfDataRemebered()
         // Listen for keyboard events
