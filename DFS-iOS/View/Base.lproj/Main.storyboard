@@ -219,7 +219,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fmz-eC-E4g">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="80"/>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YzM-pv-NNv">
                                             <rect key="frame" x="46.5" y="-11" width="37" height="37"/>
@@ -250,7 +250,7 @@
                                         </imageView>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerX" secondItem="Ezf-am-R9q" secondAttribute="centerX" id="60I-4O-1oV"/>
                                     <constraint firstItem="YzM-pv-NNv" firstAttribute="centerY" secondItem="Ezf-am-R9q" secondAttribute="centerY" id="JW1-U5-Xjx"/>
