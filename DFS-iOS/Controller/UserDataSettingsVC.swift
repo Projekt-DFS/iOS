@@ -43,6 +43,10 @@ class UserDataSettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        autoUploadSwitch.transform = transform
+        
         // Listen for keyboard events
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
@@ -65,7 +69,7 @@ class UserDataSettingsVC: UIViewController {
         if notification.name == Notification.Name.UIKeyboardWillShow ||
             notification.name == Notification.Name.UIKeyboardWillChangeFrame{
             
-            view.frame.origin.y = -(keyboardRect.height/2)
+            view.frame.origin.y = -(keyboardRect.height/3)
         } else {
             view.frame.origin.y = 0
         }
