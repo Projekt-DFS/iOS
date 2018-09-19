@@ -14,18 +14,18 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC" customClass="LoginView" customModule="DFS_iOS" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginView" customModule="DFS_iOS" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backround2" translatesAutoresizingMaskIntoConstraints="NO" id="1sJ-2s-sgU">
-                                <rect key="frame" x="0.0" y="20" width="834" height="1042"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backround2" translatesAutoresizingMaskIntoConstraints="NO" id="E78-ff-hHf">
+                                <rect key="frame" x="0.0" y="35" width="834" height="1042"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="1sJ-2s-sgU" secondAttribute="height" multiplier="417:521" id="mBc-66-lHy"/>
+                                    <constraint firstAttribute="width" secondItem="E78-ff-hHf" secondAttribute="height" multiplier="417:521" id="FEK-1L-WqG"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cqv-Zk-uzM">
-                                <rect key="frame" x="284" y="1062" width="266" height="267"/>
+                                <rect key="frame" x="284" y="422.5" width="266" height="267"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="39M-4M-48V">
                                         <rect key="frame" x="73" y="0.0" width="120" height="203.5"/>
@@ -98,12 +98,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1sJ-2s-sgU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ad1-kh-pSo"/>
+                            <constraint firstItem="E78-ff-hHf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9ff-Zq-66y"/>
+                            <constraint firstItem="E78-ff-hHf" firstAttribute="width" secondItem="E78-ff-hHf" secondAttribute="height" multiplier="417:521" id="Otr-jP-4Fl"/>
                             <constraint firstItem="cqv-Zk-uzM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cxD-6l-YpO"/>
                             <constraint firstItem="cqv-Zk-uzM" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fpt-XL-5nR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1sJ-2s-sgU" secondAttribute="trailing" id="lko-vf-fs3"/>
-                            <constraint firstItem="cqv-Zk-uzM" firstAttribute="top" secondItem="1sJ-2s-sgU" secondAttribute="bottom" id="rH8-sW-o5I"/>
-                            <constraint firstItem="1sJ-2s-sgU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="y06-xs-sPS"/>
+                            <constraint firstItem="E78-ff-hHf" firstAttribute="centerX" secondItem="cqv-Zk-uzM" secondAttribute="centerX" id="ft2-XC-lkr"/>
+                            <constraint firstItem="E78-ff-hHf" firstAttribute="centerY" secondItem="cqv-Zk-uzM" secondAttribute="centerY" id="gn6-00-J5a"/>
+                            <constraint firstItem="E78-ff-hHf" firstAttribute="width" secondItem="E78-ff-hHf" secondAttribute="height" multiplier="417:521" id="sbq-Dj-E4n"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
