@@ -18,6 +18,8 @@ class MapVC: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.backgroundColor = self.view.backgroundColor
+
         mapView.delegate = self
         mapView.mapType = .standard
         mapView.showsCompass = true

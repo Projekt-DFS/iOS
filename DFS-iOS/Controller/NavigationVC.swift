@@ -11,6 +11,6 @@ import UIKit
 class NavigationVC: UINavigationController {
 
     override func viewDidLoad() {
-        super.viewDidLoad()   
+        super.viewDidLoad()
     }
 }
