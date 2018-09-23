@@ -345,7 +345,7 @@
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0kA-LX-0Mh">
                                         <rect key="frame" x="0.0" y="0.0" width="834" height="999"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.93725490196078431" green="0.90196078431372551" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="7dr-mb-ak9" appends="YES" id="Roj-UC-Wie"/>
@@ -590,7 +590,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.90196078431372551" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="een-VH-6gp" firstAttribute="leading" secondItem="gZY-LO-HZc" secondAttribute="leading" constant="97" id="O4I-yP-3H7"/>
                             <constraint firstItem="gbI-dh-LMl" firstAttribute="trailing" secondItem="4QC-pb-L6m" secondAttribute="trailingMargin" id="T7j-4y-RCd"/>
