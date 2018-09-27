@@ -1,6 +1,8 @@
 import UIKit
 
 /// Controller for the login scene.
+///
+/// - author: Phillip Persch
 class LoginVC: UIViewController {
     
     let uds = UserDataSettings()

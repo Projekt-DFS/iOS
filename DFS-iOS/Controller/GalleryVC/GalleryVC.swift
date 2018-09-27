@@ -1,6 +1,8 @@
 import UIKit
 
 /// Controller for the gallery scene.
+///
+/// - author: Phillip Persch
 class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
     
@@ -41,7 +43,8 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         refreshGallery()
     }
     
-    /// 
+    /// Reloads the database contents from the backend.
+    /// Gives visual feedback when reloading is done.
     @objc func refreshGallery() {
         refreshControl.beginRefreshing()
         refreshControl.isHidden = false
@@ -63,7 +66,8 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
 
     
-    // Bereitet den ImageDetailViewController darauf vor, dass gleich ein Segue zu ihm stattfindet
+    ///Prepares the controller for the image detail scene that a segue towards his scene will happen.
+    // Sets the destination view controller's image.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "imageDetailSegue" {
             let destinationVC = segue.destination as! ImageDetailVC
@@ -76,16 +80,25 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     }
 
 
+    /// There is always one section. If there were an implementation for multiple albums, this would not always be 1.
+    ///
+    /// - returns: 1
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    // Anzahl der Zellen == Anzahl der Bilder im Gallery-Model
+    /// Sets the number of items per section. Since there is only one section, it contains all images.
+    ///
+    /// returns: the number of images per section
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
     
-    // Initialisierung von Zellen in der galleryCollectionView
+    /// Initializes a cell in the collection view, including its image and all of its UI features
+    /// (highlighting, activity indicator etc.). It also triggers the network call to load the actual thumbnail using
+    /// the path stored in the Image object.
+    ///
+    /// - returns: the initialized cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = galleryCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GalleryCollectionViewCell
@@ -94,6 +107,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
        
         cell.activityIndicator.startAnimating()
         
+        // load actual thumbnail from path of thumbnail
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in            
             if let urlContents = Communicator.getImage(urlAsString: (self?.images[indexPath.item].getThumbnail())!) as Data?{
                 if let uiImage = UIImage(data: urlContents) {
@@ -108,7 +122,9 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     }
     
 
-    // Bestimmt, was passiert wenn eine Zelle ausgewählt wird
+    /// Determines what happens when a cell gets selected.
+    /// If the scene is in highlighting mode, the selected image gets displayed as highlighted (alpha is changed, icon is shown).
+    /// If the scene is not in highlighting mode, it switches scenes to the image detail scene, displaying the selected image.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         if highlightingMode {
@@ -119,18 +135,27 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         print(indexPath.item)
     }
     
-    // Bestimmt, was passiert wenn eine Auswahl revidiert wird
+    /// Determines what happens when a cell gets deselected.
+    /// The highlighting visuals get reverted.
     override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = galleryCollectionView.cellForItem(at: indexPath) as! GalleryCollectionViewCell
         cell.changeHighlighting(to: false)
     }
+    
+    /// Empty implementation of an unwind segue. This is necessary when an image gets deleted in image detail scene.
+    ///
+    /// - parameter segue: the segue that handles the navigation after deleting an image
     @IBAction func unwindToGallery(segue: UIStoryboardSegue){}
 
+    /// Determines what happens when the device rotates enough to change orientation (portrait vs. landscape mode)
+    /// Calls the view's animation to handle rotation and reorganize the UI.
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         collectionView?.frame = self.view.frame
         galleryCollectionView.rotateAnimation()
     }
     
+    /// Sets up the refresh control of cells that indicates that the image is loading.
+    /// This should have been put in the View package.
     func setupRefreshControl() {
         if galleryCollectionView.refreshControl == nil {
             refreshControl.addTarget(self, action: #selector(refreshGallery), for: .valueChanged)
