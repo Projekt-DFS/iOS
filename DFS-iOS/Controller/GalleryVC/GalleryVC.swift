@@ -66,7 +66,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     
 
     
-    ///Prepares the controller for the image detail scene that a segue towards his scene will happen.
+    ///Prepares the controller for the image detail scene for the segue towards his scene that will happen.
     // Sets the destination view controller's image.
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "imageDetailSegue" {

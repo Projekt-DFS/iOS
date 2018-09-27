@@ -1,27 +1,18 @@
-//
-//  MetaDataViewController.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 09.05.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
+/// Controller for the metaData scene.
+///
+/// - author: Phillip Persch
 class MetaDataVC: UIViewController {
     
     
-    // Variablen
-
     @IBOutlet weak var editButton: UIButton!
-    
     @IBOutlet weak var ownerLabel: UILabel!
     @IBOutlet weak var createdLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var tagListLabel1: UILabel!
     @IBOutlet weak var tagListLabel2: UILabel!
     @IBOutlet weak var tagListLabel3: UILabel!
-    
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var tagListTextField1: UITextField!
     @IBOutlet weak var tagListTextField2: UITextField!
@@ -30,6 +21,7 @@ class MetaDataVC: UIViewController {
     
     lazy var labels = [ locationLabel, tagListLabel1, tagListLabel2, tagListLabel3]
     lazy var textFields = [locationTextField, tagListTextField1, tagListTextField2, tagListTextField3]
+    
     
     var galleryVC : GalleryVC?
     var image = Image()
@@ -40,16 +32,19 @@ class MetaDataVC: UIViewController {
         }
     }
 
+    /// Switches the visibility of labels and text fields, depending on which are needed.
+    /// If the user wants to edit metadata, text fields should be visible.
+    /// If the user wants to view the curren metadata, labels should be visible.
     func switchVisibility() {
         for label in labels { label?.isHidden = !(label?.isHidden)!}
         for textField in textFields { textField?.isHidden = !(textField?.isHidden)!}
     }
     
+    /// Refreshes the current view and all of its labels and text fields.
     func refreshView() {
         metaData = image.getMetaData()
         
         ownerLabel.text = metaData.getOwner()
-
         createdLabel.text = Utils.shortenCreationDate(image: image)
         
         locationLabel.text = metaData.getLocation()
@@ -68,6 +63,7 @@ class MetaDataVC: UIViewController {
     }
     
     /// Called after the controller's view is loaded into memory.
+    /// Sets the image to be edited to the image that was shown in the image detail scene.
     override func viewDidLoad() {
         super.viewDidLoad()
         image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!
@@ -76,6 +72,10 @@ class MetaDataVC: UIViewController {
     }
         
     
+    /// Gets called when the user presses the edit button.
+    /// Edits the image's metadata to match the text fields' texts. Then refreshes the view.
+    ///
+    /// - parameter sender: the button that was pressed
     @IBAction func editButtonPressed(_ sender: UIButton) {
         if !editingMode {
             editButton.setTitle("Done", for: UIControlState.normal)
@@ -107,22 +107,9 @@ class MetaDataVC: UIViewController {
             if tagListTextField3.hasText {
                 metaData.appendToTagList(index: 2, newValue: tagListTextField3.text ?? "")
             }
-        }
-        
+        }        
 
         editingMode = !editingMode
         refreshView()
     }
-    
-    
-    func organizeTagListLabels() {
-        //TODO: Schöner ausrichten, wenn Einträge entfernt/hinzugefügt werden
-    }
-    
-
-    
-    
-
-
-
 }

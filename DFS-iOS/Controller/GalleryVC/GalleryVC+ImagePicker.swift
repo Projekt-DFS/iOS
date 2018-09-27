@@ -1,26 +1,28 @@
-//
-//  GalleryVC+ImagePicker.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 17.07.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import ImagePicker
 import Photos
 
+/// Extension to GalleryVC to manage the image picker used to upload images.
+///
+/// - author: Phillip Persch
 extension GalleryVC: ImagePickerDelegate {
     
     
+    /// Empty implementation of wrapperDidPress. This is necessary in order to implement protocol ImagePickerDelegate.
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {        
     }
     
+    /// Gets called when the user presses the done button.
+    /// Uploads all selected images to the backend using the Communicator functions.
+    ///
+    /// - parameter imagePicker: the imagePicker used
+    /// - parameter images: a collection of the selected UIImages
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         progressView.isHidden = false
         progressLabel.isHidden = false
         
+        // disable all buttons until the uploading process is done
         imagePicker.bottomContainer.isUserInteractionEnabled = false
 
         self.progressLabel.text = "uploading image \(1) of \(images.count)..."
@@ -46,10 +48,19 @@ extension GalleryVC: ImagePickerDelegate {
         }
     }
     
+    /// Gets called when the user presses the cancel button. Dismisses the scene and switches back to the gallery scene.
+    ///
+    /// - parameter imagePicker: the imagePicker used
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
+    /// Gets called from the upload bar button handler function.
+    /// Creates and presents an instance of ImagePickerController, which displays all images on the device and allows
+    /// to select multiple images at once.
+    ///
+    /// The official apple alternative UIImagePickerController only allows the selection of one image at a time.
+    /// That is not enough for an image gallery app.
     func createImagePicker() {
         var configuration = Configuration()
         configuration.cancelButtonTitle = "Cancel"
@@ -65,6 +76,7 @@ extension GalleryVC: ImagePickerDelegate {
 
     }
     
+    /// Initializes the ImagePicker's progress view.
     func initializeProgressView() {
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.progressTintColor = .white

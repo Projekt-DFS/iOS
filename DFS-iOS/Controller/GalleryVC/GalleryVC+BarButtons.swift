@@ -1,29 +1,23 @@
-//
-//  GalleryVC+BarButtons.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 17.07.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
+/// Extension to GalleryVC to manage all actions belonging to bar buttons.
+///
+/// - author: Phillip Persch
 extension GalleryVC {
     
-    //---BarButtonsPressed---//
-    //--Upload--//
-    /**
-     Erzeugt ueber einen Alert den benoetigten ImagePicker und zeigt diesen anschliessend an
-     */
-    
-    
-    
+    /// Gets called when the user presses the upload bar button.
+    /// It calls the createImagePicker function, which handles the selection of images to upload.
+    ///
+    /// - parameter sender: the bar button that was pressed
     @IBAction func uploadBarButtonPressed(_ sender: UIBarButtonItem) {
         createImagePicker()        
     }
     
-    //--Download--//
-    
+
+    /// Gets called when the user presses the download bar button.
+    /// Saves the selected album to the device's storage and makes it available from the Photos app
+    ///
+    /// - parameter sender: the bar button that was pressed
     @IBAction func downloadBarButtonPressed(_ sender: UIBarButtonItem) {
         var imagesSaved = 0
         
@@ -45,8 +39,11 @@ extension GalleryVC {
 
     }
     
-    //--Trash--//
-    
+    /// Gets called when the user presses the trash bar button.
+    /// Deletes the selected items from the backend.
+    /// Lets the user confirm the action before performing it.
+    ///
+    /// - parameter sender: the bar button that was pressed
     @IBAction func trashBarButtonPressed(_ sender: UIBarButtonItem) {
         
         var selectedImagesAsString = ""
@@ -82,7 +79,10 @@ extension GalleryVC {
         
     }
     
-    //--Select--//
+    /// Gets called when the user presses the select bar button.
+    /// Switches the navigation bar on top to show the correct bar buttons.
+    ///
+    /// - parameter sender: the bar button that was pressed
     @IBAction func selectBarButtonPressed(_ sender: UIBarButtonItem) {
         if !highlightingMode {
             selectBarButton.title = "Done"
