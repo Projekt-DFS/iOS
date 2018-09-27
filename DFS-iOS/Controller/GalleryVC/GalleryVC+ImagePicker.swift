@@ -40,9 +40,9 @@ extension GalleryVC: ImagePickerDelegate {
             }
             DispatchQueue.main.async {
                 imagePicker.dismiss(animated: true, completion: nil)
-            }            
+            }
+            self.refreshGallery()
         }
-        refreshGallery()
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
