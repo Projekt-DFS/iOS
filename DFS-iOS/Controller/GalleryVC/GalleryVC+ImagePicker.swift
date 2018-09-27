@@ -31,7 +31,7 @@ extension GalleryVC: ImagePickerDelegate {
                 let imageBase64 = Utils.encodeDataToBase64(data: data!)
                 
                 let json = "{\n\t\"imageSource\":\"\(imageBase64)\",\n\t\"imageName\":\"\(Utils.generateImageName())\"\n}"
-                    Communicator.uploadImage(jsonString: json, sender: self)
+                let _ = Communicator.uploadImage(jsonString: json, sender: self)
                 DispatchQueue.main.async {
                     self.progressView.progress = self.progressView.progress + Float(1.0 / Double(images.count))
                     self.progressLabel.text = "uploading image \(2 + images.index(of: img)!) of \(images.count)..."
@@ -40,8 +40,9 @@ extension GalleryVC: ImagePickerDelegate {
             }
             DispatchQueue.main.async {
                 imagePicker.dismiss(animated: true, completion: nil)
+                 self.refreshGallery()
             }
-            self.refreshGallery()
+           
         }
     }
     
