@@ -1,13 +1,6 @@
-//
-//  LoginViewController.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 09.05.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
+/// Controller for the login scene.
 class LoginVC: UIViewController {
     
     let uds = UserDataSettings()
@@ -16,12 +9,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
-    
-    
-    //static var imageArray = [Image]()
-    
-
-    
+   
     func setData(){
         if let userName = userNameTextField.text{
             uds.setDefaultUserName(userName)
@@ -35,6 +23,11 @@ class LoginVC: UIViewController {
         }
     }
     
+    /// Attempts to login and initiates the following actions.
+    /// If the login attempt is successfull, it navigates to the gallery scene showing the user's images.
+    /// If the login attempt fails, the user is informed.
+    ///
+    /// - parameter sender: the button that was clicked
     @IBAction func logIn(_ sender: UIButton) {
         if rememberSwitch.isOn{
             setData()
@@ -51,13 +44,12 @@ class LoginVC: UIViewController {
         }
         
         if let _ = Communicator.getImageInfo(){
-            //let images = JsonParser.parseFromJsonToImageArray(data: imageData)
-            //LoginVC.imageArray = images
             performSegue(withIdentifier: "loginSegue", sender: self)
         }
         else{
             let toastLabel = Utils.generateToast(message: "Login failed", width: Double(self.view.frame.size.width), height: Double(self.view.frame.size.height))
             
+            // in case of a failed login attempt, a toast is shown, informing the user of failure
             self.view.addSubview(toastLabel)
             UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseIn, animations:{
                 toastLabel.alpha = 0.0
@@ -66,7 +58,6 @@ class LoginVC: UIViewController {
             })
             print("Login failed")
         }
-        
     }
     
     func updateTextFieldsIfDataRemebered(){
@@ -81,14 +72,19 @@ class LoginVC: UIViewController {
         }
     }
     
+    /// Called after the controller's view is loaded into memory.
+    /// Sets up the controller's view, including loading user defaults, resizing UI elements, checking for keyboard events
+    /// and reorganizing the screen accordingly.
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // resize UISwitch
         let transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
         rememberSwitch.transform = transform
         
         
         updateTextFieldsIfDataRemebered()
+        
         // Listen for keyboard events
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
@@ -102,7 +98,10 @@ class LoginVC: UIViewController {
 
     }
     
-    // method for the Keyboard change
+    /// Method to reorganize UI when a keyboard slides onto the screen.
+    /// This is necessary in order to keep important UI elements visible.
+    ///
+    /// - parameter notification: the notification of a keyboard sliding onto the screen or leaving it
     @objc func keyboardWillChange(notification: Notification){
         
         guard let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -118,6 +117,9 @@ class LoginVC: UIViewController {
             
     }
     
+    /// Empty implementation of an unwind segue. This is necessary in order to perform a logout from UserDataSettingsVC.
+    ///
+    /// - parameter segue: the segue that handles the logout navigation
     @IBAction func unwindToLogin(segue: UIStoryboardSegue){}
 
     
