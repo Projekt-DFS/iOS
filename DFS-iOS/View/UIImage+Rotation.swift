@@ -1,15 +1,10 @@
-//
-//  UIImage+Rotation.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 06.07.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
+/// Extension for UIImage to rotate them correctly.
 extension UIImage {
     
+    /// Rotates images to imageOrientation.up
+    /// Some images load into the collection view with the wrong orientation. This function fixes that.
     func updateImageOrientionUpSide() -> UIImage? {
         if self.imageOrientation == .up {
             return self

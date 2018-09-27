@@ -1,15 +1,15 @@
-//
-//  ImageDetailView.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 09.05.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
+/// View class for the image detail scene
+///
+/// - author: Phillip Persch
 class ImageDetailView: UIView {
     
+    /// When swiping through images in the image detail scene, this function creates the sliding animation.
+    /// depending on the direction of the swipe, the next image slides in from the left or the right.
+    ///
+    /// - parameter fromDirection: the direction the slide in animation should come from
+    /// - parameter duration: the amount of time the slide in animation should take
     func slideInImage(fromDirection: String, duration: CFTimeInterval, completionDelegate: AnyObject? = nil) {
         let slideInTransition = CATransition()
         
@@ -24,8 +24,7 @@ class ImageDetailView: UIView {
         slideInTransition.fillMode = kCAFillModeRemoved
         
         
-        self.layer.add(slideInTransition, forKey: "slideInTransition")
-        
+        self.layer.add(slideInTransition, forKey: "slideInTransition")        
         
     }
 }

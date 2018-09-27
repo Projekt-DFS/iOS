@@ -1,11 +1,3 @@
-//
-//  Utils.swift
-//  DFS-iOS
-//
-//  Created by Conriano on 29.05.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -84,12 +76,27 @@ class Utils{
         return "IMG_\(str).jpg"
     }
     
+    /// Shortens the String of the creation date received from the backend.
+    /// Since this app stores the creation time as a String, while the backend uses java type Date sends its toString(),
+    /// the received String is too long and detailed.
+    /// In order to fit the screen size and only display year, month and day, it needs to be shortened.
+    ///
+    /// - parameter image: the image of which the creation date needs to be shortened
     static func shortenCreationDate(image: Image) -> String {
         let created = image.getMetaData().getCreated()
         let indexEnd = created.index(created.endIndex, offsetBy: -13)
         return String(created[..<indexEnd])
     }
     
+    
+    /// Takes an image's creation date and calculates the number of seconds since January 1 1970.
+    /// This is important for ordering images by creation time.
+    ///
+    /// Note: This would have been easier, if we had used a proper Date type instead of String.
+    /// It is too late to change it though.
+    ///
+    /// - parameter image: the image
+    /// - returns: the time difference in seconds between the image's creation time and January 1 1970
     static func secondsSince1970(image: Image) -> Double {
         let shortenedDate = image.getMetaData().getCreated().replacingOccurrences(of: "T", with: "-")
         let dateFormatter = DateFormatter()

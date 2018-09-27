@@ -1,5 +1,3 @@
-
-
 import Foundation
 
 /// An object managing a collection of images.
