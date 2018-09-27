@@ -49,7 +49,6 @@ class MetaDataVC: UIViewController {
         metaData = image.getMetaData()
         
         ownerLabel.text = metaData.getOwner()
-        Utils.secondsSince1970(image: image)
 
         createdLabel.text = Utils.shortenCreationDate(image: image)
         
@@ -68,6 +67,7 @@ class MetaDataVC: UIViewController {
         }
     }
     
+    /// Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
         image = (galleryVC?.images[(galleryVC?.indexOfImageInDetailView)!])!

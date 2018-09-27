@@ -16,6 +16,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     var galleryVC = GalleryVC()
     var imagesByLocation = [CLPlacemark : [Image]]()
     
+    /// Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.backgroundColor = self.view.backgroundColor
@@ -39,7 +40,7 @@ class MapVC: UIViewController, MKMapViewDelegate {
     }
     
     private func setAnnotations() {
-        let navVC = tabBarController?.childViewControllers[0] as! NavigationVC
+        let navVC = tabBarController?.childViewControllers[0] as! UINavigationController
         galleryVC = navVC.childViewControllers[0] as! GalleryVC
         for image in galleryVC.images {
             let location = image.getMetaData().getLocation()

@@ -12,8 +12,6 @@ class UserDataSettingsVC: UIViewController {
 
     let userDataSettings = UserDataSettings()
     
-    @IBOutlet weak var autoUploadLabel: UILabel!
-    @IBOutlet var settingsView: UserDataSettingsView!
     @IBOutlet weak var settingsNavigationItem: UINavigationItem!
     @IBOutlet weak var logoutBarButton: UIBarButtonItem!
     @IBOutlet weak var usernameTextField: UITextField!
@@ -40,6 +38,7 @@ class UserDataSettingsVC: UIViewController {
         ipTextField.text! = ""
     }
     
+    /// Called after the controller's view is loaded into memory.
     override func viewDidLoad() {
         super.viewDidLoad()
         

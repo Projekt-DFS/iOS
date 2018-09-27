@@ -17,7 +17,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="LoginView" customModule="DFS_iOS" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -619,7 +619,7 @@
         <scene sceneID="Dic-jW-CbE">
             <objects>
                 <viewController id="FS4-E8-mmU" customClass="UserDataSettingsVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qkr-Ty-hY8" customClass="UserDataSettingsView" customModule="DFS_iOS" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="Qkr-Ty-hY8">
                         <rect key="frame" x="0.0" y="0.0" width="834" height="1063"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -736,7 +736,6 @@
                         <outlet property="logoutBarButton" destination="MsH-Pw-8oR" id="fWH-Tn-z6n"/>
                         <outlet property="passwordTextField" destination="19E-Hc-tTR" id="sH1-i8-TrO"/>
                         <outlet property="settingsNavigationItem" destination="hS8-td-pRa" id="wOH-Rx-VxP"/>
-                        <outlet property="settingsView" destination="Qkr-Ty-hY8" id="CK5-rp-jWy"/>
                         <outlet property="usernameTextField" destination="hWb-Hn-24r" id="OxQ-PR-8Wn"/>
                     </connections>
                 </viewController>
@@ -748,7 +747,7 @@
         <!--Gallery-->
         <scene sceneID="ncx-8i-ZKU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mej-yU-Aqj" customClass="NavigationVC" customModule="DFS_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mej-yU-Aqj" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Gallery" id="HPA-6v-v32"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6zF-e1-MT9">
@@ -830,10 +829,10 @@
             </objects>
             <point key="canvasLocation" x="665" y="821"/>
         </scene>
-        <!--TabVC-->
+        <!--Tab Bar Controller-->
         <scene sceneID="tJZ-xO-1rz">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="MdV-OG-Zau" customClass="TabVC" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="MdV-OG-Zau" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="iTf-l5-04w">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

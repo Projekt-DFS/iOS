@@ -1,15 +1,8 @@
-//
-//  GalleryCollectionViewController.swift
-//  DFS-iOS
-//
-//  Created by Konrad Zuse on 11.05.18.
-//  Copyright © 2018 philp_sc. All rights reserved.
-//
-
 import UIKit
 
-
+/// Controller for the gallery scene.
 class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
+    
     
     //Outlets
     @IBOutlet var galleryCollectionView: GalleryCollectionView!
@@ -20,26 +13,25 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
     @IBOutlet var trashBarButton: UIBarButtonItem!
     @IBOutlet var downloadBarButton: UIBarButtonItem!
     
+    
     var refreshControl = UIRefreshControl()
     var progressView = UIProgressView()
     var progressLabel = UILabel()
+    var indexOfImageInDetailView: Int?
+    var images = [Image]()
+    var highlightingMode = false
 
-
-    
-    //sonstige Variablen
     var gallery = Gallery() {
         didSet{
             images = gallery.getImageList()
             gallery.sortImagesByTime()
         }
     }
-    var indexOfImageInDetailView: Int?
-    var images = [Image]()
-    var highlightingMode = false
 
     
     
-    // Bestimmt, was passiert wenn die view geladen wurde
+    /// Called after the controller's view is loaded into memory.
+    /// It sets up all UI elements and loads the gallery's image into the view
     override func viewDidLoad() {
         super.viewDidLoad()
         galleryCollectionView.isPrefetchingEnabled = true
@@ -49,12 +41,7 @@ class GalleryVC: UICollectionViewController, UINavigationControllerDelegate {
         refreshGallery()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
-    
-    
-        
+    /// 
     @objc func refreshGallery() {
         refreshControl.beginRefreshing()
         refreshControl.isHidden = false

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		196DC9977F6C5A35B48802B4 /* Pods_DFS_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B36C1209E595D9E19BA17250 /* Pods_DFS_iOSTests.framework */; };
-		1E57009A2120C02200F4AB77 /* TabVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5700992120C02200F4AB77 /* TabVCViewController.swift */; };
 		395B8197E37A4FCBE3ED5E25 /* Pods_DFS_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 353563BE76607216764C4760 /* Pods_DFS_iOSUITests.framework */; };
 		3C14031439D6B7C0F5704BFC /* Pods_DFS_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C5E04809C9EDEBAFC8F95BD /* Pods_DFS_iOS.framework */; };
 		7147814420F00CE200AC8A9F /* UIImage+Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7147814320F00CE200AC8A9F /* UIImage+Rotation.swift */; };
@@ -25,13 +24,9 @@
 		715DCD1020A2FB1600A759E5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD0F20A2FB1600A759E5 /* Image.swift */; };
 		715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */; };
 		715DCD1820A2FB7E00A759E5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1720A2FB7E00A759E5 /* LoginVC.swift */; };
-		715DCD1A20A2FBA200A759E5 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1920A2FBA200A759E5 /* NavigationVC.swift */; };
 		715DCD1E20A2FBDD00A759E5 /* UserDataSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1D20A2FBDD00A759E5 /* UserDataSettingsVC.swift */; };
 		715DCD2020A2FBF200A759E5 /* ImageDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD1F20A2FBF200A759E5 /* ImageDetailVC.swift */; };
-		715DCD2420A2FC1D00A759E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2320A2FC1D00A759E5 /* LoginView.swift */; };
-		715DCD2820A2FC5100A759E5 /* UserDataSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */; };
 		715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */; };
-		715DCD2C20A2FC6A00A759E5 /* MetaDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */; };
 		715DCD3020A30BA400A759E5 /* MetaDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715DCD2F20A30BA400A759E5 /* MetaDataVC.swift */; };
 		719B807A20CE9617004BF200 /* MetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B807920CE9617004BF200 /* MetaData.swift */; };
 		719E149121187C1D00EEFBEA /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719E149021187C1D00EEFBEA /* MapVC.swift */; };
@@ -62,7 +57,6 @@
 /* Begin PBXFileReference section */
 		034FCE098F0703D5B64643EB /* Pods-DFS-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOS/Pods-DFS-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		1C5E04809C9EDEBAFC8F95BD /* Pods_DFS_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFS_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E5700992120C02200F4AB77 /* TabVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabVCViewController.swift; sourceTree = "<group>"; };
 		22341040502EE3B1B41DDEFA /* Pods-DFS-iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOSUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOSUITests/Pods-DFS-iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		353563BE76607216764C4760 /* Pods_DFS_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DFS_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		368A670B1B506FED8ED63201 /* Pods-DFS-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DFS-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DFS-iOS/Pods-DFS-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,13 +82,9 @@
 		715DCD0F20A2FB1600A759E5 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		715DCD1120A2FB2E00A759E5 /* UserDataSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettings.swift; sourceTree = "<group>"; };
 		715DCD1720A2FB7E00A759E5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		715DCD1920A2FBA200A759E5 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 		715DCD1D20A2FBDD00A759E5 /* UserDataSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettingsVC.swift; sourceTree = "<group>"; };
 		715DCD1F20A2FBF200A759E5 /* ImageDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailVC.swift; sourceTree = "<group>"; };
-		715DCD2320A2FC1D00A759E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataSettingsView.swift; sourceTree = "<group>"; };
 		715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailView.swift; sourceTree = "<group>"; };
-		715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataView.swift; sourceTree = "<group>"; };
 		715DCD2F20A30BA400A759E5 /* MetaDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataVC.swift; sourceTree = "<group>"; };
 		719B807920CE9617004BF200 /* MetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaData.swift; sourceTree = "<group>"; };
 		719E149021187C1D00EEFBEA /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -227,10 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				715DCCD620A2F70100A759E5 /* Main.storyboard */,
-				715DCD2320A2FC1D00A759E5 /* LoginView.swift */,
-				715DCD2720A2FC5100A759E5 /* UserDataSettingsView.swift */,
 				715DCD2920A2FC5D00A759E5 /* ImageDetailView.swift */,
-				715DCD2B20A2FC6A00A759E5 /* MetaDataView.swift */,
 				71F4C97320A62B810061FD3F /* GalleryCollectionView.swift */,
 				71F3B72720A62A66005194BB /* GalleryCollectionViewCell.swift */,
 				7147814320F00CE200AC8A9F /* UIImage+Rotation.swift */,
@@ -243,12 +230,10 @@
 			children = (
 				715DCD1720A2FB7E00A759E5 /* LoginVC.swift */,
 				714F905D20FE6B1B00DB188B /* GalleryVC */,
-				715DCD1920A2FBA200A759E5 /* NavigationVC.swift */,
 				715DCD1F20A2FBF200A759E5 /* ImageDetailVC.swift */,
 				715DCD2F20A30BA400A759E5 /* MetaDataVC.swift */,
 				715DCD1D20A2FBDD00A759E5 /* UserDataSettingsVC.swift */,
 				719E149021187C1D00EEFBEA /* MapVC.swift */,
-				1E5700992120C02200F4AB77 /* TabVCViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -483,18 +468,13 @@
 				715DCD1020A2FB1600A759E5 /* Image.swift in Sources */,
 				7147814420F00CE200AC8A9F /* UIImage+Rotation.swift in Sources */,
 				71F3B72820A62A66005194BB /* GalleryCollectionViewCell.swift in Sources */,
-				715DCD2C20A2FC6A00A759E5 /* MetaDataView.swift in Sources */,
-				715DCD2820A2FC5100A759E5 /* UserDataSettingsView.swift in Sources */,
 				715DCD3020A30BA400A759E5 /* MetaDataVC.swift in Sources */,
 				715DCD2A20A2FC5D00A759E5 /* ImageDetailView.swift in Sources */,
 				714F905F20FE6B3400DB188B /* GalleryVC+BarButtons.swift in Sources */,
 				71F3B72420A61DF5005194BB /* GalleryVC.swift in Sources */,
-				1E57009A2120C02200F4AB77 /* TabVCViewController.swift in Sources */,
 				719E149121187C1D00EEFBEA /* MapVC.swift in Sources */,
 				715DCD1E20A2FBDD00A759E5 /* UserDataSettingsVC.swift in Sources */,
 				CC0D435A20BD6D7300399A68 /* Utils.swift in Sources */,
-				715DCD1A20A2FBA200A759E5 /* NavigationVC.swift in Sources */,
-				715DCD2420A2FC1D00A759E5 /* LoginView.swift in Sources */,
 				714F906120FE6B7F00DB188B /* GalleryVC+ImagePicker.swift in Sources */,
 				715DCD0620A2FA9200A759E5 /* Communicator.swift in Sources */,
 				715DCD1220A2FB2E00A759E5 /* UserDataSettings.swift in Sources */,
