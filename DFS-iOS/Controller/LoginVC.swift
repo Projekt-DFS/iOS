@@ -2,7 +2,7 @@ import UIKit
 
 /// Controller for the login scene.
 ///
-/// - author: Phillip Persch
+/// - author: Phillip Persch, Julian Einspenner
 class LoginVC: UIViewController {
     
     let uds = UserDataSettings()
@@ -12,6 +12,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
    
+    /// Method for storing default user details to the application storage.
+    /// see UserDataSettings - class for further information
     func setData(){
         if let userName = userNameTextField.text{
             uds.setDefaultUserName(userName)
@@ -62,6 +64,8 @@ class LoginVC: UIViewController {
         }
     }
     
+    /// Uses the user defaults to fill the login screen textfields with user details
+    /// See UserDataSettings - class
     func updateTextFieldsIfDataRemebered(){
         if uds.getDefaultUserName() != ""{
             userNameTextField.text = uds.getDefaultUserName()

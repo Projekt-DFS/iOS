@@ -5,7 +5,7 @@ import Photos
 
 /// Extension to GalleryVC to manage the image picker used to upload images.
 ///
-/// - author: Phillip Persch
+/// - author: Phillip Persch, Julian Einspenner
 extension GalleryVC: ImagePickerDelegate {
     
     

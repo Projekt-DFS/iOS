@@ -1,23 +1,16 @@
 import Foundation
 import UIKit
 
+
+/// Utils is a helper class for different tasks. The methods commentary will explain it more detailed
+/// - author: Phillip Persch, Julian Einspenner
 class Utils{
-    
-    
-    /**
-     Erzeugt eine Toast Message, die folgendermassen aufgerufen wird:
-     
-     let toastLabel = Utils.showToast(message: "You downloaded 1 pic", width: Double(self.view.frame.size.width), height: Double(self.view.frame.size.height))
-     self.view.addSubview(toastLabel)
-     UIView.animate(withDuration: 4.0, delay: 0.2, options: .curveEaseIn, animations:{
-     toastLabel.alpha = 0.0
-     }, completion: {(isCompleted) in
-     toastLabel.removeFromSuperview()
-     })
-     
-     der Code hier im Kommentar dient gerade nur zur Erinnerung fuer den spaeteren Aufruf
-     und kommt deshalb wieder weg
-    */
+
+    /// Generates a toast message. Its values are given as parameters
+    /// - parameter message: The message the toast shows
+    /// - parameter width: is the width of the message container shown on the devices screen
+    /// - parameter height: is the height of the message container shown on the devices screen
+    /// - returns: the toastLabel with message and dimension
     static func generateToast(message: String, width: Double, height: Double) -> UILabel{
         let toastLabel = UILabel(frame: CGRect(x: width / 2 - 125, y: height - 100, width: 250, height: 40))
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
@@ -32,9 +25,11 @@ class Utils{
     }
     
     
-    /**
-     Prueft, ob die Login-Daten eingegeben wurden
-    */
+    /// Checks if the login details are typed correctly
+    /// - parameter name: the typed username
+    /// - parameter pw: the typed password
+    /// - parameter ip: the typed ip-adress
+    /// - returns: true if valid input, else false
     static func checkLoginDetails(name: String, pw: String, ip: String) -> Bool{
         if name == "" || pw == "" || ip == "" {
             return false
@@ -44,24 +39,23 @@ class Utils{
     
     
     
-    /**
-     Base64 Encoder: String -> Base64 String
-    */
+    /// Converts a string to base64-format
+    /// - parameter str: is the string which is going to be converted to base64
+    /// - returns: the encoded string
     static func encodeStringToBase64(str: String) -> String{
         return Data(str.utf8).base64EncodedString()
     }
     
-    /**
-     Base64 Encoder: Data -> Base64
-    */
+    /// Converts binary data to a base64 string. This is needed for uploading images
+    /// - parameter data: is the binary data of an image
+    /// - returns: the base64 encoded binary data
     static func encodeDataToBase64(data: Data) -> String{
         return data.base64EncodedString()
     }
     
-    
-    /**
-     Generates the name of an image to get uploaded
-    */
+    /// Generates a random name for an image.
+    /// Structure: IMG_ + Month + Day + Year + RandomNumber + .jpg
+    /// - returns: the image name with the structure
     static func generateImageName() -> String{
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -82,6 +76,7 @@ class Utils{
     /// In order to fit the screen size and only display year, month and day, it needs to be shortened.
     ///
     /// - parameter image: the image of which the creation date needs to be shortened
+    /// - returns: the shortened version of a images date
     static func shortenCreationDate(image: Image) -> String {
         let created = image.getMetaData().getCreated()
         let indexEnd = created.index(created.endIndex, offsetBy: -13)
@@ -105,7 +100,5 @@ class Utils{
 
         return Double((date?.timeIntervalSince1970) ?? 0.0)
     }
-    
-
-    
+        
 }

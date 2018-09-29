@@ -3,7 +3,7 @@ import Foundation
 /// An object containing all the necessary information to manage images in this application.
 /// It contains a source (URL), a name, a source for a downscaled thumbnail, and the according metadata.
 ///
-/// - author: Phillip Persch
+/// - author: Phillip Persch, Julian Einspenner
 class Image {
     
     

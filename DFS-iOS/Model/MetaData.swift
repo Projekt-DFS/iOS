@@ -3,7 +3,7 @@ import Foundation
 
 /// Wrapper object for additional information about an image.
 ///
-/// - author: Phillip Persch
+/// - author: Phillip Persch, Julian Einspenner
 class MetaData {
     private var owner: String
     private var created: String
@@ -14,7 +14,7 @@ class MetaData {
     ///
     /// - parameter owner: the user who owns the image
     /// - parameter created: the creation time of the image. This can be of type String because
-    ///                      it is downloaded from the backend and can not be changed
+    ///   it is downloaded from the backend and can not be changed
     /// - parameter location: the location where the image was taken, represented as a String
     /// - parameter tagList: a list of tags the user associates to the image
     init(owner: String, created:String, location: String, tagList:[String]) {

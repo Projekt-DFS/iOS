@@ -1,6 +1,7 @@
 import UIKit
 
 /// Extension for UIImage to rotate them correctly.
+/// - author: Phillip Persch
 extension UIImage {
     
     /// Rotates images to imageOrientation.up

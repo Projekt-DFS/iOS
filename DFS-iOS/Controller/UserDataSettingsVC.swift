@@ -1,5 +1,7 @@
 import UIKit
 
+/// Controller for handling user defaults.
+/// - author: Julian Einspenner, Phillip Persch
 class UserDataSettingsVC: UIViewController {
 
     let userDataSettings = UserDataSettings()
@@ -10,7 +12,8 @@ class UserDataSettingsVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var ipTextField: UITextField!
     
-    
+    /// If the save button is pressed the typed username, password and ip will be stored to user defaults
+    /// - parameter sender: Is the save button
     @IBAction func saveButtonTapped(_ sender: UIButton) {
         if let username = usernameTextField.text{
             userDataSettings.setDefaultUserName(username)
